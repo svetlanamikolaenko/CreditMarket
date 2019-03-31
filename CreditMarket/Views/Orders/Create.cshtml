@@ -1,0 +1,19 @@
+﻿@model CreditMarket.ViewModels.OrderFormViewModel
+@{
+	ViewBag.Title = "Create Order";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Order</h2>
+<form>
+	<div class="form-group">
+		@Html.LabelFor(x => x.Amount)
+		@Html.TextBoxFor(x => x.Amount, new { @class = "form-control" })
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(x => x.Loan)
+		@Html.DropDownListFor(x => x.Loan, new SelectList(Model.Loans, "Id", "Name"), "", new { @class = "form-control" })
+	</div>
+	<button type="submit" class="btn btn-primary">Save</button>
+</form>
+
