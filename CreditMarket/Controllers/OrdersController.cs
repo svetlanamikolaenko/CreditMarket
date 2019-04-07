@@ -26,7 +26,7 @@ namespace CreditMarket.Controllers
 
 		[Authorize]
 		[HttpPost]
-		//[ValidateAntiForgeryToken]
+		[ValidateAntiForgeryToken]
 		public ActionResult Create(OrderFormViewModel viewModel)
 		{
 			if (!ModelState.IsValid)
