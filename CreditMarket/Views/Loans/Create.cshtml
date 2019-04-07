@@ -1,0 +1,33 @@
+﻿@model CreditMarket.ViewModels.LoanFormViewModel
+@{
+	ViewBag.Title = "Create Loan";
+}
+
+<h2>Create Loan</h2>
+
+@using (Html.BeginForm("Create", "Loans"))
+{
+	<p class="alert alert-info">All fields are required.</p>
+	@Html.AntiForgeryToken()
+	<div class="form-group">
+		@Html.LabelFor(l => l.Name)
+		@Html.TextBoxFor(l => l.Name, new { @class = "form-control", autofocus = "autofocus" })
+		@Html.ValidationMessageFor(l => l.Name)
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(l => l.Period)
+		@Html.TextBoxFor(l => l.Period, new { @class = "form-control" })
+		@Html.ValidationMessageFor(l => l.Period)
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(l => l.Procent)
+		@Html.TextBoxFor(l => l.Procent, new { @class = "form-control" })
+		@Html.ValidationMessageFor(l => l.Procent)
+	</div>
+	<button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+	@Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,87 @@
+﻿@model CreditMarket.ViewModels.OrderFormViewModel
+@{
+	/**/
+
+	ViewBag.Title = "Create Order";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Order</h2>
+@using (Html.BeginForm("Create", "Orders"))
+{
+	<p class="alert alert-info">All fields are required.</p>
+	<div class="form-group">
+		@Html.LabelFor(x => x.Amount)
+		@Html.TextBoxFor(x => x.Amount, new { @class = "form-control" })
+		@Html.ValidationMessageFor(x => x.Amount)
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(x => x.Order.LoanId)
+		@Html.DropDownListFor(x => x.Order.LoanId, new SelectList(Model.Loan, "Id", "Name"), "Select Loan", new { @class = "form-control" })
+		@Html.ValidationMessageFor(x => x.Order.LoanId)
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(x => x.LastName)
+		@Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+		@Html.ValidationMessageFor(x => x.LastName)
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(x => x.FirstName)
+		@Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
+		@Html.ValidationMessageFor(x => x.FirstName)
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(x => x.FathersName)
+		@Html.TextBoxFor(x => x.FathersName, new { @class = "form-control" })
+		@Html.ValidationMessageFor(x => x.FathersName)
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(x => x.DateOfBirth)
+		@Html.TextBoxFor(x => x.DateOfBirth, new { @class = "form-control" })
+		@Html.ValidationMessageFor(x => x.DateOfBirth)
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(x => x.Email)
+		@Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+		@Html.ValidationMessageFor(x => x.Email)
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(x => x.PhoneNumber)
+		@Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control" })
+		@Html.ValidationMessageFor(x => x.PhoneNumber)
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(x => x.INN)
+		@Html.TextBoxFor(x => x.INN, new { @class = "form-control" })
+		@Html.ValidationMessageFor(x => x.INN)
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(x => x.PassportNumber)
+		@Html.TextBoxFor(x => x.PassportNumber, new { @class = "form-control" })
+		@Html.ValidationMessageFor(x => x.PassportNumber)
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(x => x.PassportGivenByWhom)
+		@Html.TextBoxFor(x => x.PassportGivenByWhom, new { @class = "form-control" })
+		@Html.ValidationMessageFor(x => x.PassportGivenByWhom)
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(x => x.PassportGivenDate)
+		@Html.TextBoxFor(x => x.PassportGivenDate, new { @class = "form-control" })
+		@Html.ValidationMessageFor(x => x.PassportGivenDate)
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(x => x.PassportImages)
+		@Html.TextBoxFor(x => x.PassportImages, new { @class = "form-control" })
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(x => x.INNImages)
+		@Html.TextBoxFor(x => x.INNImages, new { @class = "form-control" })
+	</div>
+	<button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+	@Scripts.Render("~/bundles/jqueryval")
+}
