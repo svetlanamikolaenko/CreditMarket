@@ -10,6 +10,7 @@
 @using (Html.BeginForm("Create", "Orders"))
 {
 	<p class="alert alert-info">All fields are required.</p>
+	@Html.AntiForgeryToken()
 	<div class="form-group">
 		@Html.LabelFor(x => x.Amount)
 		@Html.TextBoxFor(x => x.Amount, new { @class = "form-control" })
