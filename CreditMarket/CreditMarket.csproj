@@ -175,6 +175,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoansController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -192,6 +193,50 @@
     <Compile Include="Migrations\201903311308512_AddLoans.Designer.cs">
       <DependentUpon>201903311308512_AddLoans.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904011139482_AddLoanForeignKeyToOrder.cs" />
+    <Compile Include="Migrations\201904011139482_AddLoanForeignKeyToOrder.Designer.cs">
+      <DependentUpon>201904011139482_AddLoanForeignKeyToOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904011246513_RollbackAddLoanForeignKeyToOrder.cs" />
+    <Compile Include="Migrations\201904011246513_RollbackAddLoanForeignKeyToOrder.Designer.cs">
+      <DependentUpon>201904011246513_RollbackAddLoanForeignKeyToOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904011440511_AddLoanForeignKeyToOrder2.cs" />
+    <Compile Include="Migrations\201904011440511_AddLoanForeignKeyToOrder2.Designer.cs">
+      <DependentUpon>201904011440511_AddLoanForeignKeyToOrder2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904011445342_RollbackAddLoanForeignKeyToOrder2.cs" />
+    <Compile Include="Migrations\201904011445342_RollbackAddLoanForeignKeyToOrder2.Designer.cs">
+      <DependentUpon>201904011445342_RollbackAddLoanForeignKeyToOrder2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904011534306_AddLoanForeignKeyToOrder3.cs" />
+    <Compile Include="Migrations\201904011534306_AddLoanForeignKeyToOrder3.Designer.cs">
+      <DependentUpon>201904011534306_AddLoanForeignKeyToOrder3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904011600079_ApplicationDbContextUpdate.cs" />
+    <Compile Include="Migrations\201904011600079_ApplicationDbContextUpdate.Designer.cs">
+      <DependentUpon>201904011600079_ApplicationDbContextUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904011638541_RemoveRequiredFields.cs" />
+    <Compile Include="Migrations\201904011638541_RemoveRequiredFields.Designer.cs">
+      <DependentUpon>201904011638541_RemoveRequiredFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904020633199_DataTypeAnnotation.cs" />
+    <Compile Include="Migrations\201904020633199_DataTypeAnnotation.Designer.cs">
+      <DependentUpon>201904020633199_DataTypeAnnotation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904031705288_DateTimeNullAllowed.cs" />
+    <Compile Include="Migrations\201904031705288_DateTimeNullAllowed.Designer.cs">
+      <DependentUpon>201904031705288_DateTimeNullAllowed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904031812577_DateTimeNullAllowed2.cs" />
+    <Compile Include="Migrations\201904031812577_DateTimeNullAllowed2.Designer.cs">
+      <DependentUpon>201904031812577_DateTimeNullAllowed2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904071309104_AddLoans1.cs" />
+    <Compile Include="Migrations\201904071309104_AddLoans1.Designer.cs">
+      <DependentUpon>201904071309104_AddLoans1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -202,6 +247,8 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\DateValidation.cs" />
+    <Compile Include="ViewModels\LoanFormViewModel.cs" />
     <Compile Include="ViewModels\OrderFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -261,6 +308,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Loans\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -287,6 +335,39 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903311308512_AddLoans.resx">
       <DependentUpon>201903311308512_AddLoans.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904011139482_AddLoanForeignKeyToOrder.resx">
+      <DependentUpon>201904011139482_AddLoanForeignKeyToOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904011246513_RollbackAddLoanForeignKeyToOrder.resx">
+      <DependentUpon>201904011246513_RollbackAddLoanForeignKeyToOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904011440511_AddLoanForeignKeyToOrder2.resx">
+      <DependentUpon>201904011440511_AddLoanForeignKeyToOrder2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904011445342_RollbackAddLoanForeignKeyToOrder2.resx">
+      <DependentUpon>201904011445342_RollbackAddLoanForeignKeyToOrder2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904011534306_AddLoanForeignKeyToOrder3.resx">
+      <DependentUpon>201904011534306_AddLoanForeignKeyToOrder3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904011600079_ApplicationDbContextUpdate.resx">
+      <DependentUpon>201904011600079_ApplicationDbContextUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904011638541_RemoveRequiredFields.resx">
+      <DependentUpon>201904011638541_RemoveRequiredFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904020633199_DataTypeAnnotation.resx">
+      <DependentUpon>201904020633199_DataTypeAnnotation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904031705288_DateTimeNullAllowed.resx">
+      <DependentUpon>201904031705288_DateTimeNullAllowed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904031812577_DateTimeNullAllowed2.resx">
+      <DependentUpon>201904031812577_DateTimeNullAllowed2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904071309104_AddLoans1.resx">
+      <DependentUpon>201904071309104_AddLoans1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
