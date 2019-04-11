@@ -3,7 +3,7 @@ using System.Data.Entity;
 
 namespace CreditMarket.Models
 {
-	public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 	{
 		public DbSet<Loan> Loans { get; set; }
 		public DbSet<Order> Orders { get; set; }

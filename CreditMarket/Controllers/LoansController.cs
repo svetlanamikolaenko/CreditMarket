@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace CreditMarket.Controllers
 {
-	public class LoansController : Controller
+    public class LoansController : Controller
 	{
 		private readonly ApplicationDbContext _context;
 
@@ -12,6 +12,19 @@ namespace CreditMarket.Controllers
 		{
 			_context = new ApplicationDbContext();
 		}
+
+		protected override void Dispose(bool disposing)
+		{
+			_context.Dispose();
+		}
+
+		public ViewResult Index()
+		{
+			var loans = _context.Loans;
+
+			return View(loans);
+		}
+
 
 		[Authorize]
 		public ActionResult Create()

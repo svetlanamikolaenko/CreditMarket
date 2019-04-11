@@ -237,6 +237,30 @@
     <Compile Include="Migrations\201904071309104_AddLoans1.Designer.cs">
       <DependentUpon>201904071309104_AddLoans1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904101814071_AddFullNameColumn.cs" />
+    <Compile Include="Migrations\201904101814071_AddFullNameColumn.Designer.cs">
+      <DependentUpon>201904101814071_AddFullNameColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904101913151_DBSetLoans.cs" />
+    <Compile Include="Migrations\201904101913151_DBSetLoans.Designer.cs">
+      <DependentUpon>201904101913151_DBSetLoans.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904101923538_IENumLoan.cs" />
+    <Compile Include="Migrations\201904101923538_IENumLoan.Designer.cs">
+      <DependentUpon>201904101923538_IENumLoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904101928134_rollbackIENumLoan.cs" />
+    <Compile Include="Migrations\201904101928134_rollbackIENumLoan.Designer.cs">
+      <DependentUpon>201904101928134_rollbackIENumLoan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904101934116_rollbackIENumLoan1.cs" />
+    <Compile Include="Migrations\201904101934116_rollbackIENumLoan1.Designer.cs">
+      <DependentUpon>201904101934116_rollbackIENumLoan1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904101938249_LoanNamePeriodToOrderModel.cs" />
+    <Compile Include="Migrations\201904101938249_LoanNamePeriodToOrderModel.Designer.cs">
+      <DependentUpon>201904101938249_LoanNamePeriodToOrderModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -309,6 +333,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Orders\Create.cshtml" />
     <Content Include="Views\Loans\Create.cshtml" />
+    <Content Include="Views\Loans\Index.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -368,6 +394,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904071309104_AddLoans1.resx">
       <DependentUpon>201904071309104_AddLoans1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904101814071_AddFullNameColumn.resx">
+      <DependentUpon>201904101814071_AddFullNameColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904101913151_DBSetLoans.resx">
+      <DependentUpon>201904101913151_DBSetLoans.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904101923538_IENumLoan.resx">
+      <DependentUpon>201904101923538_IENumLoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904101928134_rollbackIENumLoan.resx">
+      <DependentUpon>201904101928134_rollbackIENumLoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904101934116_rollbackIENumLoan1.resx">
+      <DependentUpon>201904101934116_rollbackIENumLoan1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904101938249_LoanNamePeriodToOrderModel.resx">
+      <DependentUpon>201904101938249_LoanNamePeriodToOrderModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

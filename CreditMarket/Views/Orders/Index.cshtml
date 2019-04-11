@@ -1,0 +1,44 @@
+﻿@model IEnumerable<CreditMarket.Models.Order>
+@{
+				/**/
+
+				ViewBag.Title = "Index";
+				Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Список заявок</h2>
+<a class="btn btn-primary" href="/Orders/Create" role="button">Створити заявку</a>
+<br>
+<br>
+@if (!Model.Any())
+{
+	<p>We don't have any orders yet.</p>
+}
+else
+{
+	<table class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>Номер заявки</th>
+				<th>ПІБ клієнта</th>
+				<th>Назва кредиту</th>
+				<th>Сума кредиту</th>
+				<th>Термін</th>
+				<th>Дата видачі</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var order in Model)
+			{
+			<tr>
+				<td>@order.Id</td>
+				<td>@Html.ActionLink(order.FullName, "Details", "Orders", new { id = order.Id }, null)</td>
+				<td>@order.Loan.Name</td>
+				<td>@order.Amount</td>
+				<td>@order.Loan.Period</td>
+			</tr>
+			}
+		</tbody>
+	</table>
+}
+

@@ -9,7 +9,7 @@ namespace CreditMarket.ViewModels
 	public class OrderFormViewModel: Base
 	{
 		public IEnumerable<Loan> Loan { get; set; }
-
+		public int LoanId;
 		public Order Order { get; set; }
 
 		[Required(ErrorMessage = "Вкажіть суму кредиту")]
@@ -40,7 +40,7 @@ namespace CreditMarket.ViewModels
 		[StringLength(12)]
 		public string PhoneNumber { get; set; }
 
-		[Required(ErrorMessage = "Вкажіть індивідуальний код платника податків")]
+		[Required(ErrorMessage = "Вкажіть індивідуальний код платника податків") ]
 		public long INN { get; set; }
 
 		[Required(ErrorMessage = "Вкажіть серію та номер паспорту")]
@@ -68,6 +68,15 @@ namespace CreditMarket.ViewModels
 		public DateTime? GetPassportGivenDate()
 		{
 			return DateTime.ParseExact(PassportGivenDate, "dd-MM-yyyy", CultureInfo.CurrentCulture);
+		}
+
+
+		public string FullName
+		{
+			get
+			{
+				return LastName + " " + FirstName + " " + FathersName;
+			}
 		}
 	}
 }
