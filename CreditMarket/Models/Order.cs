@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CreditMarket.Models
 {
-	public class Order: Base
+    public class Order: Base
 	{
 		
 		public Loan Loan { get; set; }
@@ -11,7 +11,7 @@ namespace CreditMarket.Models
 		[Required(ErrorMessage = "Оберіть кредит")]
 		public int LoanId { get; set; }
 
-		public double Amount { get; set; }
+        public double Amount { get; set; }
 
 		public string FirstName { get; set; }
 
@@ -42,5 +42,13 @@ namespace CreditMarket.Models
 		public DateTime ApprovedDate { get; set; }
 
 		public string OrderStatus { get; set; }
+
+		public string FullName
+		{
+			get
+			{
+				return LastName + " " + FirstName + " " + FathersName;
+			}
+		}
 	}
 }

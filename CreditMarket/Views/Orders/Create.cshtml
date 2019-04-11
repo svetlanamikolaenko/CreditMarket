@@ -2,84 +2,84 @@
 @{
 	/**/
 
-	ViewBag.Title = "Create Order";
+	ViewBag.Title = "Створення заявки";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create Order</h2>
+<h2>Створити заявку</h2>
 @using (Html.BeginForm("Create", "Orders"))
 {
-	<p class="alert alert-info">All fields are required.</p>
+	<p class="alert alert-info">Усі поля обов'язкові.</p>
 	@Html.AntiForgeryToken()
 	<div class="form-group">
-		@Html.LabelFor(x => x.Amount)
-		@Html.TextBoxFor(x => x.Amount, new { @class = "form-control" })
+		<label for="Amount">Сума кредиту</label>
+		@Html.TextBoxFor(x => x.Amount, new { @class = "form-control", autofocus = "autofocus" })
 		@Html.ValidationMessageFor(x => x.Amount)
 	</div>
 	<div class="form-group">
-		@Html.LabelFor(x => x.Order.LoanId)
+		<label for="Order.LoanId">Кредит</label>
 		@Html.DropDownListFor(x => x.Order.LoanId, new SelectList(Model.Loan, "Id", "Name"), "Select Loan", new { @class = "form-control" })
 		@Html.ValidationMessageFor(x => x.Order.LoanId)
 	</div>
 	<div class="form-group">
-		@Html.LabelFor(x => x.LastName)
+		<label for="LastName">Прізвище</label>
 		@Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
 		@Html.ValidationMessageFor(x => x.LastName)
 	</div>
 	<div class="form-group">
-		@Html.LabelFor(x => x.FirstName)
+		<label for="FirstName">Ім'я</label>
 		@Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
 		@Html.ValidationMessageFor(x => x.FirstName)
 	</div>
 	<div class="form-group">
-		@Html.LabelFor(x => x.FathersName)
+		<label for="FathersName">По-батькові</label>
 		@Html.TextBoxFor(x => x.FathersName, new { @class = "form-control" })
 		@Html.ValidationMessageFor(x => x.FathersName)
 	</div>
 	<div class="form-group">
-		@Html.LabelFor(x => x.DateOfBirth)
-		@Html.TextBoxFor(x => x.DateOfBirth, new { @class = "form-control" })
+		<label for="Date OfBirth">День народження</label>
+		@Html.TextBoxFor(x => x.DateOfBirth, new { @class = "form-control", placeholder = "eg 01-01-2000" })
 		@Html.ValidationMessageFor(x => x.DateOfBirth)
 	</div>
 	<div class="form-group">
-		@Html.LabelFor(x => x.Email)
+		<label for="Email">E-mail</label>
 		@Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
 		@Html.ValidationMessageFor(x => x.Email)
 	</div>
 	<div class="form-group">
-		@Html.LabelFor(x => x.PhoneNumber)
+		<label for="PhoneNumber">Мобільний номер</label>
 		@Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control" })
 		@Html.ValidationMessageFor(x => x.PhoneNumber)
 	</div>
 	<div class="form-group">
-		@Html.LabelFor(x => x.INN)
+		<label for="INN">ІНН</label>
 		@Html.TextBoxFor(x => x.INN, new { @class = "form-control" })
 		@Html.ValidationMessageFor(x => x.INN)
 	</div>
 	<div class="form-group">
-		@Html.LabelFor(x => x.PassportNumber)
+		<label for="PassportNumber">Серія та номер паспорта</label>
 		@Html.TextBoxFor(x => x.PassportNumber, new { @class = "form-control" })
 		@Html.ValidationMessageFor(x => x.PassportNumber)
 	</div>
 	<div class="form-group">
-		@Html.LabelFor(x => x.PassportGivenByWhom)
+		<label for="PassportGivenByWhom">Ким виданий паспорт</label>
 		@Html.TextBoxFor(x => x.PassportGivenByWhom, new { @class = "form-control" })
 		@Html.ValidationMessageFor(x => x.PassportGivenByWhom)
 	</div>
 	<div class="form-group">
-		@Html.LabelFor(x => x.PassportGivenDate)
-		@Html.TextBoxFor(x => x.PassportGivenDate, new { @class = "form-control" })
+		<label for="PassportGivenDate">Коли виданий паспорт</label>
+		@Html.TextBoxFor(x => x.PassportGivenDate, new { @class = "form-control", placeholder = "eg 01-01-2000" })
 		@Html.ValidationMessageFor(x => x.PassportGivenDate)
 	</div>
 	<div class="form-group">
-		@Html.LabelFor(x => x.PassportImages)
+		<label for="PassportImages">Копія паспорту</label>
 		@Html.TextBoxFor(x => x.PassportImages, new { @class = "form-control" })
 	</div>
 	<div class="form-group">
-		@Html.LabelFor(x => x.INNImages)
+		<label for="INNImages">Копія ІНН</label>
 		@Html.TextBoxFor(x => x.INNImages, new { @class = "form-control" })
 	</div>
-	<button type="submit" class="btn btn-primary">Save</button>
+	<button type="submit" class="btn btn-primary">Створити заявку</button>
 }
 
 @section scripts

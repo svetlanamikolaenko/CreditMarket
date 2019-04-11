@@ -1,0 +1,37 @@
+﻿@model IEnumerable<CreditMarket.Models.Loan>
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Кредити</h2>
+<a class="btn btn-primary" href="/Loans/Create" role="button">Створити кредит</a>
+<br>
+<br>
+@if (!Model.Any())
+{
+	<p>We don't have any loans yet.</p>
+}
+else
+{
+	<table class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>Назва</th>
+				<th>Період</th>
+				<th>Відсоткова ставка</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var loan in Model)
+			{
+			<tr>
+				<td>@Html.ActionLink(loan.Name, "Details", "Loans", new { id = loan.Id }, null)</td>
+				<td>@loan.Period</td>
+				<td>@loan.Procent</td>
+			</tr>
+			}
+		</tbody>
+	</table>
+}
+

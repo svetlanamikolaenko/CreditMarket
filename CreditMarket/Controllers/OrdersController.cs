@@ -1,17 +1,30 @@
 ﻿using CreditMarket.Models;
 using CreditMarket.ViewModels;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
 namespace CreditMarket.Controllers
 {
-	public class OrdersController : Controller
+    public class OrdersController : Controller
 	{
 		private readonly ApplicationDbContext _context;
 
 		public OrdersController()
 		{
 			_context = new ApplicationDbContext();
+		}
+
+		protected override void Dispose(bool disposing)
+		{
+			_context.Dispose();
+		}
+
+		public ViewResult Index()
+		{
+			var orders = _context.Orders.Include(x => x.Loan).ToList();
+
+			return View(orders);
 		}
 
 		[Authorize]
