@@ -6,14 +6,14 @@ using System.Globalization;
 
 namespace CreditMarket.ViewModels
 {
-	public class OrderFormViewModel: Base
+    public class OrderFormViewModel: Base
 	{
 		public IEnumerable<Loan> Loan { get; set; }
 		public int LoanId;
 		public Order Order { get; set; }
 
 		[Required(ErrorMessage = "Вкажіть суму кредиту")]
-		public double Amount { get; set; }
+		public double? Amount { get; set; }
 
 		[Required(ErrorMessage = "Ім'я обов'язкове до заповнення")]
 		[StringLength(50)]
@@ -41,7 +41,7 @@ namespace CreditMarket.ViewModels
 		public string PhoneNumber { get; set; }
 
 		[Required(ErrorMessage = "Вкажіть індивідуальний код платника податків") ]
-		public long INN { get; set; }
+		public long? INN { get; set; }
 
 		[Required(ErrorMessage = "Вкажіть серію та номер паспорту")]
 		[StringLength(8)]
@@ -70,8 +70,9 @@ namespace CreditMarket.ViewModels
 			return DateTime.ParseExact(PassportGivenDate, "dd-MM-yyyy", CultureInfo.CurrentCulture);
 		}
 
+        public DateTime CreationDate { get; set; }
 
-		public string FullName
+        public string FullName
 		{
 			get
 			{

@@ -1,5 +1,6 @@
 ﻿using CreditMarket.Models;
 using CreditMarket.ViewModels;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -27,7 +28,13 @@ namespace CreditMarket.Controllers
 			return View(orders);
 		}
 
-		[Authorize]
+        public ActionResult Edit(int id)
+        {
+            var order = _context.Orders.Find(id);
+            return View(order);
+        }
+
+        [Authorize]
 		public ActionResult Create()
 		{
 			var viewModel = new OrderFormViewModel
@@ -62,7 +69,8 @@ namespace CreditMarket.Controllers
 				PassportGivenByWhom = viewModel.PassportGivenByWhom,
 				PassportGivenDate = viewModel.GetPassportGivenDate(),
 				PassportImages = viewModel.PassportImages,
-				INNImages = viewModel.INNImages
+				INNImages = viewModel.INNImages,
+                CreationDate = DateTime.Now
 			};
 			
 			_context.Orders.Add(order);

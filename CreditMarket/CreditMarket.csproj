@@ -261,6 +261,14 @@
     <Compile Include="Migrations\201904101938249_LoanNamePeriodToOrderModel.Designer.cs">
       <DependentUpon>201904101938249_LoanNamePeriodToOrderModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904151843139_AmountField.cs" />
+    <Compile Include="Migrations\201904151843139_AmountField.Designer.cs">
+      <DependentUpon>201904151843139_AmountField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904151848528_INNField.cs" />
+    <Compile Include="Migrations\201904151848528_INNField.Designer.cs">
+      <DependentUpon>201904151848528_INNField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -335,6 +343,8 @@
     <Content Include="Views\Loans\Create.cshtml" />
     <Content Include="Views\Loans\Index.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Loans\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -412,6 +422,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904101938249_LoanNamePeriodToOrderModel.resx">
       <DependentUpon>201904101938249_LoanNamePeriodToOrderModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904151843139_AmountField.resx">
+      <DependentUpon>201904151843139_AmountField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904151848528_INNField.resx">
+      <DependentUpon>201904151848528_INNField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

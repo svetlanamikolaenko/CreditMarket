@@ -11,7 +11,7 @@ namespace CreditMarket.Models
 		[Required(ErrorMessage = "Оберіть кредит")]
 		public int LoanId { get; set; }
 
-        public double Amount { get; set; }
+        public double? Amount { get; set; }
 
 		public string FirstName { get; set; }
 
@@ -25,7 +25,7 @@ namespace CreditMarket.Models
 
 		public string PhoneNumber { get; set; }
 
-		public long INN { get; set; }
+		public long? INN { get; set; }
 
 		public string PassportNumber { get; set; }
 
