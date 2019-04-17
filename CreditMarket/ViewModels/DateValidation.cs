@@ -13,7 +13,6 @@ namespace CreditMarket.ViewModels
 				"dd-MM-yyyy", CultureInfo.CurrentCulture,
 				DateTimeStyles.None,
 				out dateTime);
-
 			return isValid;
 		}
 	}
