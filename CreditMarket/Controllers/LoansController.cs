@@ -1,5 +1,6 @@
 ﻿using CreditMarket.Models;
 using CreditMarket.ViewModels;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace CreditMarket.Controllers
@@ -26,33 +27,56 @@ namespace CreditMarket.Controllers
 		}
 
 
-		[Authorize]
+		//[Authorize]
 		public ActionResult Create()
 		{
 			return View();
 		}
 
-		[Authorize]
+		//[Authorize]
 		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Create(LoanFormViewModel viewModel)
+		//[ValidateAntiForgeryToken]
+		public ActionResult Create(Loan loan)
 		{
-			if (!ModelState.IsValid)
-			{
-				return View("Create", viewModel);
-			}
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new LoanFormViewModel()
+                {
+                    Loan = loan,
+                };
 
-			var loan = new Loan
-			{
-				Name = viewModel.Name,
-				Period = viewModel.Period,
-				Procent = viewModel.Procent
-			};
+                return View("Create", viewModel);
+            }
 
-			_context.Loans.Add(loan);
-			_context.SaveChanges();
+            if (loan.Id == 0)
+                _context.Loans.Add(loan);
+            else
+            {
+                var loanInDb = _context.Loans.Single(l => l.Id == loan.Id);
 
-			return RedirectToAction("Index", "Home");
-		}
-	}
+                loanInDb.Name = loan.Name;
+                loanInDb.Period = loan.Period;
+                loanInDb.Procent = loan.Procent;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Loans");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var loan = _context.Loans.SingleOrDefault(l => l.Id == id);
+
+            if (loan == null)
+                return HttpNotFound();
+
+            var viewModel = new LoanFormViewModel()
+            {
+                Loan = loan,
+            };
+
+            return View("Create", viewModel);
+        }
+    }
 }

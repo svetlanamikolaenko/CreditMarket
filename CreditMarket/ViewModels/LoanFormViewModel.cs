@@ -3,9 +3,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CreditMarket.ViewModels
 {
-	public class LoanFormViewModel: Base
+    public class LoanFormViewModel: Base
 	{
-		[Required(ErrorMessage = "Вкажіть назву кредиту")]
+        public Loan Loan { get; set; }
+
+        [Required(ErrorMessage = "Вкажіть назву кредиту")]
 		[StringLength(50)]
 		public string Name { get; set; }
 

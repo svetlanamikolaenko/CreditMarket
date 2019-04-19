@@ -34,7 +34,7 @@ namespace CreditMarket.Controllers
             return View(order);
         }
 
-        [Authorize]
+        //[Authorize]
 		public ActionResult Create()
 		{
 			var viewModel = new OrderFormViewModel
@@ -44,7 +44,7 @@ namespace CreditMarket.Controllers
 			return View(viewModel);
 		}
 
-		[Authorize]
+		//[Authorize]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(OrderFormViewModel viewModel)

@@ -1,4 +1,4 @@
-﻿@model CreditMarket.Models.Order
+﻿@model CreditMarket.ViewModels.OrderFormViewModel
 @{
     /**/
 
@@ -10,7 +10,6 @@
 @using (Html.BeginForm("Edit", "Orders"))
 {
     <p class="alert alert-info">Усі поля обов'язкові.</p>
-    @Html.AntiForgeryToken()
     <div class="form-group">
         <label for="Amount">Сума кредиту</label>
         @Html.TextBoxFor(x => x.Amount, new { @class = "form-control", autofocus = "autofocus" })
@@ -78,6 +77,7 @@
         <label for="INNImages">Копія ІНН</label>
         @Html.TextBoxFor(x => x.INNImages, new { @class = "form-control" })
     </div>
+    @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Створити заявку</button>
 }
 
