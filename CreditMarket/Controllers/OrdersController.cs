@@ -1,6 +1,5 @@
 ﻿using CreditMarket.Models;
 using CreditMarket.ViewModels;
-using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -28,55 +27,86 @@ namespace CreditMarket.Controllers
 			return View(orders);
 		}
 
-        public ActionResult Edit(int id)
+        public ActionResult Details(int id)
         {
-            var order = _context.Orders.Find(id);
+            var order = _context.Orders.SingleOrDefault(o => o.Id == id);
+
+            if (order == null)
+                return HttpNotFound();
+
             return View(order);
         }
 
         //[Authorize]
-		public ActionResult Create()
+        public ActionResult Create()
 		{
 			var viewModel = new OrderFormViewModel
 			{
-				Loan = _context.Loans.ToList()
+                Order = new Order(),
+                Loan = _context.Loans.ToList()
 			};
-			return View(viewModel);
+			return View("OrderForm", viewModel);
 		}
 
 		//[Authorize]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create(OrderFormViewModel viewModel)
-		{
-			if (!ModelState.IsValid)
-			{
-				viewModel.Loan = _context.Loans.ToList();
-				return View("Create", viewModel);
-			}
-			var order = new Order
-			{
-				Amount = viewModel.Amount,
-				LoanId = viewModel.Order.LoanId,
-				LastName = viewModel.LastName,
-				FirstName = viewModel.FirstName,
-				FathersName = viewModel.FathersName,
-				DateOfBirth = viewModel.GetDateOfBirth(),
-				Email = viewModel.Email,
-				PhoneNumber = viewModel.PhoneNumber,
-				INN = viewModel.INN,
-				PassportNumber = viewModel.PassportNumber,
-				PassportGivenByWhom = viewModel.PassportGivenByWhom,
-				PassportGivenDate = viewModel.GetPassportGivenDate(),
-				PassportImages = viewModel.PassportImages,
-				INNImages = viewModel.INNImages,
-                CreationDate = DateTime.Now
-			};
-			
-			_context.Orders.Add(order);
-			_context.SaveChanges();
+        public ActionResult Save(Order order)
+        {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new OrderFormViewModel()
+                {
+                    Order = order,
+                    Loan = _context.Loans.ToList()
+                };
 
-			return RedirectToAction("Index", "Home");
-		}
-	}
+                return View("OrderForm", viewModel);
+            }
+
+            if (order.Id == 0)
+                _context.Orders.Add(order);
+            else
+            {
+                var orderInDb = _context.Orders.Single(o => o.Id == order.Id);
+
+                orderInDb.Amount = order.Amount;
+                orderInDb.LoanId = order.LoanId;
+                orderInDb.LastName = order.LastName;
+                orderInDb.FirstName = order.FirstName;
+                orderInDb.FathersName = order.FathersName;
+                orderInDb.DateOfBirth = order.DateOfBirth;
+                orderInDb.Email = order.Email;
+                orderInDb.PhoneNumber = order.PhoneNumber;
+                orderInDb.INN = order.INN;
+                orderInDb.PassportNumber = order.PassportNumber;
+                orderInDb.PassportGivenByWhom = order.PassportGivenByWhom;
+                orderInDb.PassportGivenDate = order.PassportGivenDate;
+                orderInDb.PassportImages = order.PassportImages;
+                orderInDb.INNImages = order.INNImages;
+                orderInDb.CreationDate = order.CreationDate;
+
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Orders");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var order = _context.Orders.SingleOrDefault(o => o.Id == id);
+
+            if (order == null)
+                return HttpNotFound();
+
+            var viewModel = new OrderFormViewModel
+            {
+                Order = order,
+                Loan = _context.Loans.ToList()
+            };
+
+            return View("OrderForm", viewModel);
+        }
+    }
 }

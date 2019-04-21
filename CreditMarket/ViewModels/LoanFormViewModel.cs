@@ -17,5 +17,10 @@ namespace CreditMarket.ViewModels
 		[Required(ErrorMessage = "Вкажіть відсоткову ставку кредиту")]
 		[Range(1, 100)]
 		public int? Procent { get; set; }
-	}
+
+        public string Title
+        {
+            get { return Id != 0 ? "Edit Loan" : "New Loan"; }
+        }
+    }
 }

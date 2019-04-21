@@ -21,22 +21,34 @@ namespace CreditMarket.Controllers
 
 		public ViewResult Index()
 		{
-			var loans = _context.Loans;
-
-			return View(loans);
+            return View();
 		}
 
+        public ActionResult Details(int id)
+        {
+            var loan = _context.Loans.SingleOrDefault(l => l.Id == id);
 
-		//[Authorize]
-		public ActionResult Create()
+            if (loan == null)
+                return HttpNotFound();
+
+            return View(loan);
+        }
+
+        //[Authorize]
+        public ActionResult Create()
 		{
-			return View();
-		}
+            var viewModel = new LoanFormViewModel()
+            {
+                Loan = new Loan(),
+            };
+
+            return View("LoanForm", viewModel);
+        }
 
 		//[Authorize]
 		[HttpPost]
-		//[ValidateAntiForgeryToken]
-		public ActionResult Create(Loan loan)
+		[ValidateAntiForgeryToken]
+		public ActionResult Save(Loan loan)
 		{
             if (!ModelState.IsValid)
             {
@@ -45,7 +57,7 @@ namespace CreditMarket.Controllers
                     Loan = loan,
                 };
 
-                return View("Create", viewModel);
+                return View("LoanForm", viewModel);
             }
 
             if (loan.Id == 0)
@@ -76,7 +88,7 @@ namespace CreditMarket.Controllers
                 Loan = loan,
             };
 
-            return View("Create", viewModel);
+            return View("LoanForm", viewModel);
         }
     }
 }
