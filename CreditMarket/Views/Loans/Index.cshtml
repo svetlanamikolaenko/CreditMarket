@@ -1,37 +1,70 @@
 ﻿@model IEnumerable<CreditMarket.Models.Loan>
 @{
-	ViewBag.Title = "Index";
-	Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Кредити";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Кредити</h2>
+<h2>Список кредитів</h2>
 <a class="btn btn-primary" href="/Loans/Create" role="button">Створити кредит</a>
 <br>
 <br>
-@if (!Model.Any())
-{
-	<p>We don't have any loans yet.</p>
-}
-else
-{
-	<table class="table table-bordered table-hover">
-		<thead>
-			<tr>
-				<th>Назва</th>
-				<th>Період</th>
-				<th>Відсоткова ставка</th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach (var loan in Model)
-			{
-			<tr>
-				<td>@Html.ActionLink(loan.Name, "Details", "Loans", new { id = loan.Id }, null)</td>
-				<td>@loan.Period</td>
-				<td>@loan.Procent</td>
-			</tr>
-			}
-		</tbody>
-	</table>
-}
+<table id="loans" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Назва</th>
+            <th>Період</th>
+            <th>Відсоткова ставка</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
 
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#loans").DataTable({
+                ajax: {
+                    url: "/api/loans",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, loan) {
+                            return "<a href='/loans/edit/" + loan.id + "'>" + data + "</a>";
+                        }
+                    },
+                    {
+                        data: "period"
+                    },
+                    {
+                        data: "procent"
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn-link js-delete' data-loan-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+            $("#loans").on("click", ".js-delete", function () {
+                var button = $(this);
+
+                bootbox.confirm("Are you sure you want to delete this loan?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/loans/" + button.attr("data-loan-id"),
+                            method: "DELETE",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}
