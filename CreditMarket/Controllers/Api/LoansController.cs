@@ -50,8 +50,8 @@ namespace CreditMarket.Controllers.Api
             return Created(new Uri(Request.RequestUri + "/" + loan.Id), loanDto);
         }
 
-        //PUT /api/loans/1
-        [HttpPut]
+        //PATCH /api/loans/1
+        [HttpPatch]
         public IHttpActionResult UpdateLoan(int id, LoanDto loanDto)
         {
             if (!ModelState.IsValid)

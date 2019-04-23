@@ -2,7 +2,7 @@
 @{
     /**/
 
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Заявки";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -25,6 +25,7 @@ else
                 <th>Сума кредиту</th>
                 <th>Термін</th>
                 <th>Дата подачі заявки</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -37,6 +38,9 @@ else
                     <td>@order.Amount</td>
                     <td>@order.Loan.Period</td>
                     <td>@order.CreationDate</td>
+                    <td>
+                        <button data-order-id="@order.Id" class="btn-link js-delete">Delete</button>
+                    </td>
                 </tr>
             }
         </tbody>
@@ -45,5 +49,19 @@ else
 
 @section scripts
 {
-    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $("#orders .js-delete").on("click", function () {
+                if (confirm("Delete?")) {
+                    $.ajax({
+                        url: "/api/orders/" + $(this).attr("data-order-id"),
+                        method: "DELETE",
+                        success: function () {
+                            console.log("SUCCESS");
+                        }
+                    })
+                }
+            });
+        });
+    </script>
 }

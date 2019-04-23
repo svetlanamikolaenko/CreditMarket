@@ -42,13 +42,13 @@ namespace CreditMarket.Controllers
                 Loan = new Loan(),
             };
 
-            return View("LoanForm", viewModel);
+            return View("Create", viewModel);
         }
 
 		//[Authorize]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Save(Loan loan)
+		public ActionResult Create(Loan loan)
 		{
             if (!ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace CreditMarket.Controllers
                     Loan = loan,
                 };
 
-                return View("LoanForm", viewModel);
+                return View("Create", viewModel);
             }
 
             if (loan.Id == 0)
@@ -76,6 +76,7 @@ namespace CreditMarket.Controllers
             return RedirectToAction("Index", "Loans");
         }
 
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             var loan = _context.Loans.SingleOrDefault(l => l.Id == id);
@@ -88,7 +89,37 @@ namespace CreditMarket.Controllers
                 Loan = loan,
             };
 
-            return View("LoanForm", viewModel);
+            return View("Edit", viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Loan loan)
+        {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new LoanFormViewModel()
+                {
+                    Loan = loan,
+                };
+
+                return View("Edit", viewModel);
+            }
+
+            if (loan.Id == 0)
+                _context.Loans.Add(loan);
+            else
+            {
+                var loanInDb = _context.Loans.Single(l => l.Id == loan.Id);
+
+                loanInDb.Name = loan.Name;
+                loanInDb.Period = loan.Period;
+                loanInDb.Procent = loan.Procent;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Loans");
         }
     }
 }

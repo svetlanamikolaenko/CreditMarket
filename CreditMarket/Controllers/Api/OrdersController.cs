@@ -55,8 +55,8 @@ namespace CreditMarket.Controllers.Api
             return Created(new Uri(Request.RequestUri + "/" + order.Id), orderDto);
         }
 
-        //PUT /api/orders/1
-        [HttpPut]
+        //PATCH /api/orders/1
+        [HttpPatch]
         public IHttpActionResult UpdateOrder(int id, OrderDto orderDto)
         {
             if (!ModelState.IsValid)

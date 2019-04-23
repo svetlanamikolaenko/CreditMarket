@@ -45,13 +45,13 @@ namespace CreditMarket.Controllers
                 Order = new Order(),
                 Loan = _context.Loans.ToList()
 			};
-			return View("OrderForm", viewModel);
+			return View("Create", viewModel);
 		}
 
 		//[Authorize]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-        public ActionResult Save(Order order)
+        public ActionResult Create(Order order)
         {
             if (!ModelState.IsValid)
             {
@@ -61,7 +61,7 @@ namespace CreditMarket.Controllers
                     Loan = _context.Loans.ToList()
                 };
 
-                return View("OrderForm", viewModel);
+                return View("Create", viewModel);
             }
 
             if (order.Id == 0)
@@ -93,6 +93,7 @@ namespace CreditMarket.Controllers
             return RedirectToAction("Index", "Orders");
         }
 
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             var order = _context.Orders.SingleOrDefault(o => o.Id == id);
@@ -106,7 +107,51 @@ namespace CreditMarket.Controllers
                 Loan = _context.Loans.ToList()
             };
 
-            return View("OrderForm", viewModel);
+            return View("Edit", viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Order order)
+        {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new OrderFormViewModel()
+                {
+                    Order = order,
+                    Loan = _context.Loans.ToList()
+                };
+
+                return View("Edit", viewModel);
+            }
+
+            if (order.Id == 0)
+                _context.Orders.Add(order);
+            else
+            {
+                var orderInDb = _context.Orders.Single(o => o.Id == order.Id);
+
+                orderInDb.Amount = order.Amount;
+                orderInDb.LoanId = order.LoanId;
+                orderInDb.LastName = order.LastName;
+                orderInDb.FirstName = order.FirstName;
+                orderInDb.FathersName = order.FathersName;
+                orderInDb.DateOfBirth = order.DateOfBirth;
+                orderInDb.Email = order.Email;
+                orderInDb.PhoneNumber = order.PhoneNumber;
+                orderInDb.INN = order.INN;
+                orderInDb.PassportNumber = order.PassportNumber;
+                orderInDb.PassportGivenByWhom = order.PassportGivenByWhom;
+                orderInDb.PassportGivenDate = order.PassportGivenDate;
+                orderInDb.PassportImages = order.PassportImages;
+                orderInDb.INNImages = order.INNImages;
+                orderInDb.CreationDate = order.CreationDate;
+
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Orders");
         }
     }
 }

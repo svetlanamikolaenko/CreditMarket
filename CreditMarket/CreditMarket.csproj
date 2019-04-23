@@ -287,6 +287,10 @@
     <Compile Include="Migrations\201904151848528_INNField.Designer.cs">
       <DependentUpon>201904151848528_INNField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904221700421_updateModels.cs" />
+    <Compile Include="Migrations\201904221700421_updateModels.Designer.cs">
+      <DependentUpon>201904221700421_updateModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -425,6 +429,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -626,8 +632,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Orders\OrderForm.cshtml" />
-    <Content Include="Views\Loans\LoanForm.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Loans\Create.cshtml" />
     <Content Include="Views\Loans\Index.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
     <Content Include="Views\Orders\Edit.cshtml" />
@@ -717,6 +723,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904151848528_INNField.resx">
       <DependentUpon>201904151848528_INNField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904221700421_updateModels.resx">
+      <DependentUpon>201904221700421_updateModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

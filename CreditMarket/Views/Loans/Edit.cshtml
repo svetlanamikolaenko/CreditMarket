@@ -1,28 +1,30 @@
 ﻿@model CreditMarket.ViewModels.LoanFormViewModel
 @{
-    ViewBag.Title = "Створення кредиту";
+    ViewBag.Title = "Редагування кредиту";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Корегування кредиту</h2>
+<h2>Редагування кредиту</h2>
 
 @using (Html.BeginForm("Edit", "Loans"))
 {
-    <p class="alert alert-info">Усі поля обов'язкові.</p>
+    @Html.ValidationSummary(true, "Усі поля обов'язкові.")
     <div class="form-group">
         <label for="Name">Назва кредиту</label>
-        @Html.TextBoxFor(l => l.Name, new { @class = "form-control", autofocus = "autofocus" })
-        @Html.ValidationMessageFor(l => l.Name)
+        @Html.TextBoxFor(l => l.Loan.Name, new { @class = "form-control", autofocus = "autofocus" })
+        @Html.ValidationMessageFor(l => l.Loan.Name)
     </div>
     <div class="form-group">
         <label for="Period">Термін кредиту</label>
-        @Html.TextBoxFor(l => l.Period, new { @class = "form-control" })
-        @Html.ValidationMessageFor(l => l.Period)
+        @Html.TextBoxFor(l => l.Loan.Period, new { @class = "form-control" })
+        @Html.ValidationMessageFor(l => l.Loan.Period)
     </div>
     <div class="form-group">
         <label for="Procent">Процентна ставка</label>
-        @Html.TextBoxFor(l => l.Procent, new { @class = "form-control" })
-        @Html.ValidationMessageFor(l => l.Procent)
+        @Html.TextBoxFor(l => l.Loan.Procent, new { @class = "form-control" })
+        @Html.ValidationMessageFor(l => l.Loan.Procent)
     </div>
+    @Html.HiddenFor(l => l.Loan.Id)
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Зберегти</button>
 }

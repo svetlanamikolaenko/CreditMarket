@@ -1,11 +1,12 @@
 ﻿@model CreditMarket.ViewModels.LoanFormViewModel
 @{
     ViewBag.Title = "Кредити";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Форма кредиту</h2>
+<h2>Створення кредиту</h2>
 
-@using (Html.BeginForm("Save", "Loans"))
+@using (Html.BeginForm("Create", "Loans"))
 {
     @Html.ValidationSummary(true, "Усі поля обов'язкові.")
     <div class="form-group">
@@ -25,7 +26,7 @@
     </div>
         
     @Html.AntiForgeryToken()
-    <button type="submit" class="btn btn-primary">Зберегти</button>
+    <button type="submit" class="btn btn-primary">Створити</button>
 }
 
 @section scripts
