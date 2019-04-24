@@ -77,7 +77,6 @@
         <label for="INNImages">Копія ІНН</label>
         @Html.TextBoxFor(x => x.Order.INNImages, new { @class = "form-control" })
     </div>
-
     @Html.HiddenFor(x => x.Order.CreationDate, new { @Value = DateTime.Now.ToString("dd/MM/yyyy") })
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Створити заявку</button>

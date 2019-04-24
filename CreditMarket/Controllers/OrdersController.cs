@@ -145,8 +145,6 @@ namespace CreditMarket.Controllers
                 orderInDb.PassportGivenDate = order.PassportGivenDate;
                 orderInDb.PassportImages = order.PassportImages;
                 orderInDb.INNImages = order.INNImages;
-                orderInDb.CreationDate = order.CreationDate;
-
             }
 
             _context.SaveChanges();

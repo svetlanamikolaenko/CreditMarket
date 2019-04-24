@@ -77,9 +77,9 @@
         <label for="INNImages">Копія ІНН</label>
         @Html.TextBoxFor(x => x.Order.INNImages, new { @class = "form-control" })
     </div>
-    @Html.HiddenFor(x => x.Id)
+    @Html.HiddenFor(x => x.Order.Id)
     @Html.AntiForgeryToken()
-    <button type="submit" class="btn btn-primary">Створити заявку</button>
+    <button type="submit" class="btn btn-primary">Редагувати заявку</button>
 }
 
 @section scripts
