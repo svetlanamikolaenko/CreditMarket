@@ -36,7 +36,7 @@
     </div>
     <div class="form-group">
         <label for="Date OfBirth">День народження</label>
-        @Html.TextBoxFor(x => x.Order.DateOfBirth, new { @class = "form-control datepicker", placeholder = "Введіть дату народження" })
+        @Html.TextBoxFor(x => x.Order.DateOfBirth, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker", placeholder = "Введіть дату народження" })
         @Html.ValidationMessageFor(x => x.Order.DateOfBirth)
     </div>
     <div class="form-group">
@@ -66,7 +66,7 @@
     </div>
     <div class="form-group">
         <label for="PassportGivenDate">Коли виданий паспорт</label>
-        @Html.TextBoxFor(x => x.Order.PassportGivenDate, new { @class = "form-control datepicker", placeholder = "Введіть дату видачі паспорту" })
+        @Html.TextBoxFor(x => x.Order.PassportGivenDate, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker", placeholder = "Введіть дату видачі паспорту" })
         @Html.ValidationMessageFor(x => x.Order.PassportGivenDate)
     </div>
     <div class="form-group">
@@ -77,6 +77,8 @@
         <label for="INNImages">Копія ІНН</label>
         @Html.TextBoxFor(x => x.Order.INNImages, new { @class = "form-control" })
     </div>
+
+    @Html.HiddenFor(x => x.Order.CreationDate, new { @Value = DateTime.Now.ToString("dd/MM/yyyy") })
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Створити заявку</button>
 }
@@ -85,4 +87,3 @@
 {
     @Scripts.Render("~/bundles/jqueryval")
 }
- 

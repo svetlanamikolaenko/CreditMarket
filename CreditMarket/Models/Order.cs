@@ -1,5 +1,4 @@
-﻿using CreditMarket.ViewModels;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace CreditMarket.Models
@@ -28,8 +27,7 @@ namespace CreditMarket.Models
         public string FathersName { get; set; }
 
         [Required(ErrorMessage = "Дата народження обов'язкова до заповнення")]
-        [DateValidation]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? DateOfBirth { get; set; }
 
         [Required(ErrorMessage = "Email обов'язкове до заповнення")]
@@ -52,8 +50,7 @@ namespace CreditMarket.Models
         public string PassportGivenByWhom { get; set; }
 
         [Required(ErrorMessage = "Необхідно вказати дату видачі паспорту")]
-        [DateValidation]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? PassportGivenDate { get; set; }
 
 		public byte[] PassportImages { get; set; }
