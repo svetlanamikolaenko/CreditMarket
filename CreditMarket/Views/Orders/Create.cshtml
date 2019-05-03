@@ -79,35 +79,12 @@
     </div>
 
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Завантажити" class="btn btn-default" />
-        </div>
-    </div>
-
-
-    <div class="form-group">
-        <label for="PassportImages">Копія паспорту</label>
-        @Html.TextBoxFor(x => x.Order.PassportImages, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
         <div class="editor-label">Завантажити Ідентифікаційний код</div>
         <div class="editor-field">
             <input type="file" name="uploadINNImage" />
         </div>
     </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Завантажити" class="btn btn-default" />
-        </div>
-    </div>
-
-
-    <div class="form-group">
-        <label for="INNImages">Копія ІНН</label>
-        @Html.TextBoxFor(x => x.Order.INNImages, new { @class = "form-control" })
-    </div>
+    
     @Html.HiddenFor(x => x.Order.CreationDate, new { @Value = DateTime.Now.ToString("dd/MM/yyyy") })
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Створити заявку</button>
