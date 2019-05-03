@@ -3,9 +3,7 @@
     ViewBag.Title = "Заявки";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h2>Створення заявки</h2>
-
 @using (Html.BeginForm("Create", "Orders", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary(true, "Усі поля обов'язкові.")
@@ -72,24 +70,19 @@
     </div>
 
     <div class="form-group">
-        <div class="editor-label">Завантажити фото Паспорта</div>
-        <div class="editor-field">
-            <input type="file" name="uploadPassportImage" />
-        </div>
+        <label for="PassportImages">Завантажити фото Паспорта</label>
+        @Html.TextBoxFor(m => m.Order.PassportImages, new { type = "file" })
     </div>
 
     <div class="form-group">
-        <div class="editor-label">Завантажити Ідентифікаційний код</div>
-        <div class="editor-field">
-            <input type="file" name="uploadINNImage" />
-        </div>
+        <label for="INNImages">Завантажити Ідентифікаційний код</label>
+        @Html.TextBoxFor(m => m.Order.INNImages, new { type = "file" })
     </div>
-    
+
     @Html.HiddenFor(x => x.Order.CreationDate, new { @Value = DateTime.Now.ToString("dd/MM/yyyy") })
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Створити заявку</button>
 }
-
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
