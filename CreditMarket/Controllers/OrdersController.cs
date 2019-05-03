@@ -75,13 +75,13 @@ namespace CreditMarket.Controllers
                 {
                     imagePassport = binaryReader.ReadBytes(uploadPassportImage.ContentLength);
                 }
-                order.INNImages = imagePassport;
+                order.PassportImages = imagePassport;
 
                 using (var binaryReader = new BinaryReader(uploadINNImage.InputStream))
                 {
                     imageINN = binaryReader.ReadBytes(uploadINNImage.ContentLength);
                 }
-                order.PassportImages = imageINN;
+                order.INNImages = imageINN;
 
 
                 _context.Orders.Add(order);     
@@ -133,7 +133,7 @@ namespace CreditMarket.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Order order)
+        public ActionResult Edit(Order order, HttpPostedFileBase uploadPassportImage, HttpPostedFileBase uploadINNImage)
         {
             if (!ModelState.IsValid)
             {
@@ -145,8 +145,22 @@ namespace CreditMarket.Controllers
 
                 return View("Edit", viewModel);
             }
+            byte[] imagePassport = null;
+            using (var binaryReader = new BinaryReader(uploadPassportImage.InputStream))
+            {
+                imagePassport = binaryReader.ReadBytes(uploadPassportImage.ContentLength);
+            }
+            order.PassportImages = imagePassport;
 
-            if (order.Id == 0)
+            byte[] imageINN = null;
+            using (var binaryReader = new BinaryReader(uploadINNImage.InputStream))
+            {
+                imageINN = binaryReader.ReadBytes(uploadINNImage.ContentLength);
+            }
+            order.INNImages = imageINN;
+
+
+            if (order.Id == 0)                       
                 _context.Orders.Add(order);
             else
             {
