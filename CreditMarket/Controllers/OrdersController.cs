@@ -70,22 +70,17 @@ namespace CreditMarket.Controllers
 
             if (order.Id == 0)
             {
-
                 using (var binaryReader = new BinaryReader(uploadPassportImage.InputStream))
                 {
                     imagePassport = binaryReader.ReadBytes(uploadPassportImage.ContentLength);
                 }
                 order.PassportImages = imagePassport;
 
-
                 using (var binaryReader = new BinaryReader(uploadINNImage.InputStream))
                 {
                     imageINN = binaryReader.ReadBytes(uploadINNImage.ContentLength);
                 }
-
                 order.INNImages = imageINN;
-
-
 
                 _context.Orders.Add(order);     
              }
@@ -148,6 +143,7 @@ namespace CreditMarket.Controllers
 
                 return View("Edit", viewModel);
             }
+
             byte[] imagePassport = null;
             using (var binaryReader = new BinaryReader(uploadPassportImage.InputStream))
             {
@@ -161,7 +157,6 @@ namespace CreditMarket.Controllers
                 imageINN = binaryReader.ReadBytes(uploadINNImage.ContentLength);
             }
             order.INNImages = imageINN;
-
 
             if (order.Id == 0)                       
                 _context.Orders.Add(order);
