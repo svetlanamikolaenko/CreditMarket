@@ -50,9 +50,9 @@ namespace CreditMarket.Controllers
 			return View("Create", viewModel);
 		}
 
-		//[Authorize]
-		[HttpPost]
-		[ValidateAntiForgeryToken]
+        //[Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Order order, HttpPostedFileBase uploadPassportImage, HttpPostedFileBase uploadINNImage)
         {
             if (!ModelState.IsValid)
@@ -65,9 +65,28 @@ namespace CreditMarket.Controllers
 
                 return View("Create", viewModel);
             }
+            byte[] imagePassport = null;
+            byte[] imageINN = null;
 
             if (order.Id == 0)
-                _context.Orders.Add(order);
+            {
+
+                using (var binaryReader = new BinaryReader(uploadPassportImage.InputStream))
+                {
+                    imagePassport = binaryReader.ReadBytes(uploadPassportImage.ContentLength);
+                }
+                order.INNImages = imagePassport;
+
+                using (var binaryReader = new BinaryReader(uploadINNImage.InputStream))
+                {
+                    imageINN = binaryReader.ReadBytes(uploadINNImage.ContentLength);
+                }
+                order.PassportImages = imageINN;
+
+
+                _context.Orders.Add(order);     
+             }
+
             else
             {
                 var orderInDb = _context.Orders.Single(o => o.Id == order.Id);
@@ -84,23 +103,9 @@ namespace CreditMarket.Controllers
                 orderInDb.PassportNumber = order.PassportNumber;
                 orderInDb.PassportGivenByWhom = order.PassportGivenByWhom;
                 orderInDb.PassportGivenDate = order.PassportGivenDate;
-                //orderInDb.PassportImages = order.PassportImages;
-                //orderInDb.INNImages = order.INNImages;
+                orderInDb.PassportImages = order.PassportImages;
+                orderInDb.INNImages = order.INNImages;
                 orderInDb.CreationDate = order.CreationDate;
-
-                byte[] imagePassport = null;
-                using (var binaryReader = new BinaryReader(uploadPassportImage.InputStream))
-                {
-                    imagePassport = binaryReader.ReadBytes(uploadPassportImage.ContentLength);
-                }
-                orderInDb.INNImages = imagePassport;
-
-                byte[] imageINN = null;
-                using (var binaryReader = new BinaryReader(uploadINNImage.InputStream))
-                {
-                    imageINN = binaryReader.ReadBytes(uploadINNImage.ContentLength);
-                }
-                orderInDb.INNImages = imageINN;
 
             }
 
