@@ -77,11 +77,14 @@ namespace CreditMarket.Controllers
                 }
                 order.PassportImages = imagePassport;
 
+
                 using (var binaryReader = new BinaryReader(uploadINNImage.InputStream))
                 {
                     imageINN = binaryReader.ReadBytes(uploadINNImage.ContentLength);
                 }
+
                 order.INNImages = imageINN;
+
 
 
                 _context.Orders.Add(order);     
