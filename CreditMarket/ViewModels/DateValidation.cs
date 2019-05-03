@@ -4,13 +4,13 @@ using System.Globalization;
 
 namespace CreditMarket.ViewModels
 {
-	public class DateValidation: ValidationAttribute
+    public class DateValidation: ValidationAttribute
 	{
 		public override bool IsValid(object value)
 		{
 			DateTime dateTime;
 			var isValid = DateTime.TryParseExact(Convert.ToString(value),
-				"dd-MM-yyyy", CultureInfo.CurrentCulture,
+				"dd/MM/yyyy", CultureInfo.InvariantCulture,
 				DateTimeStyles.None,
 				out dateTime);
 			return isValid;

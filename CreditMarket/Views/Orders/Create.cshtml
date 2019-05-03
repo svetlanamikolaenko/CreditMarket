@@ -1,22 +1,34 @@
 ﻿@model CreditMarket.ViewModels.OrderFormViewModel
 @{
+<<<<<<< HEAD
                 /**/
 
                 /**/
 
                 ViewBag.Title = "Створення заявки";
                 Layout = "~/Views/Shared/_Layout.cshtml";
+=======
+    ViewBag.Title = "Заявки";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+>>>>>>> master
 }
-
-<h2>Створити заявку</h2>
-@using (Html.BeginForm("Create", "Orders"))
+<h2>Створення заявки</h2>
+@using (Html.BeginForm("Create", "Orders", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+<<<<<<< HEAD
     <p class="alert alert-info">Усі поля обов'язкові.</p>
     @Html.AntiForgeryToken()
     <div class="form-group">
         <label for="Amount">Сума кредиту</label>
         @Html.TextBoxFor(x => x.Amount, new { @class = "form-control", autofocus = "autofocus" })
         @Html.ValidationMessageFor(x => x.Amount)
+=======
+    @Html.ValidationSummary(true, "Усі поля обов'язкові.")
+    <div class="form-group">
+        <label for="Amount">Сума кредиту</label>
+        @Html.TextBoxFor(x => x.Order.Amount, new { @class = "form-control", autofocus = "autofocus" })
+        @Html.ValidationMessageFor(x => x.Order.Amount)
+>>>>>>> master
     </div>
     <div class="form-group">
         <label for="Order.LoanId">Кредит</label>
@@ -25,6 +37,7 @@
     </div>
     <div class="form-group">
         <label for="LastName">Прізвище</label>
+<<<<<<< HEAD
         @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.LastName)
     </div>
@@ -83,10 +96,84 @@
     </div>
     <button type="submit" class="btn btn-primary">Створити заявку</button>
 }
+=======
+        @Html.TextBoxFor(x => x.Order.LastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Order.LastName)
+    </div>
+    <div class="form-group">
+        <label for="FirstName">Ім'я</label>
+        @Html.TextBoxFor(x => x.Order.FirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Order.FirstName)
+    </div>
+    <div class="form-group">
+        <label for="FathersName">По-батькові</label>
+        @Html.TextBoxFor(x => x.Order.FathersName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Order.FathersName)
+    </div>
+    <div class="form-group">
+        <label for="Date OfBirth">День народження</label>
+        @Html.TextBoxFor(x => x.Order.DateOfBirth, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker", placeholder = "Введіть дату народження" })
+        @Html.ValidationMessageFor(x => x.Order.DateOfBirth)
+    </div>
+    <div class="form-group">
+        <label for="Email">E-mail</label>
+        @Html.TextBoxFor(x => x.Order.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Order.Email)
+    </div>
+    <div class="form-group">
+        <label for="PhoneNumber">Мобільний номер</label>
+        @Html.TextBoxFor(x => x.Order.PhoneNumber, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Order.PhoneNumber)
+    </div>
 
+    <div class="form-group">
+        <label for="INN">ІНН</label>
+        @Html.TextBoxFor(x => x.Order.INN, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Order.INN)
+    </div>
+    <div class="form-group">
+        <label for="PassportNumber">Серія та номер паспорта</label>
+        @Html.TextBoxFor(x => x.Order.PassportNumber, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Order.PassportNumber)
+    </div>
+    <div class="form-group">
+        <label for="PassportGivenByWhom">Ким виданий паспорт</label>
+        @Html.TextBoxFor(x => x.Order.PassportGivenByWhom, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Order.PassportGivenByWhom)
+    </div>
+    <div c
+         lass="form-group">
+        <label for="PassportGivenDate">Коли виданий паспорт</label>
+        @Html.TextBoxFor(x => x.Order.PassportGivenDate, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker", placeholder = "Введіть дату видачі паспорту" })
+        @Html.ValidationMessageFor(x => x.Order.PassportGivenDate)
+    </div>
+>>>>>>> master
+
+   
+    <div class="form-group">
+        <div class="editor-label">Завантажити фото Паспорта</div>
+        <div class="editor-field">
+            <input type="file" name="uploadPassportImage" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="editor-label">Завантажити Ідентифікаційний код</div>
+        <div class="editor-field">
+            <input type="file" name="uploadINNImage" />
+        </div>
+    </div>
+    
+ 
+
+    @Html.HiddenFor(x => x.Order.CreationDate, new { @Value = DateTime.Now.ToString("dd/MM/yyyy") })
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Створити заявку</button>
+}
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
+<<<<<<< HEAD
     
 }   
     <script type="text/javascript">
@@ -96,3 +183,6 @@
             }); //Initialise any date pickers
         });
     </script>
+=======
+}
+>>>>>>> master
