@@ -4,6 +4,34 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>Створення заявки</h2>
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/redmond/jquery-ui.css" rel="stylesheet" />
+@section scripts
+{
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+
+    <script type="text/javascript">
+
+        $(function () { 
+            $('.datepicker1').datepicker({
+                dateFormat: 'dd-mm-yy',
+                maxDate: "-18y",
+                minDate:"-75y"
+            }); 
+        });
+    </script>
+    <script type="text/javascript">
+
+        $(function () { 
+            $('.datepicker2').datepicker({
+                dateFormat: 'dd-mm-yy',
+                maxDate: "-1d",
+                minDate:"-30y"
+            }); 
+        });
+
+    </script>
+}
 @using (Html.BeginForm("Create", "Orders", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary(true, "Усі поля обов'язкові.")
@@ -34,7 +62,7 @@
     </div>
     <div class="form-group">
         <label for="Date OfBirth">День народження</label>
-        @Html.TextBoxFor(x => x.Order.DateOfBirth, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker", placeholder = "Введіть дату народження" })
+        @Html.TextBoxFor(x => x.Order.DateOfBirth, "{0:dd-mm-yyyy}", new { @class = "form-control datepicker1", placeholder = "Введіть дату народження" })
         @Html.ValidationMessageFor(x => x.Order.DateOfBirth)
     </div>
     <div class="form-group">
@@ -66,11 +94,11 @@
     <div c
          lass="form-group">
         <label for="PassportGivenDate">Коли виданий паспорт</label>
-        @Html.TextBoxFor(x => x.Order.PassportGivenDate, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker", placeholder = "Введіть дату видачі паспорту" })
-        @Html.ValidationMessageFor(x => x.Order.PassportGivenDate)
+        @Html.TextBoxFor(x => x.Order.PassportGivenDate, "{0:dd-mm-yyyy}", new { @class = "form-control datepicker2", placeholder = "Введіть дату видачі паспорту" })
+        @Html.ValidationMessageFor(x => x.Order.PassportGivenByWhom)
     </div>
 
-   
+
     <div class="form-group">
         <div class="editor-label">Завантажити фото Паспорта</div>
         <div class="editor-field">
@@ -84,14 +112,12 @@
             <input type="file" name="uploadINNImage" />
         </div>
     </div>
-    
- 
+
+
 
     @Html.HiddenFor(x => x.Order.CreationDate, new { @Value = DateTime.Now.ToString("dd/MM/yyyy") })
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Створити заявку</button>
 }
-@section scripts
-{
-    @Scripts.Render("~/bundles/jqueryval")
-}
+
+
