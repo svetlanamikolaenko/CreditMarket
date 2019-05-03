@@ -10,7 +10,7 @@ namespace CreditMarket.ViewModels
 		{
 			DateTime dateTime;
 			var isValid = DateTime.TryParseExact(Convert.ToString(value),
-				"dd/MM/yyyy", CultureInfo.InvariantCulture,
+				"dd-mm-yy", CultureInfo.InvariantCulture,
 				DateTimeStyles.None,
 				out dateTime);
 			return isValid;

@@ -70,17 +70,26 @@ namespace CreditMarket.Controllers
 
             if (order.Id == 0)
             {
-                using (var binaryReader = new BinaryReader(uploadPassportImage.InputStream))
-                {
-                    imagePassport = binaryReader.ReadBytes(uploadPassportImage.ContentLength);
-                }
-                order.PassportImages = imagePassport;
 
-                using (var binaryReader = new BinaryReader(uploadINNImage.InputStream))
-                {
-                    imageINN = binaryReader.ReadBytes(uploadINNImage.ContentLength);
+                if (uploadPassportImage != null){
+                    using (var binaryReader = new BinaryReader(uploadPassportImage.InputStream))
+                    {
+                        imagePassport = binaryReader.ReadBytes(uploadPassportImage.ContentLength);
+                    }
+                    order.PassportImages = imagePassport;
                 }
-                order.INNImages = imageINN;
+
+                if (uploadINNImage != null)
+                {
+                    using (var binaryReader = new BinaryReader(uploadINNImage.InputStream))
+                    {
+                        imageINN = binaryReader.ReadBytes(uploadINNImage.ContentLength);
+                    }
+
+                    order.INNImages = imageINN;
+                }
+
+
 
                 _context.Orders.Add(order);     
              }
@@ -143,20 +152,26 @@ namespace CreditMarket.Controllers
 
                 return View("Edit", viewModel);
             }
-
             byte[] imagePassport = null;
-            using (var binaryReader = new BinaryReader(uploadPassportImage.InputStream))
+            if (uploadPassportImage != null)
             {
-                imagePassport = binaryReader.ReadBytes(uploadPassportImage.ContentLength);
+                using (var binaryReader = new BinaryReader(uploadPassportImage.InputStream))
+                {
+                    imagePassport = binaryReader.ReadBytes(uploadPassportImage.ContentLength);
+                }
+                order.PassportImages = imagePassport;
             }
-            order.PassportImages = imagePassport;
 
             byte[] imageINN = null;
-            using (var binaryReader = new BinaryReader(uploadINNImage.InputStream))
+            if (uploadINNImage != null)
             {
-                imageINN = binaryReader.ReadBytes(uploadINNImage.ContentLength);
+                using (var binaryReader = new BinaryReader(uploadINNImage.InputStream))
+                {
+                    imageINN = binaryReader.ReadBytes(uploadINNImage.ContentLength);
+                }
+                order.INNImages = imageINN;
             }
-            order.INNImages = imageINN;
+
 
             if (order.Id == 0)                       
                 _context.Orders.Add(order);
