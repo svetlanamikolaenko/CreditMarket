@@ -63,21 +63,29 @@
         @Html.TextBoxFor(x => x.Order.PassportGivenByWhom, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.Order.PassportGivenByWhom)
     </div>
-    <div class="form-group">
+    <div c
+         lass="form-group">
         <label for="PassportGivenDate">Коли виданий паспорт</label>
         @Html.TextBoxFor(x => x.Order.PassportGivenDate, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker", placeholder = "Введіть дату видачі паспорту" })
         @Html.ValidationMessageFor(x => x.Order.PassportGivenDate)
     </div>
 
+   
     <div class="form-group">
-        <label for="PassportImages">Завантажити фото Паспорта</label>
-        @Html.TextBoxFor(m => m.Order.PassportImages, new { type = "file" })
+        <div class="editor-label">Завантажити фото Паспорта</div>
+        <div class="editor-field">
+            <input type="file" name="uploadPassportImage" />
+        </div>
     </div>
 
     <div class="form-group">
-        <label for="INNImages">Завантажити Ідентифікаційний код</label>
-        @Html.TextBoxFor(m => m.Order.INNImages, new { type = "file" })
+        <div class="editor-label">Завантажити Ідентифікаційний код</div>
+        <div class="editor-field">
+            <input type="file" name="uploadINNImage" />
+        </div>
     </div>
+    
+ 
 
     @Html.HiddenFor(x => x.Order.CreationDate, new { @Value = DateTime.Now.ToString("dd/MM/yyyy") })
     @Html.AntiForgeryToken()
