@@ -6,7 +6,7 @@
 
 <h2>Редагування заявки</h2>
 
-@using (Html.BeginForm("Edit", "Orders"))
+@using (Html.BeginForm("Edit", "Orders", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary(true, "Усі поля обов'язкові.")
     <div class="form-group">
@@ -69,14 +69,21 @@
         @Html.TextBoxFor(x => x.Order.PassportGivenDate, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker", placeholder = "Введіть дату видачі паспорту" })
         @Html.ValidationMessageFor(x => x.Order.PassportGivenDate)
     </div>
-    <div class="form-group">
-        <label for="PassportImages">Копія паспорту</label>
-        @Html.TextBoxFor(x => x.Order.PassportImages, new { @class = "form-control" })
+
+        <div class="form-group">
+        <div class="editor-label">Завантажити фото Паспорта</div>
+        <div class="editor-field">
+            <input type="file" name="uploadPassportImage" />
+        </div>
     </div>
+
     <div class="form-group">
-        <label for="INNImages">Копія ІНН</label>
-        @Html.TextBoxFor(x => x.Order.INNImages, new { @class = "form-control" })
+        <div class="editor-label">Завантажити Ідентифікаційний код</div>
+        <div class="editor-field">
+            <input type="file" name="uploadINNImage" />
+        </div>
     </div>
+    
     @Html.HiddenFor(x => x.Order.Id)
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Редагувати заявку</button>
