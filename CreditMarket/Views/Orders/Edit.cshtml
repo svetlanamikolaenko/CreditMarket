@@ -99,11 +99,13 @@
     <div>
         @if (Model.Order.PassportImages == null)
         {
-            <div class="editor-label">Фото паспорта: </div>
-            <div class="form-control-static"> Відсутнє фото </div>
-            <div class="editor-label1">Завантажити фото ідентифікаційного кода: </div>
-            <div class="editor-field">
-                <input type="file" name="uploadPassportImage" />
+            <div class="form-group">
+                <div class="editor-label">Фото паспорта: </div>
+                <div class="form-control-static"> Відсутнє фото </div>
+                <div class="editor-label1">Завантажити фото ідентифікаційного кода: </div>
+                <div class="editor-field">
+                    <input type="file" name="uploadPassportImage" />
+                </div>
             </div>
         }
         else
@@ -112,7 +114,7 @@
                 <div class="col-md-10">
                     <div class="editor-label">Фото паспорта: </div>
                     @Html.Raw("<img style='width:600px; height:300px;' src=\"data:image/jpeg;base64,"
-                                        + Convert.ToBase64String(Model.Order.PassportImages) + "\" />")
+                                         + Convert.ToBase64String(Model.Order.PassportImages) + "\" />")
                     @Html.Hidden("PassportImages", Model.Order.PassportImages)
                     <div class="editor-label">Змінити фото Паспорта: </div>
                     <div class="editor-field">
@@ -120,17 +122,22 @@
                     </div>
                 </div>
             </div>
+
         }
     </div>
+
     <br>
+
     <div>
         @if (Model.Order.INNImages == null)
         {
-            <div class="editor-label">Фото ідентифікакційного кода:</div>
-            <div class="form-control-static"> Відсутнє фото </div>
-            <div class="editor-label1">Завантажити фото ідентифікаційного кода: </div>
-            <div class="editor-field">
-                <input type="file" name="uploadINNImage" />
+            <div class="form-group">
+                <div class="editor-label">Фото ідентифікакційного кода:</div>
+                <div class="form-control-static"> Відсутнє фото </div>
+                <div class="editor-label1">Завантажити фото ідентифікаційного кода: </div>
+                <div class="editor-field">
+                    <input type="file" name="uploadINNImage" />
+                </div>
             </div>
         }
         else
@@ -139,7 +146,7 @@
                 <div class="col-md-10">
                     <div class="editor-label">Фото ідентифікаційного кода: </div>
                     @Html.Raw("<img style='width:600px; height:300px;' src=\"data:image/jpeg;base64,"
-                                        + Convert.ToBase64String(Model.Order.INNImages) + "\" />")
+                                             + Convert.ToBase64String(Model.Order.INNImages) + "\" />")
                     @Html.Hidden("PassportImages", Model.Order.PassportImages)
                     <div class="editor-label">Змінити нове фото ідентифікаційного кода: </div>
                     <div class="editor-field">
@@ -155,3 +162,5 @@
     <br>
     <button type="submit" class="btn btn-primary">Редагувати заявку</button>
 }
+
+
