@@ -38,8 +38,8 @@
 {
 
     @Html.ValidationSummary(true, "Усі поля обов'язкові.")
-    <form >        
-        <div class="form-group"  id="edit-customer">
+    <form>
+        <div class="form-group">
             <label for="Amount">Сума кредиту</label>
             @Html.TextBoxFor(x => x.Order.Amount, new { @class = "form-control", autofocus = "autofocus" })
             @Html.ValidationMessageFor(x => x.Order.Amount)
@@ -160,6 +160,7 @@
         @Html.AntiForgeryToken()
         <br>
         <button type="submit" class="btn btn-primary">Редагувати заявку</button>
+        <button type="reset" class="btn btn-default">Відмінити</button>
     </form>
 }
 

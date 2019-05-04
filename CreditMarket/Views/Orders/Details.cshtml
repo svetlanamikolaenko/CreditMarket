@@ -1,0 +1,116 @@
+﻿@model CreditMarket.Models.Order
+     @{   /**/
+
+        ViewBag.Title = "Перегляд заявки";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h2>Перегляд заявки</h2>
+    @using (Html.BeginForm("Details", "Orders", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <form>
+            <div class="form-group">
+                <label for="Amount">Сума кредиту</label>
+                @Html.TextBoxFor(x => x.Amount, new { @class = "form-control", @readonly = "readonly" })
+
+            </div>
+            <div class="form-group">
+                <label for="LoanId">Кредит номер</label>
+                @Html.TextBoxFor(x => x.LoanId, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="form-group">
+                <label for="LastName">Прізвище</label>
+                @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="form-group">
+                <label for="FirstName">Ім'я</label>
+                @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="form-group">
+                <label for="FathersName">По-батькові</label>
+                @Html.TextBoxFor(x => x.FathersName, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="form-group">
+                <label for="Date OfBirth">День народження</label>
+                @Html.TextBoxFor(x => x.DateOfBirth, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker1", @readonly = "readonly" })
+            </div>
+            <div class="form-group">
+                <label for="Email">E-mail</label>
+                @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="form-group">
+                <label for="PhoneNumber">Мобільний номер</label>
+                @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="form-group">
+                <label for="INN">ІНН</label>
+                @Html.TextBoxFor(x => x.INN, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="form-group">
+                <label for="PassportNumber">Серія та номер паспорта</label>
+                @Html.TextBoxFor(x => x.PassportNumber, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="form-group">
+                <label for="PassportGivenByWhom">Ким виданий паспорт</label>
+                @Html.TextBoxFor(x => x.PassportGivenByWhom, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="form-group">
+                <label for="PassportGivenDate">Коли виданий паспорт</label>
+                @Html.TextBoxFor(x => x.PassportGivenDate, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker2", @readonly = "readonly" })
+            </div>
+
+            <div>
+                @if (Model.PassportImages == null)
+                {
+                    <div class="form-group">
+                        <div class="editor-label">Фото паспорта: </div>
+                        <div class="form-control-static"> Відсутнє фото </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group">
+                        <div class="editor-label">Фото паспорта: </div>
+                        @Html.Raw("<img style='width:250px; height:125px;' src=\"data:image/jpeg;base64,"
+                                              + Convert.ToBase64String(Model.PassportImages) + "\" />")
+                        @Html.Hidden("PassportImages", Model.PassportImages)
+                    </div>
+                }
+            </div>
+
+            <br>
+
+            <div>
+                @if (Model.INNImages == null)
+                {
+                    <div class="form-group">
+                        <div class="editor-label">Фото ідентифікакційного кода:</div>
+                        <div class="form-control-static"> Відсутнє фото </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group">
+                        <div class="editor-label">Фото ідентифікаційного кода: </div>
+                        @Html.Raw("<img style='width:250px; height:125px;' src=\"data:image/jpeg;base64,"
+                                                  + Convert.ToBase64String(Model.INNImages) + "\" />")
+                        @Html.Hidden("PassportImages", Model.PassportImages)
+                    </div>
+                }
+            </div>
+
+            @Html.HiddenFor(x => x.Id)
+            @Html.AntiForgeryToken()
+            <br>
+            <button type="reset" class="btn btn-default">Відмінити</button>
+        </form>
+    }
+
+
+@section scripts
+{
+        @Scripts.Render("~/bundles/jqueryval")
+}
+
+
