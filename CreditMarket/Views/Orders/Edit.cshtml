@@ -113,7 +113,7 @@
             <div class="form-group">
                 <div class="col-md-10">
                     <div class="editor-label">Фото паспорта: </div>
-                    @Html.Raw("<img style='width:600px; height:300px;' src=\"data:image/jpeg;base64,"
+                    @Html.Raw("<img style='width:250px; height:125px;' src=\"data:image/jpeg;base64,"
                                          + Convert.ToBase64String(Model.Order.PassportImages) + "\" />")
                     @Html.Hidden("PassportImages", Model.Order.PassportImages)
                     <div class="editor-label">Змінити фото Паспорта: </div>
@@ -145,7 +145,7 @@
             <div class="form-group">
                 <div class="col-md-10">
                     <div class="editor-label">Фото ідентифікаційного кода: </div>
-                    @Html.Raw("<img style='width:600px; height:300px;' src=\"data:image/jpeg;base64,"
+                    @Html.Raw("<img style='width:250px; height:125px;' src=\"data:image/jpeg;base64,"
                                              + Convert.ToBase64String(Model.Order.INNImages) + "\" />")
                     @Html.Hidden("PassportImages", Model.Order.PassportImages)
                     <div class="editor-label">Змінити нове фото ідентифікаційного кода: </div>
