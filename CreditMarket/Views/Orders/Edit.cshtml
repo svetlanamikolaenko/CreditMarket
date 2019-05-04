@@ -17,7 +17,7 @@
             $('.datepicker1').datepicker({
                 dateFormat: 'dd-mm-yy',
                 maxDate: "-18y",
-                minDate:"-75y"
+                minDate: "-75y"
             });
         });
     </script>
@@ -27,7 +27,7 @@
             $('.datepicker2').datepicker({
                 dateFormat: 'dd-mm-yy',
                 maxDate: "-1d",
-                minDate:"-30y"
+                minDate: "-30y"
             });
         });
     </script>
@@ -96,21 +96,62 @@
         @Html.ValidationMessageFor(x => x.Order.PassportGivenDate)
     </div>
 
-    <div class="form-group">
-        <div class="editor-label">Завантажити фото Паспорта</div>
-        <div class="editor-field">
-            <input type="file" name="uploadPassportImage" />
-        </div>
+    <div>
+        @if (Model.Order.PassportImages == null)
+        {
+            <div class="editor-label">Фото паспорта: </div>
+            <div class="form-control-static"> Відсутнє фото </div>
+            <div class="editor-label1">Завантажити фото ідентифікаційного кода: </div>
+            <div class="editor-field">
+                <input type="file" name="uploadPassportImage" />
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <div class="col-md-10">
+                    <div class="editor-label">Фото паспорта: </div>
+                    @Html.Raw("<img style='width:600px; height:300px;' src=\"data:image/jpeg;base64,"
+                                        + Convert.ToBase64String(Model.Order.PassportImages) + "\" />")
+                    @Html.Hidden("PassportImages", Model.Order.PassportImages)
+                    <div class="editor-label">Змінити фото Паспорта: </div>
+                    <div class="editor-field">
+                        <input type="file" name="uploadPassportImage" />
+                    </div>
+                </div>
+            </div>
+        }
     </div>
-
-    <div class="form-group">
-        <div class="editor-label">Завантажити Ідентифікаційний код</div>
-        <div class="editor-field">
-            <input type="file" name="uploadINNImage" />
-        </div>
+    <br>
+    <div>
+        @if (Model.Order.INNImages == null)
+        {
+            <div class="editor-label">Фото ідентифікакційного кода:</div>
+            <div class="form-control-static"> Відсутнє фото </div>
+            <div class="editor-label1">Завантажити фото ідентифікаційного кода: </div>
+            <div class="editor-field">
+                <input type="file" name="uploadINNImage" />
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <div class="col-md-10">
+                    <div class="editor-label">Фото ідентифікаційного кода: </div>
+                    @Html.Raw("<img style='width:600px; height:300px;' src=\"data:image/jpeg;base64,"
+                                        + Convert.ToBase64String(Model.Order.INNImages) + "\" />")
+                    @Html.Hidden("PassportImages", Model.Order.PassportImages)
+                    <div class="editor-label">Змінити нове фото ідентифікаційного кода: </div>
+                    <div class="editor-field">
+                        <input type="file" name="uploadINNImage" />
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 
     @Html.HiddenFor(x => x.Order.Id)
     @Html.AntiForgeryToken()
+    <br>
     <button type="submit" class="btn btn-primary">Редагувати заявку</button>
 }
