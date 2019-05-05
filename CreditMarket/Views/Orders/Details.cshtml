@@ -1,4 +1,4 @@
-﻿@model CreditMarket.Models.Order
+﻿@model CreditMarket.ViewModels.OrderFormViewModel
      @{   /**/
 
         ViewBag.Title = "Перегляд заявки";
@@ -12,56 +12,56 @@
         <form>
             <div class="form-group">
                 <label for="Amount">Сума кредиту</label>
-                @Html.TextBoxFor(x => x.Amount, new { @class = "form-control", @readonly = "readonly" })
+                @Html.TextBoxFor(x => x.Order.Amount, new { @class = "form-control", @readonly = "readonly" })
 
             </div>
             <div class="form-group">
                 <label for="LoanId">Кредит номер</label>
-                @Html.TextBoxFor(x => x.LoanId, new { @class = "form-control", @readonly = "readonly" })
+                @Html.TextBoxFor(x => x.Order.LoanId, new { @class = "form-control", @readonly = "readonly" })
             </div>
             <div class="form-group">
                 <label for="LastName">Прізвище</label>
-                @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", @readonly = "readonly" })
+                @Html.TextBoxFor(x => x.Order.LastName, new { @class = "form-control", @readonly = "readonly" })
             </div>
             <div class="form-group">
                 <label for="FirstName">Ім'я</label>
-                @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", @readonly = "readonly" })
+                @Html.TextBoxFor(x => x.Order.FirstName, new { @class = "form-control", @readonly = "readonly" })
             </div>
             <div class="form-group">
                 <label for="FathersName">По-батькові</label>
-                @Html.TextBoxFor(x => x.FathersName, new { @class = "form-control", @readonly = "readonly" })
+                @Html.TextBoxFor(x => x.Order.FathersName, new { @class = "form-control", @readonly = "readonly" })
             </div>
             <div class="form-group">
                 <label for="Date OfBirth">День народження</label>
-                @Html.TextBoxFor(x => x.DateOfBirth, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker1", @readonly = "readonly" })
+                @Html.TextBoxFor(x => x.Order.DateOfBirth, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker1", @readonly = "readonly" })
             </div>
             <div class="form-group">
                 <label for="Email">E-mail</label>
-                @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @readonly = "readonly" })
+                @Html.TextBoxFor(x => x.Order.Email, new { @class = "form-control", @readonly = "readonly" })
             </div>
             <div class="form-group">
                 <label for="PhoneNumber">Мобільний номер</label>
-                @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", @readonly = "readonly" })
+                @Html.TextBoxFor(x => x.Order.PhoneNumber, new { @class = "form-control", @readonly = "readonly" })
             </div>
             <div class="form-group">
                 <label for="INN">ІНН</label>
-                @Html.TextBoxFor(x => x.INN, new { @class = "form-control", @readonly = "readonly" })
+                @Html.TextBoxFor(x => x.Order.INN, new { @class = "form-control", @readonly = "readonly" })
             </div>
             <div class="form-group">
                 <label for="PassportNumber">Серія та номер паспорта</label>
-                @Html.TextBoxFor(x => x.PassportNumber, new { @class = "form-control", @readonly = "readonly" })
+                @Html.TextBoxFor(x => x.Order.PassportNumber, new { @class = "form-control", @readonly = "readonly" })
             </div>
             <div class="form-group">
                 <label for="PassportGivenByWhom">Ким виданий паспорт</label>
-                @Html.TextBoxFor(x => x.PassportGivenByWhom, new { @class = "form-control", @readonly = "readonly" })
+                @Html.TextBoxFor(x => x.Order.PassportGivenByWhom, new { @class = "form-control", @readonly = "readonly" })
             </div>
             <div class="form-group">
                 <label for="PassportGivenDate">Коли виданий паспорт</label>
-                @Html.TextBoxFor(x => x.PassportGivenDate, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker2", @readonly = "readonly" })
+                @Html.TextBoxFor(x => x.Order.PassportGivenDate, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker2", @readonly = "readonly" })
             </div>
 
             <div>
-                @if (Model.PassportImages == null)
+                @if (Model.Order.PassportImages == null)
                 {
                     <div class="form-group">
                         <div class="editor-label">Фото паспорта: </div>
@@ -73,8 +73,8 @@
                     <div class="form-group">
                         <div class="editor-label">Фото паспорта: </div>
                         @Html.Raw("<img style='width:250px; height:125px;' src=\"data:image/jpeg;base64,"
-                                              + Convert.ToBase64String(Model.PassportImages) + "\" />")
-                        @Html.Hidden("PassportImages", Model.PassportImages)
+                                              + Convert.ToBase64String(Model.Order.PassportImages) + "\" />")
+                        @Html.Hidden("PassportImages", Model.Order.PassportImages)
                     </div>
                 }
             </div>
@@ -82,7 +82,7 @@
             <br>
 
             <div>
-                @if (Model.INNImages == null)
+                @if (Model.Order.INNImages == null)
                 {
                     <div class="form-group">
                         <div class="editor-label">Фото ідентифікакційного кода:</div>
@@ -94,16 +94,16 @@
                     <div class="form-group">
                         <div class="editor-label">Фото ідентифікаційного кода: </div>
                         @Html.Raw("<img style='width:250px; height:125px;' src=\"data:image/jpeg;base64,"
-                                                  + Convert.ToBase64String(Model.INNImages) + "\" />")
-                        @Html.Hidden("PassportImages", Model.PassportImages)
+                                                  + Convert.ToBase64String(Model.Order.INNImages) + "\" />")
+                        @Html.Hidden("PassportImages", Model.Order.PassportImages)
                     </div>
                 }
             </div>
 
-            @Html.HiddenFor(x => x.Id)
+            @Html.HiddenFor(x => x.Order.Id)
             @Html.AntiForgeryToken()
             <br>
-            <button type="reset" class="btn btn-default">Відмінити</button>
+            <input type="button" value="Скасувати" class="btn btn-danger" onclick="location.href='@Url.Action("Index","Orders")';" />
         </form>
     }
 

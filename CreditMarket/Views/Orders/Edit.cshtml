@@ -160,7 +160,7 @@
         @Html.AntiForgeryToken()
         <br>
         <button type="submit" class="btn btn-primary">Редагувати заявку</button>
-        <button type="reset" class="btn btn-default">Відмінити</button>
+        <input type="button" value="Скасувати" class="btn btn-danger" onclick="location.href='@Url.Action("Index","Orders")';" />
     </form>
 }
 
