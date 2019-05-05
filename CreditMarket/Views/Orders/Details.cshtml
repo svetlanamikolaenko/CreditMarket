@@ -16,8 +16,8 @@
 
             </div>
             <div class="form-group">
-                <label for="LoanId">Кредит номер</label>
-                @Html.TextBoxFor(x => x.Order.LoanId, new { @class = "form-control", @readonly = "readonly" })
+                <label for="LoanId">Кредит</label>
+                @Html.TextBoxFor(x => x.Order.Loan.Name, new { @class = "form-control", @readonly = "readonly" })
             </div>
             <div class="form-group">
                 <label for="LastName">Прізвище</label>
