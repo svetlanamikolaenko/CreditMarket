@@ -1,7 +1,9 @@
 ﻿@model CreditMarket.ViewModels.OrderFormViewModel
 @{
-    ViewBag.Title = "Редагування заявки";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+                /**/
+
+                ViewBag.Title = "Редагування заявки";
+                Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Редагування заявки</h2>
@@ -17,7 +19,7 @@
             $('.datepicker1').datepicker({
                 dateFormat: 'dd-mm-yy',
                 maxDate: "-18y",
-                minDate:"-75y"
+                minDate: "-75y"
             });
         });
     </script>
@@ -27,90 +29,140 @@
             $('.datepicker2').datepicker({
                 dateFormat: 'dd-mm-yy',
                 maxDate: "-1d",
-                minDate:"-30y"
+                minDate: "-30y"
             });
         });
     </script>
 }
 @using (Html.BeginForm("Edit", "Orders", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+
     @Html.ValidationSummary(true, "Усі поля обов'язкові.")
-    <div class="form-group">
-        <label for="Amount">Сума кредиту</label>
-        @Html.TextBoxFor(x => x.Order.Amount, new { @class = "form-control", autofocus = "autofocus" })
-        @Html.ValidationMessageFor(x => x.Order.Amount)
-    </div>
-    <div class="form-group">
-        <label for="Order.LoanId">Кредит</label>
-        @Html.DropDownListFor(x => x.Order.LoanId, new SelectList(Model.Loan, "Id", "Name"), "Select Loan", new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Order.LoanId)
-    </div>
-    <div class="form-group">
-        <label for="LastName">Прізвище</label>
-        @Html.TextBoxFor(x => x.Order.LastName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Order.LastName)
-    </div>
-    <div class="form-group">
-        <label for="FirstName">Ім'я</label>
-        @Html.TextBoxFor(x => x.Order.FirstName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Order.FirstName)
-    </div>
-    <div class="form-group">
-        <label for="FathersName">По-батькові</label>
-        @Html.TextBoxFor(x => x.Order.FathersName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Order.FathersName)
-    </div>
-    <div class="form-group">
-        <label for="Date OfBirth">День народження</label>
-        @Html.TextBoxFor(x => x.Order.DateOfBirth, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker1", placeholder = "Введіть дату народження" })
-        @Html.ValidationMessageFor(x => x.Order.DateOfBirth)
-    </div>
-    <div class="form-group">
-        <label for="Email">E-mail</label>
-        @Html.TextBoxFor(x => x.Order.Email, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Order.Email)
-    </div>
-    <div class="form-group">
-        <label for="PhoneNumber">Мобільний номер</label>
-        @Html.TextBoxFor(x => x.Order.PhoneNumber, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Order.PhoneNumber)
-    </div>
-    <div class="form-group">
-        <label for="INN">ІНН</label>
-        @Html.TextBoxFor(x => x.Order.INN, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Order.INN)
-    </div>
-    <div class="form-group">
-        <label for="PassportNumber">Серія та номер паспорта</label>
-        @Html.TextBoxFor(x => x.Order.PassportNumber, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Order.PassportNumber)
-    </div>
-    <div class="form-group">
-        <label for="PassportGivenByWhom">Ким виданий паспорт</label>
-        @Html.TextBoxFor(x => x.Order.PassportGivenByWhom, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Order.PassportGivenByWhom)
-    </div>
-    <div class="form-group">
-        <label for="PassportGivenDate">Коли виданий паспорт</label>
-        @Html.TextBoxFor(x => x.Order.PassportGivenDate, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker2", placeholder = "Введіть дату видачі паспорту" })
-        @Html.ValidationMessageFor(x => x.Order.PassportGivenDate)
-    </div>
-
-    <div class="form-group">
-        <div class="editor-label">Завантажити фото Паспорта</div>
-        <div class="editor-field">
-            <input type="file" name="uploadPassportImage" />
+    <form>
+        <div class="form-group">
+            <label for="Amount">Сума кредиту</label>
+            @Html.TextBoxFor(x => x.Order.Amount, new { @class = "form-control", autofocus = "autofocus" })
+            @Html.ValidationMessageFor(x => x.Order.Amount)
         </div>
-    </div>
-
-    <div class="form-group">
-        <div class="editor-label">Завантажити Ідентифікаційний код</div>
-        <div class="editor-field">
-            <input type="file" name="uploadINNImage" />
+        <div class="form-group">
+            <label for="Order.LoanId">Кредит</label>
+            @Html.DropDownListFor(x => x.Order.LoanId, new SelectList(Model.Loan, "Id", "Name"), "Select Loan", new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Order.LoanId)
         </div>
-    </div>
+        <div class="form-group">
+            <label for="LastName">Прізвище</label>
+            @Html.TextBoxFor(x => x.Order.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Order.LastName)
+        </div>
+        <div class="form-group">
+            <label for="FirstName">Ім'я</label>
+            @Html.TextBoxFor(x => x.Order.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Order.FirstName)
+        </div>
+        <div class="form-group">
+            <label for="FathersName">По-батькові</label>
+            @Html.TextBoxFor(x => x.Order.FathersName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Order.FathersName)
+        </div>
+        <div class="form-group">
+            <label for="Date OfBirth">День народження</label>
+            @Html.TextBoxFor(x => x.Order.DateOfBirth, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker1", placeholder = "Введіть дату народження" })
+            @Html.ValidationMessageFor(x => x.Order.DateOfBirth)
+        </div>
+        <div class="form-group">
+            <label for="Email">E-mail</label>
+            @Html.TextBoxFor(x => x.Order.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Order.Email)
+        </div>
+        <div class="form-group">
+            <label for="PhoneNumber">Мобільний номер</label>
+            @Html.TextBoxFor(x => x.Order.PhoneNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Order.PhoneNumber)
+        </div>
+        <div class="form-group">
+            <label for="INN">ІНН</label>
+            @Html.TextBoxFor(x => x.Order.INN, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Order.INN)
+        </div>
+        <div class="form-group">
+            <label for="PassportNumber">Серія та номер паспорта</label>
+            @Html.TextBoxFor(x => x.Order.PassportNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Order.PassportNumber)
+        </div>
+        <div class="form-group">
+            <label for="PassportGivenByWhom">Ким виданий паспорт</label>
+            @Html.TextBoxFor(x => x.Order.PassportGivenByWhom, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Order.PassportGivenByWhom)
+        </div>
+        <div class="form-group">
+            <label for="PassportGivenDate">Коли виданий паспорт</label>
+            @Html.TextBoxFor(x => x.Order.PassportGivenDate, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker2", placeholder = "Введіть дату видачі паспорту" })
+            @Html.ValidationMessageFor(x => x.Order.PassportGivenDate)
+        </div>
 
-    @Html.HiddenFor(x => x.Order.Id)
-    @Html.AntiForgeryToken()
-    <button type="submit" class="btn btn-primary">Редагувати заявку</button>
+        <div>
+            @if (Model.Order.PassportImages == null)
+            {
+                <div class="form-group">
+                    <div class="editor-label">Фото паспорта: </div>
+                    <div class="form-control-static"> Відсутнє фото </div>
+                    <div class="editor-label1">Завантажити фото ідентифікаційного кода: </div>
+                    <div class="editor-field">
+                        <input type="file" name="uploadPassportImage" />
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <div class="editor-label">Фото паспорта: </div>
+                    @Html.Raw("<img style='width:250px; height:125px;' src=\"data:image/jpeg;base64,"
+                                         + Convert.ToBase64String(Model.Order.PassportImages) + "\" />")
+                    @Html.Hidden("PassportImages", Model.Order.PassportImages)
+                    <div class="editor-label">Змінити фото Паспорта: </div>
+                    <div class="editor-field">
+                        <input type="file" name="uploadPassportImage" />
+                    </div>
+                </div>
+            }
+        </div>
+
+        <br>
+
+        <div>
+            @if (Model.Order.INNImages == null)
+            {
+                <div class="form-group">
+                    <div class="editor-label">Фото ідентифікакційного кода:</div>
+                    <div class="form-control-static"> Відсутнє фото </div>
+                    <div class="editor-label1">Завантажити фото ідентифікаційного кода: </div>
+                    <div class="editor-field">
+                        <input type="file" name="uploadINNImage" />
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <div class="editor-label">Фото ідентифікаційного кода: </div>
+                    @Html.Raw("<img style='width:250px; height:125px;' src=\"data:image/jpeg;base64,"
+                                             + Convert.ToBase64String(Model.Order.INNImages) + "\" />")
+                    @Html.Hidden("PassportImages", Model.Order.PassportImages)
+                    <div class="editor-label">Змінити нове фото ідентифікаційного кода: </div>
+                    <div class="editor-field">
+                        <input type="file" name="uploadINNImage" />
+                    </div>
+                </div>
+            }
+        </div>
+
+        @Html.HiddenFor(x => x.Order.Id)
+        @Html.AntiForgeryToken()
+        <br>
+        <button type="submit" class="btn btn-primary">Редагувати заявку</button>
+        <button type="reset" class="btn btn-default">Відмінити</button>
+    </form>
 }
+
+
+
