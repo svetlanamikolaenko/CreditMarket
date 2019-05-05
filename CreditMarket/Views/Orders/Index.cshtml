@@ -19,6 +19,7 @@
             <th>Статус заявки</th>
             <th>Дата погодження</th>
             <th>Delete</th>
+            <th>Edit</th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -42,6 +43,9 @@
                     },
                     {
                         data: "fullName",
+                        render: function (data, type, order) {
+                            return "<a href='/orders/details/" + order.id + "'>" + data + "</a>";
+                        }
                         
                     },
                     {
@@ -65,9 +69,16 @@
                     {
                         data: "id",
                         render: function (data) {
-                            return "<button class='btn-link js-delete' data-order-id=" + data + ">Delete</button>";
+                            return "<button class='btn btn-danger js-delete' data-order-id=" + data + ">Delete</button>";
                         }
-                    }
+                    },
+                    {
+                        data: "id",
+                        render: function (data, type, order) {
+                            return "<button class='btn btn-primary js-edit' data-order-id=" + order.id  + ">Edit</button>";
+                      }
+
+                }
                 ]
             });
             $("#orders").on("click", ".js-delete", function () {
