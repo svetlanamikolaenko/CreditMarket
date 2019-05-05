@@ -29,14 +29,22 @@ namespace CreditMarket.Controllers
 			return View(orders);
 		}
 
+        [HttpGet]
         public ActionResult Details(int id)
         {
+        
             var order = _context.Orders.SingleOrDefault(o => o.Id == id);
 
             if (order == null)
                 return HttpNotFound();
 
-            return View(order);
+            var viewModel = new OrderFormViewModel
+            {
+                Order = order,
+                Loan = _context.Loans.ToList()
+            };
+
+            return View("Details", viewModel);
         }
 
         //[Authorize]
