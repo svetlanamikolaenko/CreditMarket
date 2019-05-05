@@ -18,8 +18,8 @@
             <th>Дата подачі заявки</th>
             <th>Статус заявки</th>
             <th>Дата погодження</th>
-            <th>Delete</th>
-            <th>Edit</th>
+            <th>Видалити</th>
+            <th>Редагувати</th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -33,7 +33,7 @@
                 ajax: {
                     url: "/api/orders",
                     dataSrc: ""
-                },
+                 },
                 columns: [
                     {
                         data: "id",
@@ -58,7 +58,8 @@
                         data: "loan.period"
                     },
                     {
-                        data: "creationDate"
+                        data: "creationDate",
+                        
                     },
                     {
                         data: "orderStatus"
@@ -69,13 +70,13 @@
                     {
                         data: "id",
                         render: function (data) {
-                            return "<button class='btn btn-danger js-delete' data-order-id=" + data + ">Delete</button>";
+                            return "<button class='btn btn-danger js-delete' data-order-id=" + data + ">Видалити</button>";
                         }
                     },
                     {
                         data: "id",
                         render: function (data, type, order) {
-                            return "<button class='btn btn-primary js-edit' data-order-id=" + order.id  + ">Edit</button>";
+                            return "<button class='btn btn-primary js-edit' data-order-id=" + order.id  + ">Редагувати</button>";
                       }
 
                 }

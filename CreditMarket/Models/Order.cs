@@ -58,9 +58,14 @@ namespace CreditMarket.Models
 
 		public byte[] INNImages { get; set; }
 
-		public DateTime CreationDate { get; set; }
 
-		public DateTime ApprovedDate { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime CreationDate { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime ApprovedDate { get; set; }
 
 		public string OrderStatus { get; set; }
 
