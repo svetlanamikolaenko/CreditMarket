@@ -38,15 +38,11 @@
                     {
                         data: "id",
                         render: function (data, type, order) {
-                            return "<a href='/orders/edit/" + order.id + "'>" + data + "</a>";
+                            return "<a href='/orders/details/" + order.id + "'>" + data + "</a>";
                         }
                     },
                     {
-                        data: "fullName",
-                        render: function (data, type, order) {
-                            return "<a href='/orders/details/" + order.id + "'>" + data + "</a>";
-                        }
-                        
+                        data: "fullName"                        
                     },
                     {
                         data: "loan.name"
@@ -76,7 +72,7 @@
                     {
                         data: "id",
                         render: function (data, type, order) {
-                            return "<button class='btn btn-primary js-edit' data-order-id=" + order.id  + ">Редагувати</button>";
+                            return "<a href='/orders/edit/" + order.id + "' class='btn btn-primary'>Редагувати</a>";
                       }
 
                 }
