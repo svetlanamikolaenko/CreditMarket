@@ -85,6 +85,11 @@
             @Html.ValidationMessageFor(x => x.Order.INN)
         </div>
         <div class="form-group">
+            <label for="INN">Номер картки</label>
+            @Html.TextBoxFor(x => x.Order.CardNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Order.CardNumber)
+        </div>
+        <div class="form-group">
             <label for="PassportNumber">Серія та номер паспорта</label>
             @Html.TextBoxFor(x => x.Order.PassportNumber, new { @class = "form-control" })
             @Html.ValidationMessageFor(x => x.Order.PassportNumber)
@@ -157,9 +162,10 @@
         </div>
 
         @Html.HiddenFor(x => x.Order.Id)
+        @Html.HiddenFor(x => x.Order.CreationDate)
         @Html.AntiForgeryToken()
         <br>
-        <button type="submit" class="btn btn-primary">Редагувати заявку</button>
+        <button type="submit" class="btn btn-success">Зберегти</button>
         <input type="button" value="Скасувати" class="btn btn-danger" onclick="location.href='@Url.Action("Index","Orders")';" />
     </form>
 }
