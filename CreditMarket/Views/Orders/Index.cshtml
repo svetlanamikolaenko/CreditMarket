@@ -55,13 +55,19 @@
                     },
                     {
                         data: "creationDate",
+                        render: function (data) {
+                            return data.split('T')[0];
+                        }
                         
                     },
                     {
                         data: "orderStatus"
                     },
                     {
-                        data: "approvedDate"
+                        data: "approvedDate",
+                        render: function (data) {
+                            return data.split('T')[0];
+                        }
                     },
                     {
                         data: "id",
@@ -71,7 +77,7 @@
                     },
                     {
                         data: "id",
-                        render: function (data, type, order) {
+                        render: function (order) {
                             return "<a href='/orders/edit/" + order.id + "' class='btn btn-primary'>Редагувати</a>";
                       }
 
