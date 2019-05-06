@@ -34,10 +34,9 @@ namespace CreditMarket.Models
         [StringLength(12)]
         public string PhoneNumber { get; set; }
 
-        [StringLength(12)]
         public long? CardNumber { get; set; }
 
-        [StringLength(12)]
+        
         public long? INN { get; set; }
 
         [StringLength(8)]

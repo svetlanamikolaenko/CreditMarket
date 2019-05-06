@@ -1,16 +1,18 @@
-namespace CreditMarket.Migrations
+namespace CreditMarket.Migrations.Orders
 {
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class DateTimeNullAllowed2 : DbMigration
+    public partial class InitialCreateOrderAndLoan : DbMigration
     {
         public override void Up()
         {
+           
         }
         
         public override void Down()
         {
+           
         }
     }
 }
