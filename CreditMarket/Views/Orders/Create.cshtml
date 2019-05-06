@@ -46,7 +46,7 @@
     </div>
     <div class="form-group">
         <label for="Order.LoanId">Кредит</label>
-        @Html.DropDownListFor(x => x.Order.LoanId, new SelectList(Model.Loan, "Id", "Name"), "Select Loan", new { @class = "form-control" })
+        @Html.DropDownListFor(x => x.Order.LoanId, new SelectList(Model.Loan, "Id", "Name"), "Оберіть кредит", new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.Order.LoanId)
     </div>
     <div class="form-group">
@@ -85,6 +85,11 @@
         @Html.ValidationMessageFor(x => x.Order.INN)
     </div>
     <div class="form-group">
+        <label for="INN">Номер картки</label>
+        @Html.TextBoxFor(x => x.Order.CardNumber, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Order.CardNumber)
+    </div>
+    <div class="form-group">
         <label for="PassportNumber">Серія та номер паспорта</label>
         @Html.TextBoxFor(x => x.Order.PassportNumber, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.Order.PassportNumber)
@@ -111,10 +116,10 @@
             <input type="file" name="uploadINNImage" />
         </div>
     </div>
-
-    @Html.HiddenFor(x => x.Order.CreationDate, new { @Value = DateTime.Now.ToString("dd/MM/yyyy") })
+    @Html.HiddenFor(x => x.Order.OrderStatus, new { @Value = "Очікує підтвердження" })
+    @Html.HiddenFor(x => x.Order.CreationDate, new { @Value = DateTime.Now.ToShortDateString()})
     @Html.AntiForgeryToken()
-    <button type="submit" class="btn btn-primary">Створити заявку</button>
+    <button type="submit" class="btn btn-success">Створити заявку</button>
 }
 
 
