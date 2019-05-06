@@ -199,107 +199,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903311208031_InitialModel.cs" />
-    <Compile Include="Migrations\201903311208031_InitialModel.Designer.cs">
-      <DependentUpon>201903311208031_InitialModel.cs</DependentUpon>
+    <Compile Include="Migrations.Orders\201905061742235_InitialCreateOrderAndLoan.cs" />
+    <Compile Include="Migrations.Orders\201905061742235_InitialCreateOrderAndLoan.Designer.cs">
+      <DependentUpon>201905061742235_InitialCreateOrderAndLoan.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903311230379_CreateTables.cs" />
-    <Compile Include="Migrations\201903311230379_CreateTables.Designer.cs">
-      <DependentUpon>201903311230379_CreateTables.cs</DependentUpon>
+    <Compile Include="Migrations.Orders\Configuration.cs" />
+    <Compile Include="Migrations.UkrainianUnions\201905061748319_InitialApprovedOrder.cs" />
+    <Compile Include="Migrations.UkrainianUnions\201905061748319_InitialApprovedOrder.Designer.cs">
+      <DependentUpon>201905061748319_InitialApprovedOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903311308512_AddLoans.cs" />
-    <Compile Include="Migrations\201903311308512_AddLoans.Designer.cs">
-      <DependentUpon>201903311308512_AddLoans.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904011139482_AddLoanForeignKeyToOrder.cs" />
-    <Compile Include="Migrations\201904011139482_AddLoanForeignKeyToOrder.Designer.cs">
-      <DependentUpon>201904011139482_AddLoanForeignKeyToOrder.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904011246513_RollbackAddLoanForeignKeyToOrder.cs" />
-    <Compile Include="Migrations\201904011246513_RollbackAddLoanForeignKeyToOrder.Designer.cs">
-      <DependentUpon>201904011246513_RollbackAddLoanForeignKeyToOrder.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904011440511_AddLoanForeignKeyToOrder2.cs" />
-    <Compile Include="Migrations\201904011440511_AddLoanForeignKeyToOrder2.Designer.cs">
-      <DependentUpon>201904011440511_AddLoanForeignKeyToOrder2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904011445342_RollbackAddLoanForeignKeyToOrder2.cs" />
-    <Compile Include="Migrations\201904011445342_RollbackAddLoanForeignKeyToOrder2.Designer.cs">
-      <DependentUpon>201904011445342_RollbackAddLoanForeignKeyToOrder2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904011534306_AddLoanForeignKeyToOrder3.cs" />
-    <Compile Include="Migrations\201904011534306_AddLoanForeignKeyToOrder3.Designer.cs">
-      <DependentUpon>201904011534306_AddLoanForeignKeyToOrder3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904011600079_ApplicationDbContextUpdate.cs" />
-    <Compile Include="Migrations\201904011600079_ApplicationDbContextUpdate.Designer.cs">
-      <DependentUpon>201904011600079_ApplicationDbContextUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904011638541_RemoveRequiredFields.cs" />
-    <Compile Include="Migrations\201904011638541_RemoveRequiredFields.Designer.cs">
-      <DependentUpon>201904011638541_RemoveRequiredFields.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904020633199_DataTypeAnnotation.cs" />
-    <Compile Include="Migrations\201904020633199_DataTypeAnnotation.Designer.cs">
-      <DependentUpon>201904020633199_DataTypeAnnotation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904031705288_DateTimeNullAllowed.cs" />
-    <Compile Include="Migrations\201904031705288_DateTimeNullAllowed.Designer.cs">
-      <DependentUpon>201904031705288_DateTimeNullAllowed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904031812577_DateTimeNullAllowed2.cs" />
-    <Compile Include="Migrations\201904031812577_DateTimeNullAllowed2.Designer.cs">
-      <DependentUpon>201904031812577_DateTimeNullAllowed2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904071309104_AddLoans1.cs" />
-    <Compile Include="Migrations\201904071309104_AddLoans1.Designer.cs">
-      <DependentUpon>201904071309104_AddLoans1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904101814071_AddFullNameColumn.cs" />
-    <Compile Include="Migrations\201904101814071_AddFullNameColumn.Designer.cs">
-      <DependentUpon>201904101814071_AddFullNameColumn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904101913151_DBSetLoans.cs" />
-    <Compile Include="Migrations\201904101913151_DBSetLoans.Designer.cs">
-      <DependentUpon>201904101913151_DBSetLoans.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904101923538_IENumLoan.cs" />
-    <Compile Include="Migrations\201904101923538_IENumLoan.Designer.cs">
-      <DependentUpon>201904101923538_IENumLoan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904101928134_rollbackIENumLoan.cs" />
-    <Compile Include="Migrations\201904101928134_rollbackIENumLoan.Designer.cs">
-      <DependentUpon>201904101928134_rollbackIENumLoan.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904101934116_rollbackIENumLoan1.cs" />
-    <Compile Include="Migrations\201904101934116_rollbackIENumLoan1.Designer.cs">
-      <DependentUpon>201904101934116_rollbackIENumLoan1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904101938249_LoanNamePeriodToOrderModel.cs" />
-    <Compile Include="Migrations\201904101938249_LoanNamePeriodToOrderModel.Designer.cs">
-      <DependentUpon>201904101938249_LoanNamePeriodToOrderModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904151843139_AmountField.cs" />
-    <Compile Include="Migrations\201904151843139_AmountField.Designer.cs">
-      <DependentUpon>201904151843139_AmountField.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904151848528_INNField.cs" />
-    <Compile Include="Migrations\201904151848528_INNField.Designer.cs">
-      <DependentUpon>201904151848528_INNField.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904221700421_updateModels.cs" />
-    <Compile Include="Migrations\201904221700421_updateModels.Designer.cs">
-      <DependentUpon>201904221700421_updateModels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905051912365_addCardNumberAndApprovedOrder.cs" />
-    <Compile Include="Migrations\201905051912365_addCardNumberAndApprovedOrder.Designer.cs">
-      <DependentUpon>201905051912365_addCardNumberAndApprovedOrder.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905051941168_InitialForUnion.cs" />
-    <Compile Include="Migrations\201905051941168_InitialForUnion.Designer.cs">
-      <DependentUpon>201905051941168_InitialForUnion.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations.UkrainianUnions\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApprovedOrder.cs" />
@@ -713,80 +622,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903311208031_InitialModel.resx">
-      <DependentUpon>201903311208031_InitialModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations.Orders\201905061742235_InitialCreateOrderAndLoan.resx">
+      <DependentUpon>201905061742235_InitialCreateOrderAndLoan.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903311230379_CreateTables.resx">
-      <DependentUpon>201903311230379_CreateTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903311308512_AddLoans.resx">
-      <DependentUpon>201903311308512_AddLoans.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904011139482_AddLoanForeignKeyToOrder.resx">
-      <DependentUpon>201904011139482_AddLoanForeignKeyToOrder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904011246513_RollbackAddLoanForeignKeyToOrder.resx">
-      <DependentUpon>201904011246513_RollbackAddLoanForeignKeyToOrder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904011440511_AddLoanForeignKeyToOrder2.resx">
-      <DependentUpon>201904011440511_AddLoanForeignKeyToOrder2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904011445342_RollbackAddLoanForeignKeyToOrder2.resx">
-      <DependentUpon>201904011445342_RollbackAddLoanForeignKeyToOrder2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904011534306_AddLoanForeignKeyToOrder3.resx">
-      <DependentUpon>201904011534306_AddLoanForeignKeyToOrder3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904011600079_ApplicationDbContextUpdate.resx">
-      <DependentUpon>201904011600079_ApplicationDbContextUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904011638541_RemoveRequiredFields.resx">
-      <DependentUpon>201904011638541_RemoveRequiredFields.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904020633199_DataTypeAnnotation.resx">
-      <DependentUpon>201904020633199_DataTypeAnnotation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904031705288_DateTimeNullAllowed.resx">
-      <DependentUpon>201904031705288_DateTimeNullAllowed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904031812577_DateTimeNullAllowed2.resx">
-      <DependentUpon>201904031812577_DateTimeNullAllowed2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904071309104_AddLoans1.resx">
-      <DependentUpon>201904071309104_AddLoans1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904101814071_AddFullNameColumn.resx">
-      <DependentUpon>201904101814071_AddFullNameColumn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904101913151_DBSetLoans.resx">
-      <DependentUpon>201904101913151_DBSetLoans.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904101923538_IENumLoan.resx">
-      <DependentUpon>201904101923538_IENumLoan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904101928134_rollbackIENumLoan.resx">
-      <DependentUpon>201904101928134_rollbackIENumLoan.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904101934116_rollbackIENumLoan1.resx">
-      <DependentUpon>201904101934116_rollbackIENumLoan1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904101938249_LoanNamePeriodToOrderModel.resx">
-      <DependentUpon>201904101938249_LoanNamePeriodToOrderModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904151843139_AmountField.resx">
-      <DependentUpon>201904151843139_AmountField.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904151848528_INNField.resx">
-      <DependentUpon>201904151848528_INNField.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904221700421_updateModels.resx">
-      <DependentUpon>201904221700421_updateModels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905051912365_addCardNumberAndApprovedOrder.resx">
-      <DependentUpon>201905051912365_addCardNumberAndApprovedOrder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905051941168_InitialForUnion.resx">
-      <DependentUpon>201905051941168_InitialForUnion.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations.UkrainianUnions\201905061748319_InitialApprovedOrder.resx">
+      <DependentUpon>201905061748319_InitialApprovedOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
