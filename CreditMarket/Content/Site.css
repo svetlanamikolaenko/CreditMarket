@@ -20,7 +20,12 @@
 input,
 select,
 textarea {
-	max-width: 280px;
+	max-width: 300px;
+}
+
+form {
+    width: 300px;
+    margin: auto;
 }
 
 span.field-validation-error {

@@ -8,8 +8,48 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+        form {
+            width: 100%;
+        }
+
+        .main-holder {
+            position: relative;
+            color: #22425b;
+            border-radius: 3px;
+            width: 100%;
+            background-size: cover;
+        }
+
+        .form-for-slider {
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            background: rgba(255, 255, 255, .8);
+            padding: 25px 15px;
+        }
         .slidecontainer {
             width: 100%;
+        }
+
+        .description-container {
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        .col-3 {
+            width: 25%;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .description-title {
+            font-weight: 700;
+        }
+
+        .credit-title {
+            text-align: center;
         }
 
         .slider {
@@ -49,29 +89,115 @@
 </head>
 <body>
 
+    <h1>Розрахувати кредит</h1> 
 
-    <h1>Розрахувати кредит</h1>
-    @using (Html.BeginForm("NavigateToOrder", "Home"))
-    {
-        <div class="slidecontainer">
-            <p>Сума: <span id="amount" name="amount"></span> грн.</p>
-            <input type="range" min="1000" max="10000" value="1000" class="slider" id="amountRange" step="500">
-
+    <div class="main-holder">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="/Content/Images/banner1.jpg" alt="ASP.NET" class="img-responsive" />
+                    <div class="carousel-caption" role="option">
+                        <p>The "BankApp" - made to improve the quality of work of bank employees </p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="/Content/Images/banner3.jpg" alt="Visual Studio" class="img-responsive" />
+                    <div class="carousel-caption" role="option">
+                        <p>
+                            Simplification of work with bank customers!
+                            <a class="btn btn-default" href="http://localhost:1905/Clients">
+                                Create Client Here
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="/Content/Images/banner2.jpg" alt="Package Management" class="img-responsive" />
+                    <div class="carousel-caption" role="option">
+                        <p>
+                            The possibility of opening new loans!
+                            <a class="btn btn-default" href="http://localhost:1905/OpenLoans">
+                                Open Loan Here
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="/Content/Images/banner4.jpg" alt="Microsoft Azure" class="img-responsive" />
+                    <div class="carousel-caption" role="option">
+                        <p>
+                            You can learn more about the application here
+                            <a class="btn btn-default" href="http://localhost:1905/Home/About">
+                                Learn More
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <br />
-        <div class="slidecontainer">
-            <p>Термін: <span id="period"></span> днів</p>
-            <input type="range" min="1" max="30" value="1" class="slider" id="periodRange" step="1">
+
+        <div class="form-for-slider">
+            @using (Html.BeginForm("NavigateToOrder", "Home"))
+            {
+                <div class="slidecontainer">
+                    <p>Сума: <span id="amount" name="amount"></span> грн.</p>
+                    <input type="range" min="1000" max="10000" value="1000" class="slider" id="amountRange" step="500">
+
+                </div>
+                <br />
+                <div class="slidecontainer">
+                    <p>Термін: <span id="period"></span> днів</p>
+                    <input type="range" min="1" max="30" value="1" class="slider" id="periodRange" step="1">
+                </div>
+
+                <br />
+
+                <p>До сплати в кінці терміну: <span id="procent">1000</span> грн.</p>
+
+                <br />
+                <br />
+                <button onclick="getAmountValue()" type="submit" class="btn btn-primary">Оформити заявку</button>
+
+            }
         </div>
+    </div>
 
-        <br />
-
-        <p>До сплати в кінці терміну: <span id="procent">1000</span> грн.</p>
-
-        <br />
-        <br />
-        <button onclick="getAmountValue()" type="submit" class="btn btn-primary">Оформити заявку</button>
-    }
+    <section>
+        <h2 class="credit-title">ОФОРМИТЬ КРЕДИТ</h2>
+        <div class="description-container">
+            <div class="col-3">
+                <div class="img">
+                    <img alt="" src="/assets/img/icons/big/4.png" title="Моментально">
+                </div>
+                <span class="description-title">Мгновенно</span>
+                <p>Получите первый кредит на карту под 0,01% за несколько минут, не выходя из дома.</p>
+            </div>		<div class="col-3">
+                <div class="img">
+                    <img alt="" src="/assets/img/icons/big/5.png" title="Просто">
+                </div>
+                <span class="description-title">Просто</span>
+                <p>Чтобы взять кредит онлайн, нужен только интернет и банковская карта</p>
+            </div>		<div class="col-3">
+                <div class="img">
+                    <img alt="" src="/assets/img/icons/big/6.png" title="Прозрачно">
+                </div>
+                <span class="description-title">Прозрачно</span>
+                <p>Низкая процентная ставка на повторные кредиты, никаких дополнительных платежей и комиссий.</p>
+            </div>		<div class="col-3">
+                <div class="img">
+                    <img alt="" src="/assets/img/icons/big/7.png" title="Безопасно">
+                </div>
+                <span class="description-title">Безопасно</span>
+                <p>Все финансовые операции и персональные данные клиентов надежно защищены.</p>
+            </div>
+        </div>
+    </section>
 
 </body>
 </html>
