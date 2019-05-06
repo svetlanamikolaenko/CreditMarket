@@ -64,6 +64,9 @@ namespace CreditMarket.Dtos
 
         public string OrderStatus { get; set; }
 
+        [Required(ErrorMessage = "Необхідно вказати номер картки")]
+        public long? CardNumber { get; set; }
+
         public string FullName
         {
             get

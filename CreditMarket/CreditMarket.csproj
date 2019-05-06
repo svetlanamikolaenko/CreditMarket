@@ -291,14 +291,24 @@
     <Compile Include="Migrations\201904221700421_updateModels.Designer.cs">
       <DependentUpon>201904221700421_updateModels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905051912365_addCardNumberAndApprovedOrder.cs" />
+    <Compile Include="Migrations\201905051912365_addCardNumberAndApprovedOrder.Designer.cs">
+      <DependentUpon>201905051912365_addCardNumberAndApprovedOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905051941168_InitialForUnion.cs" />
+    <Compile Include="Migrations\201905051941168_InitialForUnion.Designer.cs">
+      <DependentUpon>201905051941168_InitialForUnion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\ApprovedOrder.cs" />
     <Compile Include="Models\Base.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Loan.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\UnionsDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\DateValidation.cs" />
@@ -770,6 +780,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201904221700421_updateModels.resx">
       <DependentUpon>201904221700421_updateModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905051912365_addCardNumberAndApprovedOrder.resx">
+      <DependentUpon>201905051912365_addCardNumberAndApprovedOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905051941168_InitialForUnion.resx">
+      <DependentUpon>201905051941168_InitialForUnion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
