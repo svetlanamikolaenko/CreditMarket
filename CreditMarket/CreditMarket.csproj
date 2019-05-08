@@ -609,6 +609,7 @@
     <Content Include="Views\Loans\Details.cshtml" />
     <Content Include="Views\Orders\Details.cshtml" />
     <Content Include="Views\Loans\ReadOnlyList.cshtml" />
+    <Content Include="Views\Orders\ReadOnlyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

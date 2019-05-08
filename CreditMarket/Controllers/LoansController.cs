@@ -25,9 +25,7 @@ namespace CreditMarket.Controllers
                 return View("Index");
 
             else 
-                return View("ReadOnlyList");
-
-                       
+                return View("ReadOnlyList");                       
 		}
 
         public ActionResult Details(int id)

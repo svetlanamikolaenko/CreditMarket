@@ -1,0 +1,74 @@
+﻿@model IEnumerable<CreditMarket.Models.Order>
+@{
+    ViewBag.Title = "Заявки";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Список заявок</h2>
+<br>
+<br>
+<table id="orders" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Номер заявки</th>
+            <th>ПІБ клієнта</th>
+            <th>Назва кредиту</th>
+            <th>Сума кредиту</th>
+            <th>Термін</th>
+            <th>Дата подачі заявки</th>
+            <th>Статус заявки</th>
+            <th>Дата погодження/відмови</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#orders").DataTable({
+                ajax: {
+                    url: "/api/orders",
+                    dataSrc: ""
+                 },
+                columns: [
+                    {
+                        data: "id",
+                        render: function (data, type, order) {
+                            return "<a href='/orders/details/" + order.id + "'>" + data + "</a>";
+                        }
+                    },
+                    {
+                        data: "fullName"                        
+                    },
+                    {
+                        data: "loan.name"
+                    },
+                    {
+                        data: "amount"
+                    },
+                    {
+                        data: "loan.period"
+                    },
+                    {
+                        data: "creationDate",
+                        render: function (data) {
+                            return data.split('T')[0];
+                        }
+                        
+                    },
+                    {
+                        data: "orderStatus"
+                    },
+                    {
+                        data: "approvedDate",
+                        render: function (data) {
+                            return data.split('T')[0];
+                        }
+                    }
+                    
+                ]
+            });     
+        });
+    </script>
+}
