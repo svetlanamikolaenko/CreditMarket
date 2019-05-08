@@ -12,16 +12,21 @@ namespace CreditMarket.Controllers
     public class OrdersController : Controller
 	{
 		private readonly ApplicationDbContext _context;
+        private readonly UnionsDbContext _contextUnions;
+        private static string unionName = "ТОВ \"КРЕДИТ МАРКЕТ ФІН КОМП\"";
 
-		public OrdersController()
+        public OrdersController()
 		{
 			_context = new ApplicationDbContext();
-		}
+            _contextUnions = new UnionsDbContext();
+
+        }
 
 		protected override void Dispose(bool disposing)
 		{
 			_context.Dispose();
-		}
+            _contextUnions.Dispose();
+        }
 
 		public ViewResult Index()
 		{
@@ -50,7 +55,7 @@ namespace CreditMarket.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Details(Order order, HttpPostedFileBase uploadPassportImage, HttpPostedFileBase uploadINNImage)
+        public ActionResult Details(Order order, HttpPostedFileBase uploadPassportImage, HttpPostedFileBase uploadINNImage, ApprovedOrder approvedOrder)
         {
             byte[] imagePassport = null;
             if (uploadPassportImage != null)
@@ -73,38 +78,79 @@ namespace CreditMarket.Controllers
             }
 
             var orderInDb = _context.Orders.Single(o => o.Id == order.Id);
+            var orderInUnionsDb = _contextUnions.ApprovedOrders.Single(o => o.Id == approvedOrder.Id);
 
             if (Request.Form["approve"] != null)
             {
                 order.OrderStatus = "Підтверджено";
                 order.ApprovedDate = DateTime.Now.Date;
+                orderInDb.Amount = order.Amount;
+                orderInDb.LoanId = order.LoanId;
+                orderInDb.LastName = order.LastName;
+                orderInDb.FirstName = order.FirstName;
+                orderInDb.FathersName = order.FathersName;
+                orderInDb.DateOfBirth = order.DateOfBirth;
+                orderInDb.Email = order.Email;
+                orderInDb.PhoneNumber = order.PhoneNumber;
+                orderInDb.INN = order.INN;
+                orderInDb.PassportNumber = order.PassportNumber;
+                orderInDb.PassportGivenByWhom = order.PassportGivenByWhom;
+                orderInDb.PassportGivenDate = order.PassportGivenDate;
+                orderInDb.PassportImages = order.PassportImages;
+                orderInDb.INNImages = order.INNImages;
+                orderInDb.CreationDate = order.CreationDate;
+                orderInDb.CardNumber = order.CardNumber;
+                orderInDb.OrderStatus = order.OrderStatus;
+                orderInDb.ApprovedDate = order.ApprovedDate;
+
+                orderInUnionsDb.Id = order.Id;
+                orderInUnionsDb.Amount = order.Amount;
+                orderInUnionsDb.LoanPeriod = order.Loan.Period;
+                orderInUnionsDb.LastName = order.LastName;
+                orderInUnionsDb.FirstName = order.FirstName;
+                orderInUnionsDb.FathersName = order.FathersName;
+                orderInUnionsDb.DateOfBirth = order.DateOfBirth;
+                orderInUnionsDb.Email = order.Email;
+                orderInUnionsDb.PhoneNumber = order.PhoneNumber;
+                orderInUnionsDb.INN = order.INN;
+                orderInUnionsDb.PassportNumber = order.PassportNumber;
+                orderInUnionsDb.PassportGivenByWhom = order.PassportGivenByWhom;
+                orderInUnionsDb.PassportGivenDate = order.PassportGivenDate;
+                orderInUnionsDb.PassportImages = order.PassportImages;
+                orderInUnionsDb.INNImages = order.INNImages;
+                orderInUnionsDb.CardNumber = order.CardNumber;
+                orderInUnionsDb.OrderStatus = order.OrderStatus;
+                orderInUnionsDb.ApprovedDate = order.ApprovedDate;
+                orderInUnionsDb.UnionName = unionName;
+
+                _context.SaveChanges();
+                _contextUnions.SaveChanges();
             }
             else if (Request.Form["decline"] != null)
             {
                 order.OrderStatus = "Відмовлено";
                 order.ApprovedDate = DateTime.Now.Date;
+                orderInDb.Amount = order.Amount;
+                orderInDb.LoanId = order.LoanId;
+                orderInDb.LastName = order.LastName;
+                orderInDb.FirstName = order.FirstName;
+                orderInDb.FathersName = order.FathersName;
+                orderInDb.DateOfBirth = order.DateOfBirth;
+                orderInDb.Email = order.Email;
+                orderInDb.PhoneNumber = order.PhoneNumber;
+                orderInDb.INN = order.INN;
+                orderInDb.PassportNumber = order.PassportNumber;
+                orderInDb.PassportGivenByWhom = order.PassportGivenByWhom;
+                orderInDb.PassportGivenDate = order.PassportGivenDate;
+                orderInDb.PassportImages = order.PassportImages;
+                orderInDb.INNImages = order.INNImages;
+                orderInDb.CreationDate = order.CreationDate;
+                orderInDb.CardNumber = order.CardNumber;
+                orderInDb.OrderStatus = order.OrderStatus;
+                orderInDb.ApprovedDate = order.ApprovedDate;
+
+                _context.SaveChanges();
             }
-
-            orderInDb.Amount = order.Amount;
-            orderInDb.LoanId = order.LoanId;
-            orderInDb.LastName = order.LastName;
-            orderInDb.FirstName = order.FirstName;
-            orderInDb.FathersName = order.FathersName;
-            orderInDb.DateOfBirth = order.DateOfBirth;
-            orderInDb.Email = order.Email;
-            orderInDb.PhoneNumber = order.PhoneNumber;
-            orderInDb.INN = order.INN;
-            orderInDb.PassportNumber = order.PassportNumber;
-            orderInDb.PassportGivenByWhom = order.PassportGivenByWhom;
-            orderInDb.PassportGivenDate = order.PassportGivenDate;
-            orderInDb.PassportImages = order.PassportImages;
-            orderInDb.INNImages = order.INNImages;
-            orderInDb.CreationDate = order.CreationDate;
-            orderInDb.CardNumber = order.CardNumber;
-            orderInDb.OrderStatus = order.OrderStatus;
-            orderInDb.ApprovedDate = order.ApprovedDate;
-
-            _context.SaveChanges();
 
             return RedirectToAction("Index", "Orders");
         }

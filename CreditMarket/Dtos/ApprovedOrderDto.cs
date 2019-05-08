@@ -1,13 +1,13 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace CreditMarket.Models
+namespace CreditMarket.Dtos
 {
-    public class ApprovedOrder
+    public class ApprovedOrderDto
     {
         public int Id { get; set; }
 
-        public int? LoanPeriod { get; set; }
+        public int LoanPeriod { get; set; }
 
         public string UnionName { get; set; }
 
@@ -33,7 +33,7 @@ namespace CreditMarket.Models
 
         public long? CardNumber { get; set; }
 
-        
+
         public long? INN { get; set; }
 
         [StringLength(8)]

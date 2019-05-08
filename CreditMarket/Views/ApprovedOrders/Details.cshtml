@@ -1,0 +1,125 @@
+﻿@model CreditMarket.ViewModels.ApprovedOrderFormViewModel
+@{ 
+    ViewBag.Title = "Перегляд позик";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Перегляд позик</h2>
+@using (Html.BeginForm("Details", "ApprovedOrders", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<div class="form-group">
+    <div class="form-group">
+        <label for="UnionName">Кредитна спілка</label>
+        @Html.TextBoxFor(x => x.ApprovedOrder.UnionName, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <label for="Amount">Сума кредиту</label>
+    @Html.TextBoxFor(x => x.ApprovedOrder.Amount, new { @class = "form-control", @readonly = "readonly" })
+
+</div>
+    <div class="form-group">
+        <label for="LoanPeriod">Термін кредиту</label>
+        @Html.TextBoxFor(x => x.ApprovedOrder.LoanPeriod, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <div class="form-group">
+        <label for="LastName">Прізвище</label>
+        @Html.TextBoxFor(x => x.ApprovedOrder.LastName, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <div class="form-group">
+        <label for="FirstName">Ім'я</label>
+        @Html.TextBoxFor(x => x.ApprovedOrder.FirstName, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <div class="form-group">
+        <label for="FathersName">По-батькові</label>
+        @Html.TextBoxFor(x => x.ApprovedOrder.FathersName, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <div class="form-group">
+        <label for="Date OfBirth">День народження</label>
+        @Html.TextBoxFor(x => x.ApprovedOrder.DateOfBirth, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker1", @readonly = "readonly" })
+    </div>
+    <div class="form-group">
+        <label for="Email">E-mail</label>
+        @Html.TextBoxFor(x => x.ApprovedOrder.Email, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <div class="form-group">
+        <label for="PhoneNumber">Мобільний номер</label>
+        @Html.TextBoxFor(x => x.ApprovedOrder.PhoneNumber, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <div class="form-group">
+        <label for="INN">ІНН</label>
+        @Html.TextBoxFor(x => x.ApprovedOrder.INN, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <div class="form-group">
+        <label for="INN">Номер картки</label>
+        @Html.TextBoxFor(x => x.ApprovedOrder.CardNumber, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <div class="form-group">
+        <label for="PassportNumber">Серія та номер паспорта</label>
+        @Html.TextBoxFor(x => x.ApprovedOrder.PassportNumber, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <div class="form-group">
+        <label for="PassportGivenByWhom">Ким виданий паспорт</label>
+        @Html.TextBoxFor(x => x.ApprovedOrder.PassportGivenByWhom, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <div class="form-group">
+        <label for="PassportGivenDate">Коли виданий паспорт</label>
+        @Html.TextBoxFor(x => x.ApprovedOrder.PassportGivenDate, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker2", @readonly = "readonly" })
+    </div>
+
+    <div>
+        @if (Model.ApprovedOrder.PassportImages == null)
+        {
+            <div class="form-group">
+                <div class="editor-label">Фото паспорта: </div>
+                <div class="form-control-static"> Відсутнє фото </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <div class="editor-label">Фото паспорта: </div>
+                @Html.Raw("<img style='width:250px; height:125px;' src=\"data:image/jpeg;base64,"
+                                      + Convert.ToBase64String(Model.ApprovedOrder.PassportImages) + "\" />")
+                @Html.Hidden("PassportImages", Model.ApprovedOrder.PassportImages)
+            </div>
+        }
+    </div>
+
+    <br>
+
+    <div>
+        @if (Model.ApprovedOrder.INNImages == null)
+        {
+            <div class="form-group">
+                <div class="editor-label">Фото ідентифікакційного кода:</div>
+                <div class="form-control-static"> Відсутнє фото </div>
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <div class="editor-label">Фото ідентифікаційного кода: </div>
+                @Html.Raw("<img style='width:250px; height:125px;' src=\"data:image/jpeg;base64,"
+                                          + Convert.ToBase64String(Model.ApprovedOrder.INNImages) + "\" />")
+                @Html.Hidden("PassportImages", Model.ApprovedOrder.PassportImages)
+            </div>
+        }
+    </div>
+    <br>
+    <div class="button-group">
+        <button type="submit" name="approve" class="btn btn-success">Підтвердити</button>
+        <button type="submit" name="decline" class="btn btn-primary">Відмовити</button>
+        <input type="button" value="Скасувати" class="btn btn-danger" onclick="location.href='@Url.Action("Index","ApprovedOrders")';" />
+    </div>
+    @Html.HiddenFor(x => x.ApprovedOrder.Id)
+    @Html.HiddenFor(x => x.ApprovedOrder.ApprovedDate)
+    @Html.AntiForgeryToken()
+
+}
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

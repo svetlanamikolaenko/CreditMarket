@@ -1,5 +1,4 @@
-﻿using CreditMarket.ViewModels;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace CreditMarket.Models
