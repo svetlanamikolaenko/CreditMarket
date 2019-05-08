@@ -31,6 +31,7 @@ namespace CreditMarket.Models
         //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? DateOfBirth { get; set; }
 
+        [EmailAddress]
         [Required(ErrorMessage = "Email обов'язкове до заповнення")]
         [StringLength(50)]
         public string Email { get; set; }
