@@ -203,6 +203,10 @@
     <Compile Include="Migrations.Orders\201905061742235_InitialCreateOrderAndLoan.Designer.cs">
       <DependentUpon>201905061742235_InitialCreateOrderAndLoan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations.Orders\201905081832117_SeedUsers.cs" />
+    <Compile Include="Migrations.Orders\201905081832117_SeedUsers.Designer.cs">
+      <DependentUpon>201905081832117_SeedUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations.Orders\Configuration.cs" />
     <Compile Include="Migrations.UkrainianUnions\201905061748319_InitialApprovedOrder.cs" />
     <Compile Include="Migrations.UkrainianUnions\201905061748319_InitialApprovedOrder.Designer.cs">
@@ -217,6 +221,7 @@
     <Compile Include="Models\Loan.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\UnionsDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -603,6 +608,7 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Loans\Details.cshtml" />
     <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Loans\ReadOnlyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -624,6 +630,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations.Orders\201905061742235_InitialCreateOrderAndLoan.resx">
       <DependentUpon>201905061742235_InitialCreateOrderAndLoan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations.Orders\201905081832117_SeedUsers.resx">
+      <DependentUpon>201905081832117_SeedUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations.UkrainianUnions\201905061748319_InitialApprovedOrder.resx">
       <DependentUpon>201905061748319_InitialApprovedOrder.cs</DependentUpon>
