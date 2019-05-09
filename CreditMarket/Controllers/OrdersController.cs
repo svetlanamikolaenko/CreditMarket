@@ -191,7 +191,7 @@ namespace CreditMarket.Controllers
                     order.INNImages = imageINN;
                 }
 
-
+                order.IsSaved = true;
 
                 _context.Orders.Add(order);
             }
@@ -221,7 +221,12 @@ namespace CreditMarket.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            var vm = new OrderFormViewModel()
+            {
+                Order = order,
+                Loan = _context.Loans.ToList()
+            };
+            return View("Create", vm);
         }
 
         [HttpGet]
