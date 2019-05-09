@@ -15,7 +15,7 @@ namespace CreditMarket.Models
         public double? Amount { get; set; }
 
         [Required(ErrorMessage = "Ім'я обов'язкове до заповнення")]
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "{0} має бути довжиною {2} символів.", MinimumLength = 3)]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Прізвище обов'язкове до заповнення")]
@@ -23,7 +23,7 @@ namespace CreditMarket.Models
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "По-батькові обов'язкове до заповнення")]
-        [StringLength(50, ErrorMessage = "{0} має бути довжиною {2} символів.", MinimumLength = 1)]
+        [StringLength(50, ErrorMessage = "{0} має бути довжиною {2} символів.", MinimumLength = 3)]
         public string FathersName { get; set; }
 
         [Required(ErrorMessage = "Дата народження обов'язкова до заповнення")]
