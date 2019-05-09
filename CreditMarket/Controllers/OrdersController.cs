@@ -10,30 +10,30 @@ using System.Web.Mvc;
 namespace CreditMarket.Controllers
 {
     public class OrdersController : Controller
-	{
-		private readonly ApplicationDbContext _context;
+    {
+        private readonly ApplicationDbContext _context;
 
-		public OrdersController()
-		{
-			_context = new ApplicationDbContext();
-		}
+        public OrdersController()
+        {
+            _context = new ApplicationDbContext();
+        }
 
-		protected override void Dispose(bool disposing)
-		{
-			_context.Dispose();
-		}
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
 
-		public ViewResult Index()
-		{
-			var orders = _context.Orders.Include(x => x.Loan).ToList();
+        public ViewResult Index()
+        {
+            var orders = _context.Orders.Include(x => x.Loan).ToList();
 
-			return View(orders);
-		}
+            return View(orders);
+        }
 
         [HttpGet]
         public ActionResult Details(int id)
         {
-        
+
             var order = _context.Orders.SingleOrDefault(o => o.Id == id);
 
             if (order == null)
@@ -110,14 +110,14 @@ namespace CreditMarket.Controllers
         }
         //[Authorize]
         public ActionResult Create()
-		{
-			var viewModel = new OrderFormViewModel
-			{
+        {
+            var viewModel = new OrderFormViewModel
+            {
                 Order = new Order(),
                 Loan = _context.Loans.ToList()
-			};
-			return View("Create", viewModel);
-		}
+            };
+            return View("Create", viewModel);
+        }
 
         //[Authorize]
         [HttpPost]
@@ -140,7 +140,8 @@ namespace CreditMarket.Controllers
             if (order.Id == 0)
             {
 
-                if (uploadPassportImage != null){
+                if (uploadPassportImage != null)
+                {
                     using (var binaryReader = new BinaryReader(uploadPassportImage.InputStream))
                     {
                         imagePassport = binaryReader.ReadBytes(uploadPassportImage.ContentLength);
@@ -160,8 +161,8 @@ namespace CreditMarket.Controllers
 
 
 
-                _context.Orders.Add(order);     
-             }
+                _context.Orders.Add(order);
+            }
 
             else
             {
@@ -243,7 +244,7 @@ namespace CreditMarket.Controllers
             }
 
 
-            if (order.Id == 0)                       
+            if (order.Id == 0)
                 _context.Orders.Add(order);
             else
             {
