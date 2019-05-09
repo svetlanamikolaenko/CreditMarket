@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CreditMarket.Models.Loan>
+@{
+    ViewBag.Title = "Кредити";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Список кредитів</h2>
+
+
+<table id="loans" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Назва</th>
+            <th>Період</th>
+            <th>Відсоткова ставка</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#loans").DataTable({
+                ajax: {
+                    url: "/api/loans",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                    },
+                    {
+                        data: "period"
+                    },
+                    {
+                        data: "procent"
+                    }
+
+                ]
+            });
+        });
+
+      </script>
+}

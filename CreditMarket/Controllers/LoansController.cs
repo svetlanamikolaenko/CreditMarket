@@ -21,7 +21,11 @@ namespace CreditMarket.Controllers
 
 		public ViewResult Index()
 		{
-            return View();
+            if (User.IsInRole(RoleName.CanManageLoans))
+                return View("Index");
+
+            else 
+                return View("ReadOnlyList");                       
 		}
 
         public ActionResult Details(int id)
@@ -34,7 +38,7 @@ namespace CreditMarket.Controllers
             return View(loan);
         }
 
-        //[Authorize]
+        [Authorize(Roles =RoleName.CanManageLoans)]
         public ActionResult Create()
 		{
             var viewModel = new LoanFormViewModel()

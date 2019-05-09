@@ -27,12 +27,15 @@ namespace CreditMarket.Controllers
             _contextUnions.Dispose();
         }
 
-        public ViewResult Index()
-        {
-            var orders = _context.Orders.Include(x => x.Loan).ToList();
-
-            return View(orders);
-        }
+		public ViewResult Index()
+		{
+			var orders = _context.Orders.Include(x => x.Loan).ToList();
+            if (User.IsInRole(RoleName.CanManageOrders))
+                return View("Index",orders);                     
+                       
+            else 
+                 return View("ReadOnlyList",orders);
+		}
 
         [HttpGet]
         public ActionResult Details(int id)
@@ -137,7 +140,7 @@ namespace CreditMarket.Controllers
 
             return RedirectToAction("Index", "Orders");
         }
-        //[Authorize]
+        [AllowAnonymous]
         public ActionResult Create()
         {
             var viewModel = new OrderFormViewModel
@@ -148,7 +151,7 @@ namespace CreditMarket.Controllers
             return View("Create", viewModel);
         }
 
-        //[Authorize]
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Order order, HttpPostedFileBase uploadPassportImage, HttpPostedFileBase uploadINNImage)
