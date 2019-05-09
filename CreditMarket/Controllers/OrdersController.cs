@@ -10,35 +10,30 @@ using System.Web.Mvc;
 namespace CreditMarket.Controllers
 {
     public class OrdersController : Controller
-	{
-		private readonly ApplicationDbContext _context;
-        private readonly UnionsDbContext _contextUnions;
-        private static string unionName = "ТОВ \"КРЕДИТ МАРКЕТ ФІН КОМП\"";
+    {
+        private readonly ApplicationDbContext _context;
 
         public OrdersController()
-		{
-			_context = new ApplicationDbContext();
-            _contextUnions = new UnionsDbContext();
-
+        {
+            _context = new ApplicationDbContext();
         }
 
-		protected override void Dispose(bool disposing)
-		{
-			_context.Dispose();
-            _contextUnions.Dispose();
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
         }
 
-		public ViewResult Index()
-		{
-			var orders = _context.Orders.Include(x => x.Loan).ToList();
+        public ViewResult Index()
+        {
+            var orders = _context.Orders.Include(x => x.Loan).ToList();
 
-			return View(orders);
-		}
+            return View(orders);
+        }
 
         [HttpGet]
         public ActionResult Details(int id)
         {
-        
+
             var order = _context.Orders.SingleOrDefault(o => o.Id == id);
 
             if (order == null)
@@ -55,7 +50,7 @@ namespace CreditMarket.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Details(Order order, HttpPostedFileBase uploadPassportImage, HttpPostedFileBase uploadINNImage, ApprovedOrder approvedOrder)
+        public ActionResult Details(Order order, HttpPostedFileBase uploadPassportImage, HttpPostedFileBase uploadINNImage)
         {
             byte[] imagePassport = null;
             if (uploadPassportImage != null)
@@ -78,92 +73,51 @@ namespace CreditMarket.Controllers
             }
 
             var orderInDb = _context.Orders.Single(o => o.Id == order.Id);
-            var orderInUnionsDb = _contextUnions.ApprovedOrders.Single(o => o.Id == approvedOrder.Id);
 
             if (Request.Form["approve"] != null)
             {
                 order.OrderStatus = "Підтверджено";
                 order.ApprovedDate = DateTime.Now.Date;
-                orderInDb.Amount = order.Amount;
-                orderInDb.LoanId = order.LoanId;
-                orderInDb.LastName = order.LastName;
-                orderInDb.FirstName = order.FirstName;
-                orderInDb.FathersName = order.FathersName;
-                orderInDb.DateOfBirth = order.DateOfBirth;
-                orderInDb.Email = order.Email;
-                orderInDb.PhoneNumber = order.PhoneNumber;
-                orderInDb.INN = order.INN;
-                orderInDb.PassportNumber = order.PassportNumber;
-                orderInDb.PassportGivenByWhom = order.PassportGivenByWhom;
-                orderInDb.PassportGivenDate = order.PassportGivenDate;
-                orderInDb.PassportImages = order.PassportImages;
-                orderInDb.INNImages = order.INNImages;
-                orderInDb.CreationDate = order.CreationDate;
-                orderInDb.CardNumber = order.CardNumber;
-                orderInDb.OrderStatus = order.OrderStatus;
-                orderInDb.ApprovedDate = order.ApprovedDate;
-
-                orderInUnionsDb.Id = order.Id;
-                orderInUnionsDb.Amount = order.Amount;
-                orderInUnionsDb.LoanPeriod = order.Loan.Period;
-                orderInUnionsDb.LastName = order.LastName;
-                orderInUnionsDb.FirstName = order.FirstName;
-                orderInUnionsDb.FathersName = order.FathersName;
-                orderInUnionsDb.DateOfBirth = order.DateOfBirth;
-                orderInUnionsDb.Email = order.Email;
-                orderInUnionsDb.PhoneNumber = order.PhoneNumber;
-                orderInUnionsDb.INN = order.INN;
-                orderInUnionsDb.PassportNumber = order.PassportNumber;
-                orderInUnionsDb.PassportGivenByWhom = order.PassportGivenByWhom;
-                orderInUnionsDb.PassportGivenDate = order.PassportGivenDate;
-                orderInUnionsDb.PassportImages = order.PassportImages;
-                orderInUnionsDb.INNImages = order.INNImages;
-                orderInUnionsDb.CardNumber = order.CardNumber;
-                orderInUnionsDb.OrderStatus = order.OrderStatus;
-                orderInUnionsDb.ApprovedDate = order.ApprovedDate;
-                orderInUnionsDb.UnionName = unionName;
-
-                _context.SaveChanges();
-                _contextUnions.SaveChanges();
             }
             else if (Request.Form["decline"] != null)
             {
                 order.OrderStatus = "Відмовлено";
                 order.ApprovedDate = DateTime.Now.Date;
-                orderInDb.Amount = order.Amount;
-                orderInDb.LoanId = order.LoanId;
-                orderInDb.LastName = order.LastName;
-                orderInDb.FirstName = order.FirstName;
-                orderInDb.FathersName = order.FathersName;
-                orderInDb.DateOfBirth = order.DateOfBirth;
-                orderInDb.Email = order.Email;
-                orderInDb.PhoneNumber = order.PhoneNumber;
-                orderInDb.INN = order.INN;
-                orderInDb.PassportNumber = order.PassportNumber;
-                orderInDb.PassportGivenByWhom = order.PassportGivenByWhom;
-                orderInDb.PassportGivenDate = order.PassportGivenDate;
-                orderInDb.PassportImages = order.PassportImages;
-                orderInDb.INNImages = order.INNImages;
-                orderInDb.CreationDate = order.CreationDate;
-                orderInDb.CardNumber = order.CardNumber;
-                orderInDb.OrderStatus = order.OrderStatus;
-                orderInDb.ApprovedDate = order.ApprovedDate;
-
-                _context.SaveChanges();
             }
+
+            orderInDb.Amount = order.Amount;
+            orderInDb.LoanId = order.LoanId;
+            orderInDb.LastName = order.LastName;
+            orderInDb.FirstName = order.FirstName;
+            orderInDb.FathersName = order.FathersName;
+            orderInDb.DateOfBirth = order.DateOfBirth;
+            orderInDb.Email = order.Email;
+            orderInDb.PhoneNumber = order.PhoneNumber;
+            orderInDb.INN = order.INN;
+            orderInDb.PassportNumber = order.PassportNumber;
+            orderInDb.PassportGivenByWhom = order.PassportGivenByWhom;
+            orderInDb.PassportGivenDate = order.PassportGivenDate;
+            orderInDb.PassportImages = order.PassportImages;
+            orderInDb.INNImages = order.INNImages;
+            orderInDb.CreationDate = order.CreationDate;
+            orderInDb.CardNumber = order.CardNumber;
+            orderInDb.OrderStatus = order.OrderStatus;
+            orderInDb.ApprovedDate = order.ApprovedDate;
+
+            _context.SaveChanges();
 
             return RedirectToAction("Index", "Orders");
         }
         //[Authorize]
         public ActionResult Create()
-		{
-			var viewModel = new OrderFormViewModel
-			{
+        {
+            var viewModel = new OrderFormViewModel
+            {
                 Order = new Order(),
                 Loan = _context.Loans.ToList()
-			};
-			return View("Create", viewModel);
-		}
+            };
+            return View("Create", viewModel);
+        }
 
         //[Authorize]
         [HttpPost]
@@ -186,7 +140,8 @@ namespace CreditMarket.Controllers
             if (order.Id == 0)
             {
 
-                if (uploadPassportImage != null){
+                if (uploadPassportImage != null)
+                {
                     using (var binaryReader = new BinaryReader(uploadPassportImage.InputStream))
                     {
                         imagePassport = binaryReader.ReadBytes(uploadPassportImage.ContentLength);
@@ -206,8 +161,8 @@ namespace CreditMarket.Controllers
 
 
 
-                _context.Orders.Add(order);     
-             }
+                _context.Orders.Add(order);
+            }
 
             else
             {
@@ -289,7 +244,7 @@ namespace CreditMarket.Controllers
             }
 
 
-            if (order.Id == 0)                       
+            if (order.Id == 0)
                 _context.Orders.Add(order);
             else
             {

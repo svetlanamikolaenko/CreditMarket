@@ -2,7 +2,7 @@
 
 namespace CreditMarket.ViewModels
 {
-    public class ApprovedOrderFormViewModel
+    public class ApprovedOrderFormViewModel: Base
     {
         public ApprovedOrder ApprovedOrder { get; set; }
     }

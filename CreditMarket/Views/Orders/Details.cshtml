@@ -29,7 +29,7 @@
         @Html.TextBoxFor(x => x.Order.FathersName, new { @class = "form-control", @readonly = "readonly" })
     </div>
     <div class="form-group">
-        <label for="Date OfBirth">День народження</label>
+        <label for="DateOfBirth">День народження</label>
         @Html.TextBoxFor(x => x.Order.DateOfBirth, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker1", @readonly = "readonly" })
     </div>
     <div class="form-group">
@@ -45,7 +45,7 @@
         @Html.TextBoxFor(x => x.Order.INN, new { @class = "form-control", @readonly = "readonly" })
     </div>
     <div class="form-group">
-        <label for="INN">Номер картки</label>
+        <label for="CardNumber">Номер картки</label>
         @Html.TextBoxFor(x => x.Order.CardNumber, new { @class = "form-control", @readonly = "readonly" })
     </div>
     <div class="form-group">
@@ -96,7 +96,7 @@
                 <div class="editor-label">Фото ідентифікаційного кода: </div>
                 @Html.Raw("<img style='width:250px; height:125px;' src=\"data:image/jpeg;base64,"
                                           + Convert.ToBase64String(Model.Order.INNImages) + "\" />")
-                @Html.Hidden("PassportImages", Model.Order.PassportImages)
+                @Html.Hidden("INNImages", Model.Order.INNImages)
             </div>
         }
     </div>

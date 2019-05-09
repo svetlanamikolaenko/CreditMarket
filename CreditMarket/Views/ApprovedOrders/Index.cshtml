@@ -5,8 +5,8 @@
 }
 <h2>Список позик</h2>
 <a class="btn btn-primary" href="/Orders/Index" role="button">Повернутися</a>
-
-<br>
+<br />
+<br />
 <table id="approvedOrders" class="table table-bordered table-hover">
     <thead>
         <tr>
@@ -32,7 +32,10 @@
                 },
                 columns: [
                     {
-                        data: "id"
+                        data: "id",
+                        render: function (data, type, order) {
+                            return "<a href='/approvedOrders/detailedInfo/" + order.id + "'>" + data + "</a>";
+                        }
                     },
                     {
                         data: "fullName"
@@ -44,12 +47,15 @@
                         data: "unionName"
                     },
                     {
-                        data: "approvedDate"
+                        data: "approvedDate",
+                        render: function (data) {
+                            return data.split('T')[0];
+                        }
                     },
                     {
                         data: "id",
-                        render: function (approvedOrder) {
-                            return "<a href='/approvedOrders/details/" + approvedOrder.id + "' class='btn btn-primary'>Переглянути</a>";
+                        render: function (data, type, order) {
+                            return "<a href='/approvedOrders/detailedInfo/" + order.id + "' class='btn btn-primary'>Редагувати</a>";
                         }
                     }
                 ]

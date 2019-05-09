@@ -78,10 +78,9 @@
                     },
                     {
                         data: "id",
-                        render: function (order) {
+                        render: function (data, type, order) {
                             return "<a href='/orders/edit/" + order.id + "' class='btn btn-primary'>Редагувати</a>";
                       }
-
                 }
                 ]
             });

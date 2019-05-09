@@ -1,21 +1,21 @@
 ﻿@model CreditMarket.ViewModels.ApprovedOrderFormViewModel
-@{ 
+@{
     ViewBag.Title = "Перегляд позик";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Перегляд позик</h2>
-@using (Html.BeginForm("Details", "ApprovedOrders", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("DetailedInfo", "ApprovedOrders", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-<div class="form-group">
     <div class="form-group">
         <label for="UnionName">Кредитна спілка</label>
         @Html.TextBoxFor(x => x.ApprovedOrder.UnionName, new { @class = "form-control", @readonly = "readonly" })
     </div>
-    <label for="Amount">Сума кредиту</label>
-    @Html.TextBoxFor(x => x.ApprovedOrder.Amount, new { @class = "form-control", @readonly = "readonly" })
+    <div class="form-group">
+        <label for="Amount">Сума кредиту</label>
+        @Html.TextBoxFor(x => x.ApprovedOrder.Amount, new { @class = "form-control", @readonly = "readonly" })
 
-</div>
+    </div>
     <div class="form-group">
         <label for="LoanPeriod">Термін кредиту</label>
         @Html.TextBoxFor(x => x.ApprovedOrder.LoanPeriod, new { @class = "form-control", @readonly = "readonly" })
@@ -33,8 +33,8 @@
         @Html.TextBoxFor(x => x.ApprovedOrder.FathersName, new { @class = "form-control", @readonly = "readonly" })
     </div>
     <div class="form-group">
-        <label for="Date OfBirth">День народження</label>
-        @Html.TextBoxFor(x => x.ApprovedOrder.DateOfBirth, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker1", @readonly = "readonly" })
+        <label for="DateOfBirth">День народження</label>
+        @Html.TextBoxFor(x => x.ApprovedOrder.DateOfBirth, "{0:dd-MM-yyyy}", new { @class = "form-control", @readonly = "readonly" })
     </div>
     <div class="form-group">
         <label for="Email">E-mail</label>
@@ -49,7 +49,7 @@
         @Html.TextBoxFor(x => x.ApprovedOrder.INN, new { @class = "form-control", @readonly = "readonly" })
     </div>
     <div class="form-group">
-        <label for="INN">Номер картки</label>
+        <label for="CardNumber">Номер картки</label>
         @Html.TextBoxFor(x => x.ApprovedOrder.CardNumber, new { @class = "form-control", @readonly = "readonly" })
     </div>
     <div class="form-group">
@@ -62,7 +62,11 @@
     </div>
     <div class="form-group">
         <label for="PassportGivenDate">Коли виданий паспорт</label>
-        @Html.TextBoxFor(x => x.ApprovedOrder.PassportGivenDate, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker2", @readonly = "readonly" })
+        @Html.TextBoxFor(x => x.ApprovedOrder.PassportGivenDate, "{0:dd-MM-yyyy}", new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <div class="form-group">
+        <label for="ApprovedDate">Дата підтвердження</label>
+        @Html.TextBoxFor(x => x.ApprovedOrder.ApprovedDate, "{0:dd-MM-yyyy}", new { @class = "form-control", @readonly = "readonly" })
     </div>
 
     <div>
@@ -83,7 +87,6 @@
             </div>
         }
     </div>
-
     <br>
 
     <div>
@@ -100,26 +103,19 @@
                 <div class="editor-label">Фото ідентифікаційного кода: </div>
                 @Html.Raw("<img style='width:250px; height:125px;' src=\"data:image/jpeg;base64,"
                                           + Convert.ToBase64String(Model.ApprovedOrder.INNImages) + "\" />")
-                @Html.Hidden("PassportImages", Model.ApprovedOrder.PassportImages)
+                @Html.Hidden("INNImages", Model.ApprovedOrder.INNImages)
             </div>
         }
     </div>
     <br>
     <div class="button-group">
-        <button type="submit" name="approve" class="btn btn-success">Підтвердити</button>
-        <button type="submit" name="decline" class="btn btn-primary">Відмовити</button>
-        <input type="button" value="Скасувати" class="btn btn-danger" onclick="location.href='@Url.Action("Index","ApprovedOrders")';" />
+        <input type="button" value="Закрити" class="btn btn-danger" onclick="location.href='@Url.Action("Index","ApprovedOrders")';" />
     </div>
     @Html.HiddenFor(x => x.ApprovedOrder.Id)
-    @Html.HiddenFor(x => x.ApprovedOrder.ApprovedDate)
     @Html.AntiForgeryToken()
-
 }
-
 
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
 }
-
-

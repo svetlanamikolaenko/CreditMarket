@@ -16,11 +16,12 @@ namespace CreditMarket.Controllers
         // GET: ApprovedOrders
         public ActionResult Index()
         {
-            return View();
+            var approvedOrders = _context.ApprovedOrders.ToList();
+            return View(approvedOrders);
         }
 
         [HttpGet]
-        public ActionResult Details(int id)
+        public ActionResult DetailedInfo(int id)
         {
 
             var approvedOrder = _context.ApprovedOrders.SingleOrDefault(o => o.Id == id);
@@ -33,7 +34,7 @@ namespace CreditMarket.Controllers
                 ApprovedOrder = approvedOrder,
             };
 
-            return View("Details", viewModel);
+            return View("DetailedInfo", viewModel);
         }
     }
 }

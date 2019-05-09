@@ -3,10 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CreditMarket.Models
 {
-    public class ApprovedOrder
+    public class ApprovedOrder: Base
     {
-        public int Id { get; set; }
-
         public int? LoanPeriod { get; set; }
 
         public string UnionName { get; set; }

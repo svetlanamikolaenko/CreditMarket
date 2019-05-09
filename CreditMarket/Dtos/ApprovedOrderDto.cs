@@ -1,12 +1,11 @@
-﻿using System;
+﻿using CreditMarket.Models;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace CreditMarket.Dtos
 {
-    public class ApprovedOrderDto
+    public class ApprovedOrderDto: Base
     {
-        public int Id { get; set; }
-
         public int LoanPeriod { get; set; }
 
         public string UnionName { get; set; }

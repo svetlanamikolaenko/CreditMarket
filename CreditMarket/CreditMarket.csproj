@@ -215,6 +215,10 @@
     <Compile Include="Migrations.UkrainianUnions\201905081753060_UpdateApprovedOrders.Designer.cs">
       <DependentUpon>201905081753060_UpdateApprovedOrders.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations.UkrainianUnions\201905081823592_PopulateData.cs" />
+    <Compile Include="Migrations.UkrainianUnions\201905081823592_PopulateData.Designer.cs">
+      <DependentUpon>201905081823592_PopulateData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations.UkrainianUnions\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -612,7 +616,7 @@
     <Content Include="Views\Loans\Details.cshtml" />
     <Content Include="Views\Orders\Details.cshtml" />
     <Content Include="Views\ApprovedOrders\Index.cshtml" />
-    <Content Include="Views\ApprovedOrders\Details.cshtml" />
+    <Content Include="Views\ApprovedOrders\DetailedInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -640,6 +644,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations.UkrainianUnions\201905081753060_UpdateApprovedOrders.resx">
       <DependentUpon>201905081753060_UpdateApprovedOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations.UkrainianUnions\201905081823592_PopulateData.resx">
+      <DependentUpon>201905081823592_PopulateData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
