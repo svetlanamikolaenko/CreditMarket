@@ -72,6 +72,7 @@ namespace CreditMarket.Models
         [Required(ErrorMessage = "Необхідно вказати номер картки")]
         public long? CardNumber { get; set; }
 
+        public bool IsSaved { get; set; } = false;
 
         public string FullName
 		{

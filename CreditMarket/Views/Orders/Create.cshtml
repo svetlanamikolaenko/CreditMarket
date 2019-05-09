@@ -185,33 +185,38 @@
     @Html.HiddenFor(x => x.Order.OrderStatus, new { @Value = "Очікує підтвердження" })
     @Html.HiddenFor(x => x.Order.CreationDate, new { @Value = DateTime.Now.ToShortDateString() })
     @Html.AntiForgeryToken()
-    <a type="submit" class="btn btn-success" data-toggle="modal" href="#ignismyModal">Створити заявку</a>
+    <button type="submit" class="btn btn-success">Створити заявку</button>
+
     <div class="container">
-        <div class="row">
-            <div class="modal fade" id="ignismyModal" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label=""><span>×</span></button>
-                        </div>
+        @if (Model.Order.IsSaved == true)
+        {
 
-                        <div class="modal-body">
-
-                            <div class="thank-you-pop">
-                                <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="">
-                                <h1>Дякуємо!</h1>
-                                <p>Вашу заявку прийнято до обробки! Незабаром вам зателефонують!</p>
-
+            <div class="row">
+                <div class="modal fade" id="ignismyModal" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label=""><span>×</span></button>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary btn-sm btn-success">Save changes</button>
-                            </div>
-                        </div>
 
+                            <div class="modal-body">
+
+                                <div class="thank-you-pop">
+                                    <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="">
+                                    <h1>Дякуємо!</h1>
+                                    <p>Вашу заявку прийнято до обробки! Незабаром вам зателефонують!</p>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary btn-sm btn-success">Save changes</button>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
+    }
         </div>
-    </div>
-}
+        }
