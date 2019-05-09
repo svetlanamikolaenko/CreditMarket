@@ -1,0 +1,62 @@
+﻿@model IEnumerable<CreditMarket.Models.ApprovedOrder>
+@{
+    ViewBag.Title = "Надані позики кредитних спілок";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Список позик</h2>
+<a class="btn btn-primary" href="/Orders/Index" role="button">Повернутися</a>
+<br />
+<br />
+<table id="approvedOrders" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Номер позики</th>
+            <th>ПІБ клієнта</th>
+            <th>Сума кредиту</th>
+            <th>Назва кредитної спілки</th>
+            <th>Дата підтвердження</th>
+            <th>Перегляд позики</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#approvedOrders").DataTable({
+                ajax: {
+                    url: "/api/approvedOrders",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "id"
+                    },
+                    {
+                        data: "fullName"
+                    },
+                    {
+                        data: "amount"
+                    },
+                    {
+                        data: "unionName"
+                    },
+                    {
+                        data: "approvedDate",
+                        render: function (data) {
+                            return data.split('T')[0];
+                        }
+                    },
+                    {
+                        data: "id",
+                        render: function (data, type, order) {
+                            return "<a href='/approvedOrders/detailedInfo/" + order.id + "' class='btn btn-primary'>Переглянути</a>";
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+}

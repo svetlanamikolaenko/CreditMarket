@@ -68,7 +68,7 @@ namespace CreditMarket.Controllers
                 _context.Loans.Add(loan);
             else
             {
-                var loanInDb = _context.Loans.Single(l => l.Id == loan.Id);
+                var loanInDb = _context.Loans.SingleOrDefault(l => l.Id == loan.Id);
 
                 loanInDb.Name = loan.Name;
                 loanInDb.Period = loan.Period;
@@ -114,7 +114,7 @@ namespace CreditMarket.Controllers
                 _context.Loans.Add(loan);
             else
             {
-                var loanInDb = _context.Loans.Single(l => l.Id == loan.Id);
+                var loanInDb = _context.Loans.SingleOrDefault(l => l.Id == loan.Id);
 
                 loanInDb.Name = loan.Name;
                 loanInDb.Period = loan.Period;

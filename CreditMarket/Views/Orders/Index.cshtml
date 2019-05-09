@@ -5,6 +5,7 @@
 }
 <h2>Список заявок</h2>
 <a class="btn btn-primary" href="/Orders/Create" role="button">Створити заявку</a>
+<a class="btn btn-primary" href="/ApprovedOrders/Index" role="button">Переглянути усі позики</a>
 <br>
 <br>
 <table id="orders" class="table table-bordered table-hover">
@@ -77,10 +78,9 @@
                     },
                     {
                         data: "id",
-                        render: function (order) {
+                        render: function (data, type, order) {
                             return "<a href='/orders/edit/" + order.id + "' class='btn btn-primary'>Редагувати</a>";
                       }
-
                 }
                 ]
             });

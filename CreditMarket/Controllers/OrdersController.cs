@@ -10,18 +10,22 @@ using System.Web.Mvc;
 namespace CreditMarket.Controllers
 {
     public class OrdersController : Controller
-	{
-		private readonly ApplicationDbContext _context;
+    {
+        private readonly ApplicationDbContext _context;
+        private readonly UnionsDbContext _contextUnions;
+        private static string UnionName = "ТОВ «КРЕДИТ МАРКЕТ ФІН КОМП»";
 
-		public OrdersController()
-		{
-			_context = new ApplicationDbContext();
-		}
+        public OrdersController()
+        {
+            _context = new ApplicationDbContext();
+            _contextUnions = new UnionsDbContext();
+        }
 
-		protected override void Dispose(bool disposing)
-		{
-			_context.Dispose();
-		}
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+            _contextUnions.Dispose();
+        }
 
 		public ViewResult Index()
 		{
@@ -36,7 +40,7 @@ namespace CreditMarket.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-        
+
             var order = _context.Orders.SingleOrDefault(o => o.Id == id);
 
             if (order == null)
@@ -75,12 +79,37 @@ namespace CreditMarket.Controllers
                 order.INNImages = imageINN;
             }
 
-            var orderInDb = _context.Orders.Single(o => o.Id == order.Id);
+            var orderInDb = _context.Orders.SingleOrDefault(o => o.Id == order.Id);
 
             if (Request.Form["approve"] != null)
             {
+                
                 order.OrderStatus = "Підтверджено";
                 order.ApprovedDate = DateTime.Now.Date;
+
+                ApprovedOrder approvedOrder = new ApprovedOrder();
+                
+                approvedOrder.Amount = order.Amount;
+                approvedOrder.LoanPeriod = order.LoanId;
+                approvedOrder.LastName = order.LastName;
+                approvedOrder.FirstName = order.FirstName;
+                approvedOrder.FathersName = order.FathersName;
+                approvedOrder.DateOfBirth = order.DateOfBirth;
+                approvedOrder.Email = order.Email;
+                approvedOrder.PhoneNumber = order.PhoneNumber;
+                approvedOrder.INN = order.INN;
+                approvedOrder.PassportNumber = order.PassportNumber;
+                approvedOrder.PassportGivenByWhom = order.PassportGivenByWhom;
+                approvedOrder.PassportGivenDate = order.PassportGivenDate;
+                approvedOrder.PassportImages = order.PassportImages;
+                approvedOrder.INNImages = order.INNImages;
+                approvedOrder.CardNumber = order.CardNumber;
+                approvedOrder.OrderStatus = order.OrderStatus;
+                approvedOrder.ApprovedDate = order.ApprovedDate;
+                approvedOrder.UnionName = UnionName;
+
+                _contextUnions.ApprovedOrders.Add(approvedOrder);
+                _contextUnions.SaveChanges();
             }
             else if (Request.Form["decline"] != null)
             {
@@ -113,14 +142,14 @@ namespace CreditMarket.Controllers
         }
         [AllowAnonymous]
         public ActionResult Create()
-		{
-			var viewModel = new OrderFormViewModel
-			{
+        {
+            var viewModel = new OrderFormViewModel
+            {
                 Order = new Order(),
                 Loan = _context.Loans.ToList()
-			};
-			return View("Create", viewModel);
-		}
+            };
+            return View("Create", viewModel);
+        }
 
         [AllowAnonymous]
         [HttpPost]
@@ -143,7 +172,8 @@ namespace CreditMarket.Controllers
             if (order.Id == 0)
             {
 
-                if (uploadPassportImage != null){
+                if (uploadPassportImage != null)
+                {
                     using (var binaryReader = new BinaryReader(uploadPassportImage.InputStream))
                     {
                         imagePassport = binaryReader.ReadBytes(uploadPassportImage.ContentLength);
@@ -163,12 +193,12 @@ namespace CreditMarket.Controllers
 
 
 
-                _context.Orders.Add(order);     
-             }
+                _context.Orders.Add(order);
+            }
 
             else
             {
-                var orderInDb = _context.Orders.Single(o => o.Id == order.Id);
+                var orderInDb = _context.Orders.SingleOrDefault(o => o.Id == order.Id);
 
                 orderInDb.Amount = order.Amount;
                 orderInDb.LoanId = order.LoanId;
@@ -246,11 +276,11 @@ namespace CreditMarket.Controllers
             }
 
 
-            if (order.Id == 0)                       
+            if (order.Id == 0)
                 _context.Orders.Add(order);
             else
             {
-                var orderInDb = _context.Orders.Single(o => o.Id == order.Id);
+                var orderInDb = _context.Orders.SingleOrDefault(o => o.Id == order.Id);
 
                 orderInDb.Amount = order.Amount;
                 orderInDb.LoanId = order.LoanId;
