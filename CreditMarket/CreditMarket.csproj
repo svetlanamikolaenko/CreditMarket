@@ -210,6 +210,10 @@
     <Compile Include="Migrations.Orders\201905081832117_SeedUsers.Designer.cs">
       <DependentUpon>201905081832117_SeedUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations.Orders\201905091334068_isSaveFieldToOrder.cs" />
+    <Compile Include="Migrations.Orders\201905091334068_isSaveFieldToOrder.Designer.cs">
+      <DependentUpon>201905091334068_isSaveFieldToOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations.Orders\Configuration.cs" />
     <Compile Include="Migrations.UkrainianUnions\201905061748319_InitialApprovedOrder.cs" />
     <Compile Include="Migrations.UkrainianUnions\201905061748319_InitialApprovedOrder.Designer.cs">
@@ -648,6 +652,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations.Orders\201905081832117_SeedUsers.resx">
       <DependentUpon>201905081832117_SeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations.Orders\201905091334068_isSaveFieldToOrder.resx">
+      <DependentUpon>201905091334068_isSaveFieldToOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations.UkrainianUnions\201905061748319_InitialApprovedOrder.resx">
       <DependentUpon>201905061748319_InitialApprovedOrder.cs</DependentUpon>

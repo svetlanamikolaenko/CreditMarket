@@ -221,7 +221,12 @@ namespace CreditMarket.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("Create", "Order");
+            var vm = new OrderFormViewModel()
+            {
+                Order = order,
+                Loan = _context.Loans.ToList()
+            };
+            return View("Create", vm);
         }
 
         [HttpGet]

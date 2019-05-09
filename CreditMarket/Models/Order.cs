@@ -19,11 +19,11 @@ namespace CreditMarket.Models
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Прізвище обов'язкове до заповнення")]
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "{0} має бути довжиною {2} символів.", MinimumLength = 3)]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "По-батькові обов'язкове до заповнення")]
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "{0} має бути довжиною {2} символів.", MinimumLength = 1)]
         public string FathersName { get; set; }
 
         [Required(ErrorMessage = "Дата народження обов'язкова до заповнення")]
@@ -36,22 +36,21 @@ namespace CreditMarket.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Необхідно заповнити номер телефону")]
-        [StringLength(12)]
+        [StringLength(12, ErrorMessage = "{0} має бути довжиною {2} символів.", MinimumLength = 12)]
         public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Вкажіть індивідуальний код платника податків")]
-        public long? INN { get; set; }
+           public long? INN { get; set; }
 
         [Required(ErrorMessage = "Вкажіть серію та номер паспорту")]
-        [StringLength(8)]
+        [StringLength(8, ErrorMessage = "{0} має бути довжиною {2} символів.", MinimumLength = 8)]
         public string PassportNumber { get; set; }
 
         [Required(ErrorMessage = "Поле ким виданий паспорт є обов'язкове")]
-        [StringLength(120)]
+        [StringLength(120, ErrorMessage = "{0} має бути довжиною хоча б {2} символів.", MinimumLength = 6)]
         public string PassportGivenByWhom { get; set; }
 
         [Required(ErrorMessage = "Необхідно вказати дату видачі паспорту")]
-        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? PassportGivenDate { get; set; }
 
 		public byte[] PassportImages { get; set; }
