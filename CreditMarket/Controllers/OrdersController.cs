@@ -189,7 +189,7 @@ namespace CreditMarket.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Orders");
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
