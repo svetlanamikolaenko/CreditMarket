@@ -32,10 +32,7 @@
                 },
                 columns: [
                     {
-                        data: "id",
-                        render: function (data, type, order) {
-                            return "<a href='/approvedOrders/detailedInfo/" + order.id + "'>" + data + "</a>";
-                        }
+                        data: "id"
                     },
                     {
                         data: "fullName"
@@ -55,7 +52,7 @@
                     {
                         data: "id",
                         render: function (data, type, order) {
-                            return "<a href='/approvedOrders/detailedInfo/" + order.id + "' class='btn btn-primary'>Редагувати</a>";
+                            return "<a href='/approvedOrders/detailedInfo/" + order.id + "' class='btn btn-primary'>Переглянути</a>";
                         }
                     }
                 ]
