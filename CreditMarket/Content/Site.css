@@ -23,10 +23,6 @@ textarea {
 	max-width: 300px;
 }
 
-form {
-    width: 300px;
-    margin: auto;
-}
 
 span.field-validation-error {
 	font-weight: bold;
@@ -61,4 +57,11 @@ h2 {
 .button-group {
     width: 600px;
 }
-   
+
+.form-content-center{
+    margin: auto;
+    float: none;
+}
+.text-danger{
+    color:red;
+}   

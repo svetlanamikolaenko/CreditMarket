@@ -70,7 +70,7 @@
     #ignismyModal .modal-header {
         border: 0px;
     }
-    /*--thank you pop ends here--*
+    /*--thank you pop ends here--*/
 </style>
 <h2>Створення заявки</h2>
 <link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/redmond/jquery-ui.css" rel="stylesheet" />
@@ -113,116 +113,155 @@
 
 @using (Html.BeginForm("Create", "Orders", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.ValidationSummary(true, "Усі поля обов'язкові.")
-    <div class="form-group">
-        <label for="Amount">Сума кредиту</label>
-        @Html.TextBoxFor(x => x.Order.Amount, new { @class = "form-control", autofocus = "autofocus" })
-        @Html.ValidationMessageFor(x => x.Order.Amount)
-    </div>
-    <div class="form-group">
-        <label for="Order.LoanId">Кредит</label>
-        @Html.DropDownListFor(x => x.Order.LoanId, new SelectList(Model.Loan, "Id", "Name"), "Оберіть кредит", new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Order.LoanId)
-    </div>
-    <div class="form-group">
-        <label for="LastName">Прізвище</label>
-        @Html.TextBoxFor(x => x.Order.LastName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Order.LastName)
-    </div>
-    <div class="form-group">
-        <label for="FirstName">Ім'я</label>
-        @Html.TextBoxFor(x => x.Order.FirstName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Order.FirstName)
-    </div>
-    <div class="form-group">
-        <label for="FathersName">По-батькові</label>
-        @Html.TextBoxFor(x => x.Order.FathersName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Order.FathersName)
-    </div>
-    <div class="form-group">
-        <label for="Date OfBirth">День народження</label>
-        @Html.TextBoxFor(x => x.Order.DateOfBirth, "{0:dd-mm-yyyy}", new { @class = "form-control datepicker1", placeholder = "Введіть дату народження" })
-        @Html.ValidationMessageFor(x => x.Order.DateOfBirth)
-    </div>
-    <div class="form-group">
-        <label for="Email">E-mail</label>
-        @Html.TextBoxFor(x => x.Order.Email, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Order.Email)
-    </div>
-    <div class="form-group">
-        <label for="PhoneNumber">Мобільний номер</label>
-        @Html.TextBoxFor(x => x.Order.PhoneNumber, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Order.PhoneNumber)
-    </div>
-    <div class="form-group">
-        <label for="INN">ІНН</label>
-        @Html.TextBoxFor(x => x.Order.INN, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Order.INN)
-    </div>
-    <div class="form-group">
-        <label for="INN">Номер картки</label>
-        @Html.TextBoxFor(x => x.Order.CardNumber, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Order.CardNumber)
-    </div>
-    <div class="form-group">
-        <label for="PassportNumber">Серія та номер паспорта</label>
-        @Html.TextBoxFor(x => x.Order.PassportNumber, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Order.PassportNumber)
-    </div>
-    <div class="form-group">
-        <label for="PassportGivenByWhom">Ким виданий паспорт</label>
-        @Html.TextBoxFor(x => x.Order.PassportGivenByWhom, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.Order.PassportGivenByWhom)
-    </div>
-    <div class="form-group">
-        <label for="PassportGivenDate">Коли виданий паспорт</label>
-        @Html.TextBoxFor(x => x.Order.PassportGivenDate, "{0:dd-mm-yyyy}", new { @class = "form-control datepicker2", placeholder = "Введіть дату видачі паспорту" })
-        @Html.ValidationMessageFor(x => x.Order.PassportGivenByWhom)
-    </div>
-    <div class="form-group">
-        <div class="editor-label">Завантажити фото Паспорта</div>
-        <div class="editor-field">
-            <input type="file" name="uploadPassportImage" />
+    <div class="row">
+        <div class="col-md-5 form-content-center">
+          @Html.ValidationSummary(true, "Усі поля обов'язкові.", new { @class = "text-danger" })
+            <div class="form-group row">
+                <label for="Amount" class="col-md-4">Сума кредиту</label>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(x => x.Order.Amount, new { @class = "form-control", autofocus = "autofocus" })
+                    @Html.ValidationMessageFor(x => x.Order.Amount)
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <label for="Order.LoanId" class="col-md-4">Кредит</label>
+                <div class="col-md-8">
+                    @Html.DropDownListFor(x => x.Order.LoanId, new SelectList(Model.Loan, "Id", "Name"), "Оберіть кредит", new { @class = "form-control", placeholder = "Оберіть період" })
+                    @Html.ValidationMessageFor(x => x.Order.LoanId)
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <label for="LastName" class="col-md-4">Прізвище</label>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(x => x.Order.LastName, new { @class = "form-control", placeholder = "Прізвище" })
+                    @Html.ValidationMessageFor(x => x.Order.LastName)
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="FirstName" class="col-md-4">Ім'я</label>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(x => x.Order.FirstName, new { @class = "form-control", placeholder = "Ім'я" })
+                    @Html.ValidationMessageFor(x => x.Order.FirstName)
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="FathersName" class="col-md-4">По-батькові</label>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(x => x.Order.FathersName, new { @class = "form-control", placeholder = "По-батькові" })
+                    @Html.ValidationMessageFor(x => x.Order.FathersName)
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="DateOfBirth" class="col-md-4">День народження</label>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(x => x.Order.DateOfBirth, "{0:dd-mm-yyyy}", new { @class = "form-control datepicker1", placeholder = "Введіть дату народження" })
+                    @Html.ValidationMessageFor(x => x.Order.DateOfBirth)
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Email" class="col-md-4">E-mail</label>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(x => x.Order.Email, new { @class = "form-control", placeholder = "E-mail" })
+                    @Html.ValidationMessageFor(x => x.Order.Email)
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <label for="PhoneNumber" class="col-md-4">Мобільний номер</label>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(x => x.Order.PhoneNumber, new { @class = "form-control", placeholder = "(0xx)-xxx-xx-xx" })
+                    @Html.ValidationMessageFor(x => x.Order.PhoneNumber)
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <label for="INN" class="col-md-4">Ідентифікаційний код</label>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(x => x.Order.INN, new { @class = "form-control", placeholder = "Вкажіть ідентифікаційний код" })
+                    @Html.ValidationMessageFor(x => x.Order.INN)
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <label for="CardNumber" class="col-md-4">Номер картки</label>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(x => x.Order.CardNumber, new { @class = "form-control", placeholder = "Вкажіть номер банківської картки" })
+                    @Html.ValidationMessageFor(x => x.Order.CardNumber)
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <label for="PassportNumber" class="col-md-4">Серія та номер паспорта</label>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(x => x.Order.PassportNumber, new { @class = "form-control", placeholder = "Серія та номер паспорта" })
+                    @Html.ValidationMessageFor(x => x.Order.PassportNumber)
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <label for="PassportGivenByWhom" class="col-md-4">Ким виданий паспорт</label>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(x => x.Order.PassportGivenByWhom, new { @class = "form-control", placeholder = "Ким виданий паспорт" })
+                    @Html.ValidationMessageFor(x => x.Order.PassportGivenByWhom)
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <label for="PassportGivenDate" class="col-md-4">Дата видачі паспорта</label>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(x => x.Order.PassportGivenDate, "{0:dd-mm-yyyy}", new { @class = "form-control datepicker2", placeholder = "Оберіть дату видачі паспорту" })
+                    @Html.ValidationMessageFor(x => x.Order.PassportGivenByWhom)
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-4">Завантажити фото Паспорта</div>
+                <div class="col-md-8">
+                    <input type="file" name="uploadPassportImage" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">Завантажити Ідентифікаційний код</div>
+                <div class="col-md-8">
+                    <input type="file" name="uploadINNImage" />
+                </div>
+            </div>
+
+            @Html.HiddenFor(x => x.Order.OrderStatus, new { @Value = "Очікує підтвердження" })
+            @Html.HiddenFor(x => x.Order.CreationDate, new { @Value = DateTime.Now.ToShortDateString() })
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-success">Створити заявку</button>
         </div>
     </div>
-    <div class="form-group">
-        <div class="editor-label">Завантажити Ідентифікаційний код</div>
-        <div class="editor-field">
-            <input type="file" name="uploadINNImage" />
-        </div>
-    </div>
-    @Html.HiddenFor(x => x.Order.OrderStatus, new { @Value = "Очікує підтвердження" })
-    @Html.HiddenFor(x => x.Order.CreationDate, new { @Value = DateTime.Now.ToShortDateString() })
-    @Html.AntiForgeryToken()
-    <button type="submit" class="btn btn-success">Створити заявку</button>
-
-    <div>
-        @if (Model.Order.IsSaved == true)
-        {
-            <div class="container">
-                <div class="row">
-                    <div class="modal d-block"  role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label=""><span>×</span></button>
-                                </div>
-
-                                <div class="modal-body">
-
-                                    <div class="thank-you-pop">
-                                        <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="">
-                                        <h1>Дякуємо!</h1>
-                                        <p>Вашу заявку прийнято до обробки! Незабаром вам зателефонують!</p>
-
+        <div>
+            @if (Model.Order.IsSaved == true)
+            {
+                <div class="container">
+                    <div class="row">
+                        <div class="modal d-block" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label=""><span>×</span></button>
                                     </div>
-                                  </div>
 
+                                    <div class="modal-body">
+
+                                        <div class="thank-you-pop">
+                                            <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="">
+                                            <h1>Дякуємо!</h1>
+                                            <p>Вашу заявку прийнято до обробки! Незабаром вам зателефонують!</p>
+
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                </div>
-                }
-            </div>
+            }
+        </div>
         }
