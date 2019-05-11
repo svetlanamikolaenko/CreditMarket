@@ -28,7 +28,6 @@ namespace CreditMarket.Dtos
         public string FathersName { get; set; }
 
         [Required(ErrorMessage = "Дата народження обов'язкова до заповнення")]
-        [DateValidation]
         public DateTime? DateOfBirth { get; set; }
 
         [EmailAddress]
@@ -52,7 +51,6 @@ namespace CreditMarket.Dtos
         public string PassportGivenByWhom { get; set; }
 
         [Required(ErrorMessage = "Необхідно вказати дату видачі паспорту")]
-        [DateValidation]
         public DateTime? PassportGivenDate { get; set; }
 
         public byte[] PassportImages { get; set; }

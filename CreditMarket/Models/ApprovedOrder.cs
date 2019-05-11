@@ -20,7 +20,6 @@ namespace CreditMarket.Models
         [StringLength(50)]
         public string FathersName { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? DateOfBirth { get; set; }
 
         [StringLength(50)]
@@ -40,15 +39,12 @@ namespace CreditMarket.Models
         [StringLength(120)]
         public string PassportGivenByWhom { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? PassportGivenDate { get; set; }
 
         public byte[] PassportImages { get; set; }
 
         public byte[] INNImages { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ApprovedDate { get; set; }
 
         public string OrderStatus { get; set; }

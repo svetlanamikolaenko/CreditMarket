@@ -83,7 +83,7 @@
 
         $(function () {
             $('.datepicker1').datepicker({
-                dateFormat: 'dd-mm-yy',
+                dateFormat: 'dd.mm.yy',
                 maxDate: "-18y",
                 minDate: "-75y"
             });
@@ -93,7 +93,7 @@
     <script type="text/javascript">
         $(function () {
             $('.datepicker2').datepicker({
-                dateFormat: 'dd-mm-yy',
+                dateFormat: 'dd.mm.yy',
                 maxDate: "-1d",
                 minDate: "-30y"
             });
@@ -156,8 +156,7 @@
             <div class="form-group row">
                 <label for="DateOfBirth" class="col-md-4">День народження</label>
                 <div class="col-md-8">
-                    @Html.TextBoxFor(x => x.Order.DateOfBirth, "{0:dd-mm-yyyy}", new { @class = "form-control datepicker1", placeholder = "Введіть дату народження" })
-                    @Html.ValidationMessageFor(x => x.Order.DateOfBirth)
+                    @Html.TextBoxFor(x => x.Order.DateOfBirth, "{0:dd.mm.yyyy}", new { @class = "form-control datepicker1", placeholder = "Введіть дату народження" })
                 </div>
             </div>
             <div class="form-group row">
@@ -211,8 +210,7 @@
             <div class="form-group row">
                 <label for="PassportGivenDate" class="col-md-4">Дата видачі паспорта</label>
                 <div class="col-md-8">
-                    @Html.TextBoxFor(x => x.Order.PassportGivenDate, "{0:dd-mm-yyyy}", new { @class = "form-control datepicker2", placeholder = "Оберіть дату видачі паспорту" })
-                    @Html.ValidationMessageFor(x => x.Order.PassportGivenByWhom)
+                    @Html.TextBoxFor(x => x.Order.PassportGivenDate, "{0:dd.mm.yyyy}", new { @class = "form-control datepicker2", placeholder = "Оберіть дату видачі паспорту" })
                 </div>
             </div>
 

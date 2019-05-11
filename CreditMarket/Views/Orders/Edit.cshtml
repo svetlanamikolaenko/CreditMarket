@@ -17,7 +17,7 @@
 
         $(function () {
             $('.datepicker1').datepicker({
-                dateFormat: 'dd-mm-yy',
+                dateFormat: 'dd.mm.yy',
                 maxDate: "-18y",
                 minDate: "-75y"
             });
@@ -27,7 +27,7 @@
 
         $(function () {
             $('.datepicker2').datepicker({
-                dateFormat: 'dd-mm-yy',
+                dateFormat: 'dd.mm.yy',
                 maxDate: "-1d",
                 minDate: "-30y"
             });
@@ -82,9 +82,8 @@
             <div class="form-group row">
                 <label for="DateOfBirth" class="col-md-4">День народження</label>
                 <div class="col-md-8">
-                    @Html.TextBoxFor(x => x.Order.DateOfBirth, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker1", placeholder = "Введіть дату народження" })
-                    @Html.ValidationMessageFor(x => x.Order.DateOfBirth)
-                </div>
+                    @Html.TextBoxFor(x => x.Order.DateOfBirth, "{0:dd.MM.yyyy}", new { @class = "form-control datepicker1", placeholder = "Введіть дату народження" })
+                    </div>
             </div>
 
             <div class="form-group row">
@@ -142,8 +141,7 @@
             <div class="form-group row">
                 <label for="PassportGivenDate" class="col-md-4">Коли виданий паспорт</label>
                 <div class="col-md-8">
-                    @Html.TextBoxFor(x => x.Order.PassportGivenDate, "{0:dd-MM-yyyy}", new { @class = "form-control datepicker2", placeholder = "Введіть дату видачі паспорту" })
-                    @Html.ValidationMessageFor(x => x.Order.PassportGivenDate)
+                    @Html.TextBoxFor(x => x.Order.PassportGivenDate, "{0:dd.MM.yyyy}", new { @class = "form-control datepicker2", placeholder = "Введіть дату видачі паспорту" })
                 </div>
             </div>
             <div>
@@ -183,7 +181,7 @@
                         <div class="form-control-static"> Відсутнє фото </div>
                         <label class="editor-label1">Завантажити фото ідентифікаційного кода: </label>
                         <div class="editor-field">
-                            <input type="file" name="uploadPassportImage" />
+                            <input type="file" name="uploadINNImage" />
                         </div>
                     </div>
                 }
@@ -193,7 +191,7 @@
                         <div class="editor-label">Фото ідентифікаційного кода: </div>
                         @Html.Raw("<img style='width:250px; height:125px;' src=\"data:image/jpeg;base64,"
                                                  + Convert.ToBase64String(Model.Order.INNImages) + "\" />")
-                        @Html.Hidden("PassportImages", Model.Order.PassportImages)
+                        @Html.Hidden("INNImages", Model.Order.INNImages)
                         <div class="editor-label">Змінити нове фото ідентифікаційного кода: </div>
                         <div class="editor-field">
                             <input type="file" name="uploadINNImage" />
