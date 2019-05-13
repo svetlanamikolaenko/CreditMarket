@@ -34,7 +34,7 @@
     </div>
     <div class="form-group">
         <label for="DateOfBirth">День народження</label>
-        @Html.TextBoxFor(x => x.ApprovedOrder.DateOfBirth, "{0:dd-MM-yyyy}", new { @class = "form-control", @readonly = "readonly" })
+        @Html.TextBoxFor(x => x.ApprovedOrder.DateOfBirth, "{0:dd.MM.yyyy}", new { @class = "form-control", @readonly = "readonly" })
     </div>
     <div class="form-group">
         <label for="Email">E-mail</label>
@@ -62,50 +62,11 @@
     </div>
     <div class="form-group">
         <label for="PassportGivenDate">Коли виданий паспорт</label>
-        @Html.TextBoxFor(x => x.ApprovedOrder.PassportGivenDate, "{0:dd-MM-yyyy}", new { @class = "form-control", @readonly = "readonly" })
+        @Html.TextBoxFor(x => x.ApprovedOrder.PassportGivenDate, "{0:dd.MM.yyyy}", new { @class = "form-control", @readonly = "readonly" })
     </div>
     <div class="form-group">
         <label for="ApprovedDate">Дата підтвердження</label>
-        @Html.TextBoxFor(x => x.ApprovedOrder.ApprovedDate, "{0:dd-MM-yyyy}", new { @class = "form-control", @readonly = "readonly" })
-    </div>
-
-    <div>
-        @if (Model.ApprovedOrder.PassportImages == null)
-        {
-            <div class="form-group">
-                <div class="editor-label">Фото паспорта: </div>
-                <div class="form-control-static"> Відсутнє фото </div>
-            </div>
-        }
-        else
-        {
-            <div class="form-group">
-                <div class="editor-label">Фото паспорта: </div>
-                @Html.Raw("<img style='width:250px; height:125px;' src=\"data:image/jpeg;base64,"
-                                      + Convert.ToBase64String(Model.ApprovedOrder.PassportImages) + "\" />")
-                @Html.Hidden("PassportImages", Model.ApprovedOrder.PassportImages)
-            </div>
-        }
-    </div>
-    <br>
-
-    <div>
-        @if (Model.ApprovedOrder.INNImages == null)
-        {
-            <div class="form-group">
-                <div class="editor-label">Фото ідентифікакційного кода:</div>
-                <div class="form-control-static"> Відсутнє фото </div>
-            </div>
-        }
-        else
-        {
-            <div class="form-group">
-                <div class="editor-label">Фото ідентифікаційного кода: </div>
-                @Html.Raw("<img style='width:250px; height:125px;' src=\"data:image/jpeg;base64,"
-                                          + Convert.ToBase64String(Model.ApprovedOrder.INNImages) + "\" />")
-                @Html.Hidden("INNImages", Model.ApprovedOrder.INNImages)
-            </div>
-        }
+        @Html.TextBoxFor(x => x.ApprovedOrder.ApprovedDate, "{0:dd.MM.yyyy}", new { @class = "form-control", @readonly = "readonly" })
     </div>
     <br>
     <div class="button-group">

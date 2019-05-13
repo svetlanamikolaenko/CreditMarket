@@ -42,10 +42,6 @@ namespace CreditMarket.Dtos
 
         public DateTime? PassportGivenDate { get; set; }
 
-        public byte[] PassportImages { get; set; }
-
-        public byte[] INNImages { get; set; }
-
         public DateTime ApprovedDate { get; set; }
 
         public string OrderStatus { get; set; }

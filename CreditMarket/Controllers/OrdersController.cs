@@ -101,8 +101,6 @@ namespace CreditMarket.Controllers
                 approvedOrder.PassportNumber = order.PassportNumber;
                 approvedOrder.PassportGivenByWhom = order.PassportGivenByWhom;
                 approvedOrder.PassportGivenDate = order.PassportGivenDate;
-                approvedOrder.PassportImages = order.PassportImages;
-                approvedOrder.INNImages = order.INNImages;
                 approvedOrder.CardNumber = order.CardNumber;
                 approvedOrder.OrderStatus = order.OrderStatus;
                 approvedOrder.ApprovedDate = order.ApprovedDate;
