@@ -19,8 +19,9 @@
             <th>Дата подачі заявки</th>
             <th>Статус заявки</th>
             <th>Дата погодження/відмови</th>
-            <th>Видалити</th>
+            <th>Переглянути</th>
             <th>Редагувати</th>
+            <th>Видалити</th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -37,10 +38,7 @@
                  },
                 columns: [
                     {
-                        data: "id",
-                        render: function (data, type, order) {
-                            return "<a href='/orders/details/" + order.id + "'>" + data + "</a>";
-                        }
+                        data: "id"
                     },
                     {
                         data: "fullName"                        
@@ -72,16 +70,22 @@
                     },
                     {
                         data: "id",
-                        render: function (data) {
-                            return "<button class='btn btn-danger js-delete' data-order-id=" + data + ">Видалити</button>";
-                        }
+                        render: function (data, type, order) {
+                            return "<a href='/orders/details/" + order.id + "' class='btn btn-success'>Переглянути</a>";
+                        }                
                     },
                     {
                         data: "id",
                         render: function (data, type, order) {
                             return "<a href='/orders/edit/" + order.id + "' class='btn btn-primary'>Редагувати</a>";
-                      }
-                }
+                        }
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn btn-danger js-delete' data-order-id=" + data + ">Видалити</button>";
+                        }
+                    }
                 ]
             });
             $("#orders").on("click", ".js-delete", function () {
