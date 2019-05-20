@@ -8,7 +8,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        
+
         .main-holder {
             position: relative;
             color: #22425b;
@@ -26,6 +26,7 @@
             background: rgba(255, 255, 255, .8);
             padding: 25px 15px;
         }
+
         .slidecontainer {
             width: 100%;
         }
@@ -33,7 +34,6 @@
         .description-container {
             display: flex;
             justify-content: space-between;
-
         }
 
         .col-3 {
@@ -83,10 +83,9 @@
                 background: #0000A0;
                 cursor: pointer;
             }
-      
     </style>
 </head>
-<body>    
+<body>
 
     <div class="main-holder">
         <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
@@ -102,13 +101,13 @@
                 </div>
                 <div class="item">
                     <img src="/Content/Images/banner3.jpg" alt="Visual Studio" class="img-responsive" />
-                  </div>
+                </div>
                 <div class="item">
                     <img src="/Content/Images/banner2.jpg" alt="Package Management" class="img-responsive" />
-                 </div>
+                </div>
                 <div class="item">
                     <img src="/Content/Images/banner4.jpg" alt="Microsoft Azure" class="img-responsive" />
-                 </div>
+                </div>
             </div>
         </div>
 
@@ -122,18 +121,16 @@
 
                 </div>
                 <br />
-                <div class="slidecontainer">
-                    <p>Термін: <span id="period"></span> днів</p>
-                    <input type="range" min="1" max="30" value="1" class="slider" id="periodRange" step="1">
+                <div class="col-md-8">
+                    <select id="periodList"></select>
                 </div>
-
                 <br />
-
+                <br />
                 <p>До сплати в кінці терміну: <span id="procent">1000</span> грн.</p>
 
                 <br />
                 <br />
-                <button onclick="getAmountValue()" type="submit" class="btn btn-primary">Оформити заявку</button>
+                <button onclick="getAmountAndPeriodValues()" type="submit" class="btn btn-primary">Оформити заявку</button>
 
             }
         </div>
@@ -156,11 +153,11 @@
                 <p>Щоб взяти позику онлайн, необхідно мати банкісвьку картку та інтернет!</p>
             </div>		<div class="col-3">
                 <div>
-                    <img alt=""  title="Прозоро">
+                    <img alt="" title="Прозоро">
                 </div>
                 <span class="description-title">Прозоро</span>
                 <p>Низька процентна ставка на позики без додаткових платежів та комісій.</p>
-            </div>		
+            </div>
             <div class="col-3">
                 <div>
                     <img alt="" title="Безпечно">
@@ -176,43 +173,55 @@
 @section scripts
 {
     <script>
-        function getAmountValue() {
+        $(document).ready(function () {
+            $.get("/api/loans", function (data) {
+                $.each(data, function (index, value) {
+                    $("select").append("<option>" + value.name + "</option>");
+                });
+            });
+        });
+    </script>
+
+    <script>
+        function getAmountAndPeriodValues() {
             var getAmount = document.getElementById("amount").innerText;
             localStorage.setItem("amountValue", getAmount);
+            var periodList = document.getElementById("periodList");
+            var getPeriodValue = periodList.options[periodList.selectedIndex].text;
+            $.get("/api/loans", function (data) {
+                $.each(data, function (index, value) {
+                    if (value.name == getPeriodValue) {
+                        localStorage.setItem("periodValue", value.id);
+                    }
+                });
+            });
         }
     </script>
 
     <script>
         var amountSlider = document.getElementById("amountRange");
         var amount = document.getElementById("amount");
-        var periodSlider = document.getElementById("periodRange");
+        var periodList = document.getElementById("periodList");
+        var periodValue = periodList.options[periodList.selectedIndex].text;
         var procent = document.getElementById("procent");
         amount.innerHTML = amountSlider.value;
 
         amountSlider.oninput = function () {
             amount.innerHTML = this.value;
-            procent.innerHTML = calcLoan(amountSlider.value, periodSlider.value);
-        }
-
-        function calcLoan(p1, p2) {
-            return p1 * p2;
-        }
-    </script>
-
-    <script>
-        var amountSlider = document.getElementById("amountRange");
-        var periodSlider = document.getElementById("periodRange");
-        var period = document.getElementById("period");
-        var procent = document.getElementById("procent");
-        period.innerHTML = periodSlider.value;
-
-        periodSlider.oninput = function () {
-            period.innerHTML = this.value;
-            procent.innerHTML = calcLoan(amountSlider.value, periodSlider.value);
+            $.get("/api/loans", function (data) {
+                $.each(data, function (index, value) {
+                    if (value.name == periodValue) {
+                        procent.innerHTML = calcLoan(amountSlider.value, value.period);
+                    }
+                });
+            });
+            
         }
 
         function calcLoan(p1, p2) {
             return parseInt(p1) + p1 * p2 * 0.0001;
         }
     </script>
+
+    
 }
