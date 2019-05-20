@@ -102,6 +102,7 @@
 
     <script>
         document.getElementById("Order_Amount").value = localStorage.getItem("amountValue");
+        document.getElementById("Order_LoanId").value = localStorage.getItem("periodValue");
 
         document.querySelectorAll('.close').forEach(el => el.addEventListener('click', () => {
             document.querySelector('.modal').classList.remove('d-block');
@@ -127,7 +128,7 @@
             <div class="form-group row">
                 <label for="Order.LoanId" class="col-md-4">Кредит</label>
                 <div class="col-md-8">
-                    @Html.DropDownListFor(x => x.Order.LoanId, new SelectList(Model.Loan, "Id", "Name"), "Оберіть кредит", new { @class = "form-control", placeholder = "Оберіть період" })
+                    @Html.DropDownListFor(x => x.Order.LoanId, new SelectList(Model.Loan, "Id", "Name"), "Оберіть кредит", new { @class = "form-control", @readonly = "readonly" })
                     @Html.ValidationMessageFor(x => x.Order.LoanId)
                 </div>
 
