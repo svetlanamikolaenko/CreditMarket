@@ -115,18 +115,18 @@
             <h3>Розрахувати кредит</h3>
             @using (Html.BeginForm("NavigateToOrder", "Home"))
             {
-                <div class="slidecontainer">
+                <div class="slidecontainer" onchange="calculation()">
                     <p>Сума: <span id="amount" name="amount"></span> грн.</p>
-                    <input type="range" min="1000" max="10000" value="1000" class="slider" id="amountRange" step="500">
+                    <input type="range" min="1000" max="50000" value="1000" class="slider" id="amountRange" step="500">
 
                 </div>
                 <br />
                 <div class="col-md-8">
-                    <select id="periodList"></select>
+                    <select id="periodList" onchange="clearProcent()"></select>
                 </div>
                 <br />
                 <br />
-                <p>До сплати в кінці терміну: <span id="procent">1000</span> грн.</p>
+                <p>До сплати в кінці терміну: <span id="procent"></span> грн.</p>
 
                 <br />
                 <br />
@@ -183,6 +183,44 @@
     </script>
 
     <script>
+        function calculation() {
+            var amountSlider = document.getElementById("amountRange");
+            var amount = document.getElementById("amount");
+            var periodList = document.getElementById("periodList");
+            var periodValue = periodList.options[periodList.selectedIndex].text;
+            var procent = document.getElementById("procent");
+            amount.innerHTML = amountSlider.value;
+
+            amountSlider.oninput = function () {
+                amount.innerHTML = this.value;
+                $.get("/api/loans", function (data) {
+                    $.each(data, function (index, value) {
+                        if (value.name == periodValue) {
+                            procent.innerHTML = calcLoan(amountSlider.value, value.period, value.procent);
+                        }
+                    });
+                });
+            }
+            function calcLoan(amount, period, procent) {
+                var calcAmount = parseInt(amount) + amount / 365 * period * procent / 100
+                return calcAmount.toFixed(2);
+            }
+        }
+
+    </script>
+
+    <script>
+        function clearProcent() {
+            var procent = document.getElementById("procent");
+            procent.innerHTML = "";
+            var range = document.getElementById("amountRange");
+            range.value = 1000;
+            var amount = document.getElementById("amount");
+            amount.innerHTML = "";
+        }
+    </script>
+
+    <script>
         function getAmountAndPeriodValues() {
             var getAmount = document.getElementById("amount").innerText;
             localStorage.setItem("amountValue", getAmount);
@@ -197,31 +235,4 @@
             });
         }
     </script>
-
-    <script>
-        var amountSlider = document.getElementById("amountRange");
-        var amount = document.getElementById("amount");
-        var periodList = document.getElementById("periodList");
-        var periodValue = periodList.options[periodList.selectedIndex].text;
-        var procent = document.getElementById("procent");
-        amount.innerHTML = amountSlider.value;
-
-        amountSlider.oninput = function () {
-            amount.innerHTML = this.value;
-            $.get("/api/loans", function (data) {
-                $.each(data, function (index, value) {
-                    if (value.name == periodValue) {
-                        procent.innerHTML = calcLoan(amountSlider.value, value.period);
-                    }
-                });
-            });
-            
-        }
-
-        function calcLoan(p1, p2) {
-            return parseInt(p1) + p1 * p2 * 0.0001;
-        }
-    </script>
-
-    
 }

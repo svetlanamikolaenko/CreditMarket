@@ -13,7 +13,7 @@ namespace CreditMarket.Dtos
         public int? Period { get; set; }
 
         [Required(ErrorMessage = "Вкажіть відсоткову ставку кредиту")]
-        [Range(1, 100)]
-        public int? Procent { get; set; }
+        [Range(0.01, 99.99)]
+        public double? Procent { get; set; }
     }
 }
