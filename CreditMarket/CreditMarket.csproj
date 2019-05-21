@@ -222,6 +222,10 @@
     <Compile Include="Migrations.Orders\201905131843162_RemoveImagesFields2.Designer.cs">
       <DependentUpon>201905131843162_RemoveImagesFields2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations.Orders\201905211840407_LoanProcentTypeChanged.cs" />
+    <Compile Include="Migrations.Orders\201905211840407_LoanProcentTypeChanged.Designer.cs">
+      <DependentUpon>201905211840407_LoanProcentTypeChanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations.Orders\Configuration.cs" />
     <Compile Include="Migrations.UkrainianUnions\201905061748319_InitialApprovedOrder.cs" />
     <Compile Include="Migrations.UkrainianUnions\201905061748319_InitialApprovedOrder.Designer.cs">
@@ -676,6 +680,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations.Orders\201905131843162_RemoveImagesFields2.resx">
       <DependentUpon>201905131843162_RemoveImagesFields2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations.Orders\201905211840407_LoanProcentTypeChanged.resx">
+      <DependentUpon>201905211840407_LoanProcentTypeChanged.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations.UkrainianUnions\201905061748319_InitialApprovedOrder.resx">
       <DependentUpon>201905061748319_InitialApprovedOrder.cs</DependentUpon>
